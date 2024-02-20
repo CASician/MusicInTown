@@ -5,7 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fceed6ec-ff53-45d6-83ae-a6a8b46ffd39" name="Changes" comment="Fix: Updated UML with all the required Design Patterns and classes">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/BusinessLogic/EventController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/BusinessLogic/Observer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/BusinessLogic/Subject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/DomainModel/BasicUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/DomainModel/Event.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/DomainModel/Municipality.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/DomainModel/Musician.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/DomainModel/Owner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/DomainModel/Place.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/DomainModel/PlaceType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/DomainModel/Planner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/DomainModel/PrivateEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/DomainModel/PrivatePlace.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/DomainModel/PublicEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/DomainModel/PublicPlace.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/DomainModel/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UML.mdj" beforeDir="false" afterPath="$PROJECT_DIR$/UML.mdj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Band.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +110,7 @@
       <workItem from="1707135079021" duration="1000" />
       <workItem from="1707220183716" duration="162000" />
       <workItem from="1707497394582" duration="689000" />
-      <workItem from="1707822107384" duration="14493000" />
+      <workItem from="1707822107384" duration="25309000" />
     </task>
     <task id="LOCAL-00001" summary="fix: UML file updated and fixed">
       <option name="closed" value="true" />
@@ -125,7 +144,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708101693709</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Fix: Updated UML with all the required Design Patterns and classes">
+      <option name="closed" value="true" />
+      <created>1708104748967</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1708104748967</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
