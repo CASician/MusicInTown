@@ -7,19 +7,19 @@ public class Musician extends BasicUser {
     public String name;
     public String genre;
     public int componentNumb;
-    public Date fondation;
+    public Date foundation;
 
     public Musician(String name, String genre, String username, String email, int id, int numb,
-                    String city, Date fondation) {
+                    String city, Date foundation) {
         super(id, email, username, city);
         this.name = name;
         this.genre = genre;
         this.componentNumb = numb;
-        this.fondation = fondation;
+        this.foundation = foundation;
     }
 
-    public Date getFondation() {
-        return fondation;
+    public Date getFoundation() {
+        return foundation;
     }
 
     public int getComponentNumb() {
