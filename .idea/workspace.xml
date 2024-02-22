@@ -4,27 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fceed6ec-ff53-45d6-83ae-a6a8b46ffd39" name="Changes" comment="Fix: Updated UML with all the required Design Patterns and classes">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/BusinessLogic/EventController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/BusinessLogic/Observer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/BusinessLogic/Subject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/DomainModel/BasicUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/DomainModel/Event.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/DomainModel/Municipality.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/DomainModel/Musician.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/DomainModel/Owner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/DomainModel/Place.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/DomainModel/PlaceType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/DomainModel/Planner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/DomainModel/PrivateEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/DomainModel/PrivatePlace.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/DomainModel/PublicEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/DomainModel/PublicPlace.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/DomainModel/User.java" afterDir="false" />
+    <list default="true" id="fceed6ec-ff53-45d6-83ae-a6a8b46ffd39" name="Changes" comment="feat: Added part of the Domain Logic, Business Control and Interface.&#10;fix: Updated UML file">
+      <change afterPath="$PROJECT_DIR$/src/main/BusinessLogic/AccessController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/BusinessLogic/MusicianController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/BusinessLogic/ProgramController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/DAO/AccessDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Interface/AccessInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UML.mdj" beforeDir="false" afterPath="$PROJECT_DIR$/UML.mdj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Band.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DomainModel/Musician.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/Musician.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Interface/BasicUserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Interface/BasicUserInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,33 +48,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/Paba/Desktop/MusicInTown/lib",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "/home/carpe/IdeaProjects/musicintown/src/Main.java",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/Paba/Desktop/MusicInTown/lib&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;/home/carpe/IdeaProjects/musicintown/src/Main.java&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ],
-    "RunConfigurationTargetLRU": [
-      "2065b974-df45-4f7b-8346-324135eb2edb"
+    &quot;RunConfigurationTargetLRU&quot;: [
+      &quot;2065b974-df45-4f7b-8346-324135eb2edb&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/lib" />
@@ -110,7 +99,7 @@
       <workItem from="1707135079021" duration="1000" />
       <workItem from="1707220183716" duration="162000" />
       <workItem from="1707497394582" duration="689000" />
-      <workItem from="1707822107384" duration="25309000" />
+      <workItem from="1707822107384" duration="37602000" />
     </task>
     <task id="LOCAL-00001" summary="fix: UML file updated and fixed">
       <option name="closed" value="true" />
@@ -152,7 +141,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708104748967</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="feat: Added part of the Domain Logic, Business Control and Interface.&#10;fix: Updated UML file">
+      <option name="closed" value="true" />
+      <created>1708447862923</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1708447862923</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -174,17 +171,7 @@
     <MESSAGE value="Chore: updated UML dependencies" />
     <MESSAGE value="Feat: Created and connected Database" />
     <MESSAGE value="Fix: Updated UML with all the required Design Patterns and classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix: Updated UML with all the required Design Patterns and classes" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>13</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="feat: Added part of the Domain Logic, Business Control and Interface.&#10;fix: Updated UML file" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Added part of the Domain Logic, Business Control and Interface.&#10;fix: Updated UML file" />
   </component>
 </project>
