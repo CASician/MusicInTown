@@ -1,20 +1,20 @@
 package main.DomainModel;
 
 public abstract class Place {
-    int placeId;
+    int id;
     String city;
     String name;
     String address;
-    int placeCapacity;
+    int capacity;
 
     boolean indoor;
 
-    public Place(int placeId, String city, String name, String address, int placeCapacity, boolean indoor) {
-        this.placeId = placeId;
+    public Place(int placeId, String city, String name, String address, int capacity, boolean indoor) {
+        this.id = placeId;
         this.city = city;
         this.name = name;
         this.address = address;
-        this.placeCapacity = placeCapacity;
+        this.capacity = capacity;
         this.indoor = indoor;
     }
 
@@ -30,7 +30,7 @@ public abstract class Place {
         return address;
     }
 
-    public int getPlaceCapacity() {
-        return placeCapacity;
+    public int getCapacity() {
+        return capacity;
     }
 }
