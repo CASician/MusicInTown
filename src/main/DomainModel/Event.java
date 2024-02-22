@@ -3,6 +3,7 @@ package main.DomainModel;
 import java.util.Date;
 
 public abstract class Event {
+    protected int id;
     protected boolean open;
     protected Date date;
 
