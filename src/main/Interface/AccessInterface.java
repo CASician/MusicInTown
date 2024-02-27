@@ -10,7 +10,13 @@ public class AccessInterface {
     }
 
     public void firstView() {
-        System.out.println("Press 'l' to logIn or 'e' to exit: ");
+        System.out.println("Choose an option: ");
+        System.out.println("0. login ");
+        System.out.println("1. exit");
+    }
+
+    public void invalidChoice() {
+        System.out.println("The choice is invalid");
     }
 
     public void askEmail() {
@@ -25,8 +31,14 @@ public class AccessInterface {
         System.out.println("Login was successful, welcome " + username);
     }
 
-    public void failure() {
+    public void loginFailure() {
         System.out.println("Wrong Email or Password");
+    }
+
+    public void tryAgain() {
+        System.out.println("Choose an option: ");
+        System.out.println("0. try again");
+        System.out.println("1. exit");
     }
 
 }

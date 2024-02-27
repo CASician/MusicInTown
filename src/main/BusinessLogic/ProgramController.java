@@ -1,33 +1,55 @@
 package main.BusinessLogic;
 
 import main.DomainModel.Musician;
+import main.DomainModel.UserType;
 
 import java.util.Objects;
 
-public class ProgramController {
+public class ProgramController extends InputController {
     AccessController accessController;
     MusicianController musicianController;
-
-    String userType = null;
+    PlannerController plannerController;
+    MunicipalityController municipalityController;
+    UserController userController;
+    OwnerController ownerController;
+    UserType userType;
+    //String userType = null;
 
     public ProgramController() {
         this.accessController = new AccessController();
     }
 
-    public void start() {
-        String input = accessController.start();
-        switch (input) {
-            case "e":
-                break;
-            case "l":
-                userType = accessController.login();
+    public void run() {
+
+        //Ask user to login or to exit the program
+        UserActions input = getFirstInput();
+        if(input != null) {
+            switch (input) {
+                case EXIT:
+                    break;
+                case LOGIN:
+                    userType = accessController.login();
+            }
         }
+
+        //continue execution depending on the type of user
         if(userType != null) {
-            //continue execution depending on the type of user
             switch (userType) {
-                case "m":
+                case MUSICIAN:
                     this.musicianController = new MusicianController(accessController.email);
-                case "u":
+                    this.musicianController.musicianFunctions();
+                    break;
+                case PLANNER:
+                    this.plannerController = new PlannerController(accessController.email);
+                    break;
+                case MUNICIPALITY:
+                    this.municipalityController = new MunicipalityController(accessController.email);
+                    break;
+                case USER:
+                    this.userController = new UserController(accessController.email);
+                    break;
+                case OWNER:
+                    this.ownerController = new OwnerController(accessController.email);
 
             }
         }

@@ -7,23 +7,13 @@ public class Musician extends BasicUser {
     public String name;
     public String genre;
     public int componentNumb;
-    public Date foundation;
 
     public Musician(String name, String genre, String username, String email, int id, int numb,
-                    String city, Date foundation) {
+                    String city) {
         super(id, email, username, city);
-
-        /*
-        TODO: implementare il metodo di accesso al DAO che assegna questi campi
         this.name = name;
         this.genre = genre;
         this.componentNumb = numb;
-        this.foundation = foundation;
-         */
-    }
-
-    public Date getFoundation() {
-        return foundation;
     }
 
     public int getComponentNumb() {

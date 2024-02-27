@@ -4,15 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fceed6ec-ff53-45d6-83ae-a6a8b46ffd39" name="Changes" comment="feat: Added part of the Domain Logic, Business Control and Interface.&#10;fix: Updated UML file">
-      <change afterPath="$PROJECT_DIR$/src/main/BusinessLogic/AccessController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/BusinessLogic/MusicianController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/BusinessLogic/ProgramController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/DAO/AccessDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Interface/AccessInterface.java" afterDir="false" />
+    <list default="true" id="fceed6ec-ff53-45d6-83ae-a6a8b46ffd39" name="Changes" comment="feat: added login method logic for users">
+      <change afterPath="$PROJECT_DIR$/src/main/BusinessLogic/InputController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/BusinessLogic/MunicipalityController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/BusinessLogic/OwnerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/BusinessLogic/PlannerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/BusinessLogic/UserActions.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/BusinessLogic/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/DAO/MusicianDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/DomainModel/UserType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Interface/MusicianInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2065b974-df45-4f7b-8346-324135eb2edb.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/2065b974-df45-4f7b-8346-324135eb2edb.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UML.mdj" beforeDir="false" afterPath="$PROJECT_DIR$/UML.mdj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/AccessController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/AccessController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/EventController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/MusicianController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/MusicianController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/ProgramController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/ProgramController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DAO/AccessDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DAO/AccessDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/DomainModel/Musician.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/Musician.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Interface/AccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Interface/AccessInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Interface/BasicUserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Interface/BasicUserInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -20,14 +34,10 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DatabaseLocalColorSettings">
-    <colors>
-      <entry key="2cfe77d1-e752-4a05-a643-50da93154a3b" value="Rose" />
-    </colors>
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -99,7 +109,9 @@
       <workItem from="1707135079021" duration="1000" />
       <workItem from="1707220183716" duration="162000" />
       <workItem from="1707497394582" duration="689000" />
-      <workItem from="1707822107384" duration="37602000" />
+      <workItem from="1707822107384" duration="57294000" />
+      <workItem from="1709031067135" duration="5000" />
+      <workItem from="1709031095331" duration="1255000" />
     </task>
     <task id="LOCAL-00001" summary="fix: UML file updated and fixed">
       <option name="closed" value="true" />
@@ -149,7 +161,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708447862923</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="feat: added login method logic for users">
+      <option name="closed" value="true" />
+      <created>1708622779918</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1708622779918</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,6 +192,7 @@
     <MESSAGE value="Feat: Created and connected Database" />
     <MESSAGE value="Fix: Updated UML with all the required Design Patterns and classes" />
     <MESSAGE value="feat: Added part of the Domain Logic, Business Control and Interface.&#10;fix: Updated UML file" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Added part of the Domain Logic, Business Control and Interface.&#10;fix: Updated UML file" />
+    <MESSAGE value="feat: added login method logic for users" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: added login method logic for users" />
   </component>
 </project>

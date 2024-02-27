@@ -1,61 +1,53 @@
 package main.BusinessLogic;
 
 import main.DAO.AccessDAO;
+import main.DomainModel.UserType;
 import main.Interface.AccessInterface;
 
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class AccessController {
+public class AccessController extends InputController {
     private final AccessDAO accessDAO;
-    private final Scanner scanner;
-    private final AccessInterface accessInterface;
+
     public String email;
+    UserType userType;
 
     public AccessController() {
         this.accessDAO = new AccessDAO();
         this.scanner = new Scanner(System.in);
-        this.accessInterface = new AccessInterface();
         this.email = null;
-    }
-
-    public String start() {
-        boolean start = true;
-        String input = null;
-
-        while (start) {
-            accessInterface.firstView();
-            input = scanner.nextLine();
-
-            if (Objects.equals(input, "l") || Objects.equals(input, "e")) {
-                start = false;
-            }
-        }
-        return input;
+        userType = null;
     }
 
 
-    public String login() {
+    public UserType login() {
         /*
         Comunica con il DAO, se password ed username sono presenti allora
         crea l'oggetto desiderato nel Domain Model e ritorna true
         */
+
         HashMap<String, String> input = new HashMap<>();
-        String userType = null;
 
-        accessInterface.askEmail();
-        email = scanner.nextLine();
-        input.put("email" , email);
-        accessInterface.askPassword();
-        input.put("password", scanner.nextLine());
-
+        input.put("email" , getEmailInput());
+        email = input.get("email");
+        input.put("password", getPasswordInput());
         userType = accessDAO.login(input);
+        boolean loop = true;
 
-        if(userType != null) {
-            accessInterface.success(email);
+        while(loop) {
+
+            if (userType != null) {
+                accessInterface.success(email);
+                loop = false;
+            } else {
+                accessInterface.loginFailure();
+                if(!tryAgain()) {
+                    loop = false;
+                }
+            }
         }
-        else accessInterface.failure();
 
         return userType;
     }
