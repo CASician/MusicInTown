@@ -3,7 +3,7 @@ package main.Interface;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class AccessInterface {
+public class AccessInterface extends BasicUserInterface {
     Scanner scanner;
     public AccessInterface() {
         this.scanner = new Scanner(System.in);
@@ -13,10 +13,6 @@ public class AccessInterface {
         System.out.println("Choose an option: ");
         System.out.println("0. login ");
         System.out.println("1. exit");
-    }
-
-    public void invalidChoice() {
-        System.out.println("The choice is invalid");
     }
 
     public void askEmail() {

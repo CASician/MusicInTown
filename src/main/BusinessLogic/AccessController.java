@@ -15,9 +15,9 @@ public class AccessController extends InputController {
     UserType userType;
 
     public AccessController() {
-        this.accessDAO = new AccessDAO();
-        this.scanner = new Scanner(System.in);
-        this.email = null;
+        accessDAO = new AccessDAO();
+        scanner = new Scanner(System.in);
+        email = null;
         userType = null;
     }
 

@@ -4,30 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fceed6ec-ff53-45d6-83ae-a6a8b46ffd39" name="Changes" comment="feat: added login method logic for users">
-      <change afterPath="$PROJECT_DIR$/src/main/BusinessLogic/InputController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/BusinessLogic/MunicipalityController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/BusinessLogic/OwnerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/BusinessLogic/PlannerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/BusinessLogic/UserActions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/BusinessLogic/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/DAO/MusicianDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/DomainModel/UserType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/Interface/MusicianInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2065b974-df45-4f7b-8346-324135eb2edb.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/2065b974-df45-4f7b-8346-324135eb2edb.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+    <list default="true" id="fceed6ec-ff53-45d6-83ae-a6a8b46ffd39" name="Changes" comment="fix: revised login method with additional classes and separation of concerns">
+      <change afterPath="$PROJECT_DIR$/src/main/DAO/EventsDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/DAO/PlacesDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/DAO/PlannerDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UML.mdj" beforeDir="false" afterPath="$PROJECT_DIR$/UML.mdj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/AccessController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/AccessController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/EventController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/InputController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/InputController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/MusicianController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/MusicianController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/ProgramController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/ProgramController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DAO/AccessDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DAO/AccessDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/UserActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/UserActions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DomainModel/BasicUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/BasicUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DomainModel/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/Event.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/DomainModel/Musician.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/Musician.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DomainModel/Place.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/Place.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DomainModel/Planner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/Planner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DomainModel/PrivateEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/PrivateEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DomainModel/PrivatePlace.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/PrivatePlace.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DomainModel/PublicEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/PublicEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DomainModel/PublicPlace.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/PublicPlace.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Interface/AccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Interface/AccessInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Interface/BasicUserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Interface/BasicUserInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Interface/MusicianInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Interface/MusicianInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,13 +89,24 @@
       <recent name="$PROJECT_DIR$/lib" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.BasicUsage">
+    <configuration name="BasicUsage" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="musicintown" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="console.sql" type="DatabaseScript" editBeforeRun="true" nameIsGenerated="true">
       <script-file value="$APPLICATION_CONFIG_DIR$/consoles/db/2065b974-df45-4f7b-8346-324135eb2edb/console.sql" />
       <script-mode>FILE</script-mode>
       <data-source id="2065b974-df45-4f7b-8346-324135eb2edb" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Application.BasicUsage" />
+      <item itemvalue="Database Script.console.sql" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -111,7 +121,8 @@
       <workItem from="1707497394582" duration="689000" />
       <workItem from="1707822107384" duration="57294000" />
       <workItem from="1709031067135" duration="5000" />
-      <workItem from="1709031095331" duration="1255000" />
+      <workItem from="1709031095331" duration="7060000" />
+      <workItem from="1709568527841" duration="17316000" />
     </task>
     <task id="LOCAL-00001" summary="fix: UML file updated and fixed">
       <option name="closed" value="true" />
@@ -169,7 +180,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708622779918</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="fix: revised login method with additional classes and separation of concerns">
+      <option name="closed" value="true" />
+      <created>1709055521033</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1709055521034</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,6 +212,17 @@
     <MESSAGE value="Fix: Updated UML with all the required Design Patterns and classes" />
     <MESSAGE value="feat: Added part of the Domain Logic, Business Control and Interface.&#10;fix: Updated UML file" />
     <MESSAGE value="feat: added login method logic for users" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: added login method logic for users" />
+    <MESSAGE value="fix: revised login method with additional classes and separation of concerns" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: revised login method with additional classes and separation of concerns" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NumberFormatException" package="java.lang" />
+          <option name="timeStamp" value="7" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -16,6 +16,7 @@ public class ProgramController extends InputController {
     //String userType = null;
 
     public ProgramController() {
+        System.out.println("qui");
         this.accessController = new AccessController();
     }
 

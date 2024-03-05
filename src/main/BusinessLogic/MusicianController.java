@@ -1,41 +1,46 @@
 package main.BusinessLogic;
 
+import main.DAO.EventsDAO;
 import main.DAO.MusicianDAO;
 import main.DomainModel.Musician;
 import main.Interface.MusicianInterface;
 
-import java.util.HashMap;
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class MusicianController {
+public class MusicianController extends InputController {
     MusicianDAO musicianDAO;
     Musician musician;
     MusicianInterface musicianInterface;
-    String operation;
+    UserActions.MusicianActions operation;
     Scanner scanner;
     EventController eventController;
 
     public MusicianController(String musician) {
-        //this.musician = new Musician(musician);
-        this.musicianDAO = new MusicianDAO(musician);
+        eventController = new EventController();
+        musicianDAO = new MusicianDAO(musician);
         this.musician = musicianDAO.getMusician();
-        this.musicianInterface = new MusicianInterface();
-        this.operation = null;
-        this.scanner = new Scanner(System.in);
-        this.eventController = new EventController();
+        musicianInterface = new MusicianInterface();
+        operation = null;
+        scanner = new Scanner(System.in);
+        eventController = new EventController();
     }
 
     public void musicianFunctions() {
-        musicianInterface.printMusicianInfo(musician);
-        while(Objects.equals(operation, "e")) {
-            this.musicianInterface.basicInterface();
-            this.operation = this.scanner.nextLine();
-            switch (operation) {
-                case "v":
+        while(!Objects.equals(basicUserOptions, UserActions.BasicUser.Exit)) {
+            musicianInterface.basicInterface();
+            basicUserOptions = firstMenuInput();
+            switch (basicUserOptions) {
+                case SeeInfo:
+                    musicianInterface.printMusicianInfo(musician);
+                    break;
+                case SeeEventsMenu:
                     eventsManagement();
-                case "i":
-                    infoManagement();
+                    break;
+                case Exit:
+                    musicianInterface.logOut();
+                    break;
                 default:
                     break;
             }
@@ -43,14 +48,55 @@ public class MusicianController {
     }
 
     public void eventsManagement() {
-        String input = null;
-        musicianInterface.eventsInterface();
-
-        eventController.getEventSubscriptions();
+        boolean quitMenu = false;
+        while(!quitMenu) {
+            musicianInterface.eventsInterface();
+            operation = getMusicianInput();
+            switch (operation) {
+                case SeeAllEvents:
+                    musicianInterface.printPrivateEvents(eventController.getPrivateEvents());
+                    musicianInterface.printPublicEvents(eventController.getPublicEvents());
+                    break;
+                case SeeEventsSubscriptions:
+                    musicianInterface.getSubscriptions(musician.getPublicEvents(), musician.getPrivateEvents());
+                    break;
+                case SubscribeEvent:
+                    if(getEventType() == 0) {
+                        musician.addPrivateSubscription(
+                                eventController.subscribePrivateEvent(musician.name, musician.getId(), getId()));
+                        musicianInterface.privateSubscriptionDone(
+                                musician.getPrivateEvents().get(musician.getPrivateEvents().size()-1));
+                    }
+                    else {
+                        musician.addPublicSubscription(
+                                eventController.subscribePublicEvent(musician.name, musician.getId(), getId()));
+                        musicianInterface.publicSubscriptionDone(
+                                musician.getPublicEvents().get(musician.getPublicEvents().size()-1));
+                    }
+                    break;
+                case FilterEvents:
+                    LocalDate date = getDateFilter();
+                    musicianInterface.printPublicEvents(eventController.getPublicEventsFiltered(date));
+                    musicianInterface.printPrivateEvents(eventController.getPrivateEventsFiltered(date));
+                    break;
+                case Exit:
+                    quitMenu = true;
+                    break;
+            }
+        }
     }
 
-    public void infoManagement() {
-
+    public UserActions.MusicianActions getMusicianInput() {
+        operation = null;
+        input = scanner.nextInt();
+        if (input >= 0 && input < UserActions.MusicianActions.values().length) {
+            operation = UserActions.MusicianActions.values()[input];
+        } else {
+            accessInterface.invalidChoice();
+            operation = null;
+        }
+        input = 0;
+        return operation;
     }
 
 }

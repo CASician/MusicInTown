@@ -3,7 +3,6 @@ package main.DomainModel;
 public abstract class BasicUser {
     protected int id;
     protected String email;
-
     protected String city;
     public String username;
 
