@@ -51,4 +51,5 @@ public abstract class Event {
     public void setId(int lastId) {
         this.id = lastId;
     }
+    public boolean isOpen() { return open; }
 }

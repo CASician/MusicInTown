@@ -1,6 +1,6 @@
 package main.DAO;
 
-
+import java.sql.*;
 import main.DomainModel.Event;
 import main.DomainModel.PrivateEvent;
 import main.DomainModel.PublicEvent;
@@ -10,6 +10,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EventsDAO {
+    //DAO
+    public void add(Event event) throws SQLException {
+      Connection conn = DriverManager.getConnection("jdbc:postgresql:"+"MusicInTown");
+      PreparedStatement insertEvent = conn.prepareStatement("INSERT INTO Events(id, name, open, date, city, type, duration) VALUES (DEFAULT, ?, ?, ?, ?, ?, ?)");
+      insertEvent.setString(1, event.getName());
+      insertEvent.setBoolean(2, event.isOpen());
+      //quel value of lo uso perché event usa LocalDate e non Date
+      insertEvent.setDate(3, Date.valueOf(event.getDate()));
+      insertEvent.setString(4, event.getCity());
+      insertEvent.setString(5, event.getType());
+      insertEvent.setString(6, event.getDuration());
+      insertEvent.executeUpdate();
+      insertEvent.close();
+      conn.close();
+    };
+
+    //TODO: implementare le altre DAO: update, delete, get(id), getAll
+
+
+
+    // ROBA PABA ----------------------------------------------------------------------------------
     PlannerDAO plannerDAO;
     int lastId;
     PlacesDAO placesDAO;
