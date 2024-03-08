@@ -1,20 +1,42 @@
 /*
+ MODELLO DEL DATABASE
+
+ 1. table basicUsers(PK id, email, city, username)
+   - table municipalities(PK FK(basicUser.id))
+   - table musicians(PK FK(basicUser.id), name, genre, componentNumb)
+   - table owner(PK (FK(basicUser.id), place.id), name)
+   - table planner(PK FK(basicUser.id))
+   - table user(PK FK(basicUser.id))
+1. table events(PK id, name, open, date, city, type, duration)
+   - table privateEvents(PK FK(events.id), place FK(privatePlace.id), planner, ownerPlanner)
+   - table publicEvents(PK FK(events.id), place FK(publicPlace.id), planner)
+1. table place(PK id, name, city, address, capacity, indoor)
+   - table privatePlace(PK FK(place.id), FK(owner.id), type)
+   - table publicPlace(PK FK(place.id), surface)
+1. table events_created
+1. table events_subscribed
+
+
+ */
+
+
+/*
  Delete tables if already exists
  */
-DROP TABLE IF EXISTS BasicUsers;
-DROP TABLE IF EXISTS Municipalities;
-DROP TABLE IF EXISTS Musicians;
-DROP TABLE IF EXISTS Owners;
-DROP TABLE IF EXISTS Planners;
-DROP TABLE IF EXISTS "Users";
+DROP TABLE IF EXISTS BasicUsers CASCADE;
+DROP TABLE IF EXISTS Municipalities CASCADE;
+DROP TABLE IF EXISTS Musicians CASCADE;
+DROP TABLE IF EXISTS Owners CASCADE;
+DROP TABLE IF EXISTS Planners CASCADE;
+DROP TABLE IF EXISTS "Users" CASCADE;
 
-DROP TABLE IF EXISTS Events;
-DROP TABLE IF EXISTS PrivateEvents;
-DROP TABLE IF EXISTS PublicEvents;
+DROP TABLE IF EXISTS Events CASCADE;
+DROP TABLE IF EXISTS PrivateEvents CASCADE;
+DROP TABLE IF EXISTS PublicEvents CASCADE;
 
-DROP TABLE IF EXISTS Places;
-DROP TABLE IF EXISTS PrivatePlaces;
-DROP TABLE IF EXISTS PublicPlaces;
+DROP TABLE IF EXISTS Places CASCADE;
+DROP TABLE IF EXISTS PrivatePlaces CASCADE;
+DROP TABLE IF EXISTS PublicPlaces CASCADE;
 
 /*
  ---------------------USERS------------------------
