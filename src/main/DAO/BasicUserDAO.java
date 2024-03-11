@@ -12,7 +12,8 @@ import main.DAO.DBconnection;
 public class BasicUserDAO {
     public static void add (BasicUser basicUser) throws SQLException {
         // Connect to Database
-        Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl+"?user="+DBconnection.username+"&password="+DBconnection.password);
+        Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
+
         PreparedStatement insertBasicUser = connection.prepareStatement("INSERT INTO BasicUsers(id, email, city, username) VALUES(DEFAULT, ?, ?, ?)");
 
         // Add the real values instead of "?"
@@ -28,6 +29,9 @@ public class BasicUserDAO {
         //Show result
         System.out.println("New BASIC USER added successfully!");
     }
+
+    //TODO: create ADD function on all basicUsers: municipality, musician, owner, planner, user
+    //TODO: create ADD function on all places and events: places, privatePlaces, publicPlaces, events, publicEvents, privateEvents.
 
     //TODO: Implementare tutte le altre funzioni
     public void update (BasicUser basicUser){}
