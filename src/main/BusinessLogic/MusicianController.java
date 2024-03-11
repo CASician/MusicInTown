@@ -14,7 +14,6 @@ public class MusicianController extends InputController {
     Musician musician;
     MusicianInterface musicianInterface;
     UserActions.MusicianActions operation;
-    Scanner scanner;
     EventController eventController;
 
     public MusicianController(String musician) {
@@ -23,7 +22,6 @@ public class MusicianController extends InputController {
         this.musician = musicianDAO.getMusician();
         musicianInterface = new MusicianInterface();
         operation = null;
-        scanner = new Scanner(System.in);
         eventController = new EventController();
     }
 
@@ -88,7 +86,7 @@ public class MusicianController extends InputController {
 
     public UserActions.MusicianActions getMusicianInput() {
         operation = null;
-        input = scanner.nextInt();
+        input = getInteger();
         if (input >= 0 && input < UserActions.MusicianActions.values().length) {
             operation = UserActions.MusicianActions.values()[input];
         } else {

@@ -74,20 +74,5 @@ public class EventsDAO {
         return privateEvents;
     }
 
-    //TODO: Aggiustare questa funzione
 
-    /*
-    public ArrayList<String[]> getEventsSubscriptions(int id) {
-        ArrayList<String[]> filteredEvents = null;
-
-        for (String[] event : events) {
-            if (Objects.equals(event[1], String.valueOf(id))) {
-                filteredEvents.add(event);
-            }
-        }
-
-        return filteredEvents;
-    }
-
-    */
 }

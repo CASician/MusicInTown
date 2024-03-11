@@ -92,4 +92,8 @@ public abstract class InputController {
 
         return LocalDate.of(year, month, day);
     }
+
+    public int getInteger() {
+        return scanner.nextInt();
+    }
 }

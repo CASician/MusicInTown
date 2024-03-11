@@ -16,7 +16,6 @@ public class ProgramController extends InputController {
     //String userType = null;
 
     public ProgramController() {
-        System.out.println("qui");
         this.accessController = new AccessController();
     }
 
@@ -47,7 +46,7 @@ public class ProgramController extends InputController {
                     this.municipalityController = new MunicipalityController(accessController.email);
                     break;
                 case USER:
-                    this.userController = new UserController(accessController.email);
+                    //this.userController = new UserController(accessController.email);
                     break;
                 case OWNER:
                     this.ownerController = new OwnerController(accessController.email);
