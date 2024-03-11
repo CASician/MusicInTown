@@ -1,12 +1,14 @@
+package main.DAO;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBconnection {
+    static String jdbcUrl = "jdbc:postgresql://localhost:5432/MusicInTown";
+    static String username = "postgres";
+    static String password = "MusicInTown";
     public static void main(String[] args) {
-        String jdbcUrl = "jdbc:postgresql://localhost:5432/MusicInTown";
-        String username = "postgres";
-        String password = "MusicInTown";
 
         try {
             Class.forName("org.postgresql.Driver");

@@ -7,10 +7,11 @@ import main.DomainModel.BasicUser;
 
 import java.sql.*;
 import java.util.ArrayList;
+import main.DAO.DBconnection;
 
 public class BasicUserDAO {
-    public void add (BasicUser basicUser) throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:postgresql:"+"MusicInTown.db");
+    public static void add (BasicUser basicUser) throws SQLException {
+        Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl+"?user="+DBconnection.username+"&password="+DBconnection.password);
         PreparedStatement insertBasicUser = connection.prepareStatement("INSERT INTO BasicUsers(id, email, city, username) VALUES(DEFAULT, ?, ?, ?)");
         insertBasicUser.setString(1, basicUser.getEmail());
         insertBasicUser.setString(2, basicUser.getCity());
@@ -18,12 +19,13 @@ public class BasicUserDAO {
         insertBasicUser.executeUpdate();
         insertBasicUser.close();
         connection.close();
-    };
+        System.out.println("New BASIC USER added successfully");
+    }
 
     //TODO: Implementare tutte le altre funzioni
-    public void update (BasicUser basicUser){};
-    public void delete(BasicUser basicUser){};
-    //public BasicUser get(int i){};
+    public void update (BasicUser basicUser){}
+    public void delete(BasicUser basicUser){}
+    //public BasicUser get(int i){}
 
     //public getAll{};
 }
