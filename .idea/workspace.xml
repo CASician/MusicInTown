@@ -4,17 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fceed6ec-ff53-45d6-83ae-a6a8b46ffd39" name="Changes" comment="feat: completed all the application functions for musicians">
-      <change afterPath="$PROJECT_DIR$/src/main/DAO/UserDAO.java" afterDir="false" />
+    <list default="true" id="fceed6ec-ff53-45d6-83ae-a6a8b46ffd39" name="Changes" comment="fix: removed scanner from MusicianController, all inputs are managed by InputController">
+      <change afterPath="$PROJECT_DIR$/src/main/Interface/UserInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UML.mdj" beforeDir="false" afterPath="$PROJECT_DIR$/UML.mdj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DataBaseTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataBaseTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/InputController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/InputController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/MusicianController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/MusicianController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/ProgramController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/ProgramController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/UserActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/UserChoices.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/DAO/AccessDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DAO/AccessDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DAO/EventsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DAO/EventsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DAO/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DAO/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DomainModel/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +111,7 @@
       <workItem from="1707822107384" duration="57294000" />
       <workItem from="1709031067135" duration="5000" />
       <workItem from="1709031095331" duration="7060000" />
-      <workItem from="1709568527841" duration="24378000" />
+      <workItem from="1709568527841" duration="26375000" />
     </task>
     <task id="LOCAL-00001" summary="fix: UML file updated and fixed">
       <option name="closed" value="true" />
@@ -184,7 +185,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709660836189</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="fix: removed scanner from MusicianController, all inputs are managed by InputController">
+      <option name="closed" value="true" />
+      <created>1710166720009</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1710166720009</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,7 +219,8 @@
     <MESSAGE value="feat: added login method logic for users" />
     <MESSAGE value="fix: revised login method with additional classes and separation of concerns" />
     <MESSAGE value="feat: completed all the application functions for musicians" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: completed all the application functions for musicians" />
+    <MESSAGE value="fix: removed scanner from MusicianController, all inputs are managed by InputController" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: removed scanner from MusicianController, all inputs are managed by InputController" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -219,6 +229,11 @@
           <properties class="java.lang.NumberFormatException" package="java.lang" />
           <option name="timeStamp" value="7" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/BusinessLogic/AccessController.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

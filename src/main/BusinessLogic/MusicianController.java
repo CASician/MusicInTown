@@ -1,19 +1,17 @@
 package main.BusinessLogic;
 
-import main.DAO.EventsDAO;
 import main.DAO.MusicianDAO;
 import main.DomainModel.Musician;
 import main.Interface.MusicianInterface;
 
 import java.time.LocalDate;
 import java.util.Objects;
-import java.util.Scanner;
 
 public class MusicianController extends InputController {
     MusicianDAO musicianDAO;
     Musician musician;
     MusicianInterface musicianInterface;
-    UserActions.MusicianActions operation;
+    UserChoices.MusicianActions operation;
     EventController eventController;
 
     public MusicianController(String musician) {
@@ -26,7 +24,7 @@ public class MusicianController extends InputController {
     }
 
     public void musicianFunctions() {
-        while(!Objects.equals(basicUserOptions, UserActions.BasicUser.Exit)) {
+        while(!Objects.equals(basicUserOptions, UserChoices.BasicUser.Exit)) {
             musicianInterface.basicInterface();
             basicUserOptions = firstMenuInput();
             switch (basicUserOptions) {
@@ -84,11 +82,11 @@ public class MusicianController extends InputController {
         }
     }
 
-    public UserActions.MusicianActions getMusicianInput() {
+    public UserChoices.MusicianActions getMusicianInput() {
         operation = null;
         input = getInteger();
-        if (input >= 0 && input < UserActions.MusicianActions.values().length) {
-            operation = UserActions.MusicianActions.values()[input];
+        if (input >= 0 && input < UserChoices.MusicianActions.values().length) {
+            operation = UserChoices.MusicianActions.values()[input];
         } else {
             accessInterface.invalidChoice();
             operation = null;

@@ -1,9 +1,6 @@
 package main.BusinessLogic;
 
-import main.DomainModel.Musician;
 import main.DomainModel.UserType;
-
-import java.util.Objects;
 
 public class ProgramController extends InputController {
     AccessController accessController;
@@ -22,7 +19,7 @@ public class ProgramController extends InputController {
     public void run() {
 
         //Ask user to login or to exit the program
-        UserActions input = getFirstInput();
+        UserChoices input = getFirstInput();
         if(input != null) {
             switch (input) {
                 case EXIT:
@@ -46,7 +43,8 @@ public class ProgramController extends InputController {
                     this.municipalityController = new MunicipalityController(accessController.email);
                     break;
                 case USER:
-                    //this.userController = new UserController(accessController.email);
+                    this.userController = new UserController(accessController.email);
+                    this.userController.userFunctions();
                     break;
                 case OWNER:
                     this.ownerController = new OwnerController(accessController.email);
