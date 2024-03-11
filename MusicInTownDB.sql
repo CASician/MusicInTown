@@ -49,12 +49,12 @@
     );
 
     CREATE TABLE IF NOT EXISTS Municipalities (
-        id  INT PRIMARY KEY, CONSTRAINT basicUser_fk
+        id  SERIAL PRIMARY KEY, CONSTRAINT basicUser_fk
             FOREIGN KEY(id) REFERENCES BasicUsers(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
     CREATE TABLE IF NOT EXISTS Musicians(
-        id              INT PRIMARY KEY,
+        id              SERIAL PRIMARY KEY,
         name            VARCHAR(50) NOT NULL,
         genre           VARCHAR(50),
         componentNumb   INT NOT NULL,
@@ -62,19 +62,19 @@
     );
 
     CREATE TABLE IF NOT EXISTS Owners(
-        id      INT PRIMARY KEY,
+        id      SERIAL PRIMARY KEY,
         place   VARCHAR(50),
         name    VARCHAR(50),
         FOREIGN KEY(id) REFERENCES BasicUsers(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
     CREATE TABLE IF NOT EXISTS Planners(
-        id  INT PRIMARY KEY, CONSTRAINT basicUser_fk
+        id  SERIAL PRIMARY KEY, CONSTRAINT basicUser_fk
             FOREIGN KEY(id) REFERENCES BasicUsers(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
     CREATE TABLE IF NOT EXISTS "Users"(
-        id  INT PRIMARY KEY, CONSTRAINT basicUser_fk
+        id  SERIAL PRIMARY KEY, CONSTRAINT basicUser_fk
             FOREIGN KEY(id) REFERENCES BasicUsers(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
@@ -93,7 +93,7 @@
     );
 
     CREATE TABLE IF NOT EXISTS PrivateEvents(
-        id              INT PRIMARY KEY,
+        id              SERIAL PRIMARY KEY,
         place           VARCHAR(50) not null,
         planner         VARCHAR(50),
         ownerPlanner    VARCHAR(50),
@@ -101,7 +101,7 @@
     );
 
     CREATE TABLE IF NOT EXISTS PublicEvents(
-        id      INT PRIMARY KEY,
+        id      SERIAL PRIMARY KEY,
         place   VARCHAR(50),
         planner VARCHAR(50),
         FOREIGN KEY(id) REFERENCES Events(id) ON UPDATE CASCADE ON DELETE CASCADE
