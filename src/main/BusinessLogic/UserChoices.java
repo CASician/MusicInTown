@@ -25,9 +25,11 @@ public enum UserChoices {
         SeeAllEvents,
     };
 
-    //TODO: implement all the possible actions
     public enum OwnerActions {
-
+        Exit,
+        FilterEvents,
+        SeeAllEvents,
+        CreateEvent,
     }
 
 }

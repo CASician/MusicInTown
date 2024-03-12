@@ -48,6 +48,7 @@ public class ProgramController extends InputController {
                     break;
                 case OWNER:
                     this.ownerController = new OwnerController(accessController.email);
+                    this.ownerController.ownerFunctions();
 
             }
         }

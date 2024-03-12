@@ -8,18 +8,18 @@ import java.util.Objects;
 
 public class UserController extends InputController {
 
-    User user;
-    UserDAO userDAO;
-    EventController eventController;
-    UserInterface userInterface;
-    UserChoices.UserActions operation;
+    private final User user;
+    private final UserDAO userDAO;
+    private final EventController eventController;
+    private final UserInterface userInterface;
+    private UserChoices.UserActions userActions;
 
     public UserController(String user) {
         eventController = new EventController();
         userDAO = new UserDAO(user);
         this.user = userDAO.getUser();
         userInterface = new UserInterface();
-        operation = null;
+        userActions = null;
 
     }
 
@@ -47,8 +47,8 @@ public class UserController extends InputController {
         boolean quitMenu = false;
         while(!quitMenu) {
             userInterface.basicEventsInterface();
-            operation = getUserInput();
-            switch (operation) {
+            userActions = getUserInput();
+            switch (userActions) {
                 case SeeAllEvents:
                     userInterface.printPrivateEvents(eventController.getPrivateEvents());
                     userInterface.printPublicEvents(eventController.getPublicEvents());
@@ -66,16 +66,16 @@ public class UserController extends InputController {
     }
 
     public UserChoices.UserActions getUserInput() {
-        operation = null;
+        userActions = null;
         input = getInteger();
         if (input >= 0 && input < UserChoices.MusicianActions.values().length) {
-            operation = UserChoices.UserActions.values()[input];
+            userActions = UserChoices.UserActions.values()[input];
         } else {
             accessInterface.invalidChoice();
-            operation = null;
+            userActions = null;
         }
         input = 0;
-        return operation;
+        return userActions;
     }
 
 

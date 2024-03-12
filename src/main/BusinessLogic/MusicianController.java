@@ -59,13 +59,13 @@ public class MusicianController extends InputController {
                 case SubscribeEvent:
                     if(getEventType() == 0) {
                         musician.addPrivateSubscription(
-                                eventController.subscribePrivateEvent(musician.name, musician.getId(), getId()));
+                                eventController.subscribePrivateEvent(musician.getName(), musician.getId(), getId()));
                         musicianInterface.privateSubscriptionDone(
                                 musician.getPrivateEvents().get(musician.getPrivateEvents().size()-1));
                     }
                     else {
                         musician.addPublicSubscription(
-                                eventController.subscribePublicEvent(musician.name, musician.getId(), getId()));
+                                eventController.subscribePublicEvent(musician.getName(), musician.getId(), getId()));
                         musicianInterface.publicSubscriptionDone(
                                 musician.getPublicEvents().get(musician.getPublicEvents().size()-1));
                     }
