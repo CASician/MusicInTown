@@ -9,18 +9,18 @@ import java.util.Objects;
 
 public class OwnerController extends InputController {
     private UserChoices.OwnerActions ownerActions;
-    private PrivatePlace privatePlace;
-    private OwnerInterface ownerInterface;
-    private OwnerDAO ownerDAO;
-    private Owner owner;
-    private PrivatePlacesController privatePlacesController;
+    protected EventController eventController;
+    private final OwnerInterface ownerInterface;
+    protected OwnerDAO ownerDAO;
+    private final Owner owner;
+    protected PlacesController placesController;
 
-    public OwnerController(String owner) {
+    public OwnerController(String owner, EventController eventController, PlacesController placesController) {
         ownerInterface = new OwnerInterface();
-        privatePlacesController = new PrivatePlacesController(owner);
-        privatePlace = privatePlacesController.getPrivatePlace();
-        ownerDAO = new OwnerDAO(owner, privatePlace);
+        ownerDAO = new OwnerDAO(owner, placesController);
         this.owner = ownerDAO.getOwner();
+        this.placesController = placesController;
+        this.eventController = eventController;
     }
 
     public void ownerFunctions() {

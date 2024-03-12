@@ -19,8 +19,8 @@ public class EventController implements Subject {
     List<PrivateEvent> privateEvents;
     BasicUserInterface basicUserInterface;
 
-    public EventController() {
-        eventsDAO = new EventsDAO();
+    public EventController(PlacesController placesController) {
+        eventsDAO = new EventsDAO(placesController);
         basicUserInterface = new BasicUserInterface();
     }
 

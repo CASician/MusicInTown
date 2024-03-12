@@ -14,13 +14,12 @@ public class MusicianController extends InputController {
     UserChoices.MusicianActions operation;
     EventController eventController;
 
-    public MusicianController(String musician) {
-        eventController = new EventController();
+    public MusicianController(String musician, EventController eventController) {
         musicianDAO = new MusicianDAO(musician);
         this.musician = musicianDAO.getMusician();
         musicianInterface = new MusicianInterface();
         operation = null;
-        eventController = new EventController();
+        this.eventController = eventController;
     }
 
     public void musicianFunctions() {

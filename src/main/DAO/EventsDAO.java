@@ -1,6 +1,8 @@
 package main.DAO;
 
 import java.sql.*;
+
+import main.BusinessLogic.PlacesController;
 import main.DomainModel.Event;
 import main.DomainModel.PrivateEvent;
 import main.DomainModel.PublicEvent;
@@ -33,38 +35,39 @@ public class EventsDAO {
     // ROBA PABA ----------------------------------------------------------------------------------
     PlannerDAO plannerDAO;
     int lastId;
-    PlacesDAO placesDAO;
+    PlacesController placesController;
     List<PublicEvent> publicEvents;
     List<PrivateEvent> privateEvents;
 
-    public EventsDAO() {
+    public EventsDAO(PlacesController placesController) {
+        //Retrieve and generate all the events from the database
         publicEvents = new ArrayList<>();
         privateEvents = new ArrayList<>();
         plannerDAO = new PlannerDAO();
-        placesDAO = new PlacesDAO();
+        this.placesController = placesController;
         //Set lastId to the latest id gave to an event doing a query to the database.
         lastId = 0;
+        int privatePlacesLength = placesController.getPrivatePlaces().size();
+        int publicPlacesLength = placesController.getPublicPlaces().size();
 
         publicEvents.add(new PublicEvent("Festival Jazz Fusion", true, LocalDate.of(2024, 5, 25), plannerDAO.planners[0],
-                placesDAO.publicPlaces[0], "3 giorni", "firenze","Jazz Fusion"));
+                placesController.getPublicPlaces().get(0), "3 giorni", "firenze","Jazz Fusion"));
         lastId += 1;
         publicEvents.get(0).setId(lastId);
         publicEvents.add(new PublicEvent("Concerto Rock Indie", true, LocalDate.of(2025, 1, 20), plannerDAO.planners[1],
-                placesDAO.publicPlaces[1], "1 giorno", "milano","Rock Indie"));
+                placesController.getPublicPlaces().get(1), "1 giorno", "milano","Rock Indie"));
         lastId += 1;
         publicEvents.get(1).setId(lastId);
         publicEvents.add(new PublicEvent("Concerto Classico Contemporaneo", false, LocalDate.of(2024, 10, 20), plannerDAO.planners[1],
-                placesDAO.publicPlaces[2], "1 giorno", "bologna","Classico Contemporaneo"));
+                placesController.getPublicPlaces().get(2), "1 giorno", "bologna","Classico Contemporaneo"));
         lastId += 1;
         publicEvents.get(2).setId(lastId);
         publicEvents.add(new PublicEvent("Concerto Indie Acustico", false, LocalDate.of(2024, 8, 2), plannerDAO.planners[2],
-                placesDAO.publicPlaces[2], "2 giorni", "firenze","Indie Acustico"));
+                placesController.getPublicPlaces().get(0), "2 giorni", "firenze","Indie Acustico"));
         lastId += 1;
         publicEvents.get(3).setId(lastId);
 
     }
-
-
 
     public List<PublicEvent> getPublicEvents() {
         return publicEvents;

@@ -9,10 +9,14 @@ public class ProgramController extends InputController {
     MunicipalityController municipalityController;
     UserController userController;
     OwnerController ownerController;
+    PlacesController placesController;
+    EventController eventController;
     UserType userType;
     //String userType = null;
 
     public ProgramController() {
+        placesController = new PlacesController();
+        eventController = new EventController(placesController);
         this.accessController = new AccessController();
     }
 
@@ -33,7 +37,7 @@ public class ProgramController extends InputController {
         if(userType != null) {
             switch (userType) {
                 case MUSICIAN:
-                    this.musicianController = new MusicianController(accessController.email);
+                    this.musicianController = new MusicianController(accessController.email, eventController);
                     this.musicianController.musicianFunctions();
                     break;
                 case PLANNER:
@@ -43,11 +47,11 @@ public class ProgramController extends InputController {
                     this.municipalityController = new MunicipalityController(accessController.email);
                     break;
                 case USER:
-                    this.userController = new UserController(accessController.email);
+                    this.userController = new UserController(accessController.email, eventController);
                     this.userController.userFunctions();
                     break;
                 case OWNER:
-                    this.ownerController = new OwnerController(accessController.email);
+                    this.ownerController = new OwnerController(accessController.email, eventController, placesController);
                     this.ownerController.ownerFunctions();
 
             }
