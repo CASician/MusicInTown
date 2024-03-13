@@ -17,6 +17,4 @@ public class Owner extends BasicUser {
     public PrivatePlace getPlace() {
         return privatePlace;
     }
-
-    public String getPlaceName() {return privatePlace.getName();}
 }
