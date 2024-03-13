@@ -4,29 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fceed6ec-ff53-45d6-83ae-a6a8b46ffd39" name="Changes" comment="fix: revised login method with additional classes and separation of concerns">
-      <change afterPath="$PROJECT_DIR$/src/main/DAO/EventsDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/DAO/PlacesDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/DAO/PlannerDAO.java" afterDir="false" />
+    <list default="true" id="fceed6ec-ff53-45d6-83ae-a6a8b46ffd39" name="Changes" comment="fix: attributes from public to private&#10;feat: getter and setter created for the whole domain model">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/AccessController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/AccessController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/EventController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/InputController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/InputController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/MusicianController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/MusicianController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/OwnerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/OwnerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/PrivatePlacesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/PlacesController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/ProgramController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/ProgramController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/UserActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/UserActions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DomainModel/BasicUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/BasicUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DomainModel/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DomainModel/Musician.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/Musician.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DAO/EventsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DAO/EventsDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DAO/OwnerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DAO/OwnerDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DAO/PlacesDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DAO/PlacesDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/DomainModel/Place.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/Place.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DomainModel/Planner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/Planner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DomainModel/PrivateEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/PrivateEvent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/DomainModel/PrivatePlace.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/PrivatePlace.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DomainModel/PublicEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/PublicEvent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/DomainModel/PublicPlace.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/PublicPlace.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Interface/AccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Interface/AccessInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Interface/BasicUserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Interface/BasicUserInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Interface/MusicianInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Interface/MusicianInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +113,7 @@
       <workItem from="1707822107384" duration="57294000" />
       <workItem from="1709031067135" duration="5000" />
       <workItem from="1709031095331" duration="7060000" />
-      <workItem from="1709568527841" duration="17316000" />
+      <workItem from="1709568527841" duration="35061000" />
     </task>
     <task id="LOCAL-00001" summary="fix: UML file updated and fixed">
       <option name="closed" value="true" />
@@ -188,7 +179,39 @@
       <option name="project" value="LOCAL" />
       <updated>1709055521034</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="feat: completed all the application functions for musicians">
+      <option name="closed" value="true" />
+      <created>1709660836189</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1709660836189</updated>
+    </task>
+    <task id="LOCAL-00010" summary="fix: removed scanner from MusicianController, all inputs are managed by InputController">
+      <option name="closed" value="true" />
+      <created>1710166720009</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1710166720009</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feat: created basic user usage, implemented UserController, User, UserInterface">
+      <option name="closed" value="true" />
+      <created>1710169056316</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1710169056316</updated>
+    </task>
+    <task id="LOCAL-00012" summary="fix: attributes from public to private&#10;feat: getter and setter created for the whole domain model">
+      <option name="closed" value="true" />
+      <created>1710251799709</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1710251799709</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -213,7 +236,11 @@
     <MESSAGE value="feat: Added part of the Domain Logic, Business Control and Interface.&#10;fix: Updated UML file" />
     <MESSAGE value="feat: added login method logic for users" />
     <MESSAGE value="fix: revised login method with additional classes and separation of concerns" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: revised login method with additional classes and separation of concerns" />
+    <MESSAGE value="feat: completed all the application functions for musicians" />
+    <MESSAGE value="fix: removed scanner from MusicianController, all inputs are managed by InputController" />
+    <MESSAGE value="feat: created basic user usage, implemented UserController, User, UserInterface" />
+    <MESSAGE value="fix: attributes from public to private&#10;feat: getter and setter created for the whole domain model" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: attributes from public to private&#10;feat: getter and setter created for the whole domain model" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -222,6 +249,11 @@
           <properties class="java.lang.NumberFormatException" package="java.lang" />
           <option name="timeStamp" value="7" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/BusinessLogic/AccessController.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

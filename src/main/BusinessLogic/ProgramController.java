@@ -1,9 +1,6 @@
 package main.BusinessLogic;
 
-import main.DomainModel.Musician;
 import main.DomainModel.UserType;
-
-import java.util.Objects;
 
 public class ProgramController extends InputController {
     AccessController accessController;
@@ -12,18 +9,21 @@ public class ProgramController extends InputController {
     MunicipalityController municipalityController;
     UserController userController;
     OwnerController ownerController;
+    PlacesController placesController;
+    EventController eventController;
     UserType userType;
     //String userType = null;
 
     public ProgramController() {
-        System.out.println("qui");
+        placesController = new PlacesController();
+        eventController = new EventController(placesController);
         this.accessController = new AccessController();
     }
 
     public void run() {
 
         //Ask user to login or to exit the program
-        UserActions input = getFirstInput();
+        UserChoices input = getFirstInput();
         if(input != null) {
             switch (input) {
                 case EXIT:
@@ -37,7 +37,7 @@ public class ProgramController extends InputController {
         if(userType != null) {
             switch (userType) {
                 case MUSICIAN:
-                    this.musicianController = new MusicianController(accessController.email);
+                    this.musicianController = new MusicianController(accessController.email, eventController);
                     this.musicianController.musicianFunctions();
                     break;
                 case PLANNER:
@@ -47,10 +47,12 @@ public class ProgramController extends InputController {
                     this.municipalityController = new MunicipalityController(accessController.email);
                     break;
                 case USER:
-                    this.userController = new UserController(accessController.email);
+                    this.userController = new UserController(accessController.email, eventController);
+                    this.userController.userFunctions();
                     break;
                 case OWNER:
-                    this.ownerController = new OwnerController(accessController.email);
+                    this.ownerController = new OwnerController(accessController.email, eventController, placesController);
+                    this.ownerController.ownerFunctions();
 
             }
         }

@@ -7,9 +7,9 @@ import java.util.List;
 public class Musician extends BasicUser {
     List<PrivateEvent> privateEvents;
     List<PublicEvent> publicEvents;
-    public String name;
-    public String genre;
-    public int componentNumb;
+    private final String name;
+    private final String genre;
+    private final int componentNumb;
 
     public Musician(String name, String genre, String username, String email, int id, int numb,
                     String city) {
@@ -26,7 +26,6 @@ public class Musician extends BasicUser {
     public void addPrivateSubscription(PrivateEvent event) {
         privateEvents.add(event);
     }
-
     public List<PrivateEvent> getPrivateEvents() {
         return privateEvents;
     }

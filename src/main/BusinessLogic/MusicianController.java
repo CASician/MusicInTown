@@ -1,34 +1,29 @@
 package main.BusinessLogic;
 
-import main.DAO.EventsDAO;
 import main.DAO.MusicianDAO;
 import main.DomainModel.Musician;
 import main.Interface.MusicianInterface;
 
 import java.time.LocalDate;
 import java.util.Objects;
-import java.util.Scanner;
 
 public class MusicianController extends InputController {
     MusicianDAO musicianDAO;
     Musician musician;
     MusicianInterface musicianInterface;
-    UserActions.MusicianActions operation;
-    Scanner scanner;
+    UserChoices.MusicianActions operation;
     EventController eventController;
 
-    public MusicianController(String musician) {
-        eventController = new EventController();
+    public MusicianController(String musician, EventController eventController) {
         musicianDAO = new MusicianDAO(musician);
         this.musician = musicianDAO.getMusician();
         musicianInterface = new MusicianInterface();
         operation = null;
-        scanner = new Scanner(System.in);
-        eventController = new EventController();
+        this.eventController = eventController;
     }
 
     public void musicianFunctions() {
-        while(!Objects.equals(basicUserOptions, UserActions.BasicUser.Exit)) {
+        while(!Objects.equals(basicUserOptions, UserChoices.BasicUser.Exit)) {
             musicianInterface.basicInterface();
             basicUserOptions = firstMenuInput();
             switch (basicUserOptions) {
@@ -63,13 +58,13 @@ public class MusicianController extends InputController {
                 case SubscribeEvent:
                     if(getEventType() == 0) {
                         musician.addPrivateSubscription(
-                                eventController.subscribePrivateEvent(musician.name, musician.getId(), getId()));
+                                eventController.subscribePrivateEvent(musician.getName(), musician.getId(), getId()));
                         musicianInterface.privateSubscriptionDone(
                                 musician.getPrivateEvents().get(musician.getPrivateEvents().size()-1));
                     }
                     else {
                         musician.addPublicSubscription(
-                                eventController.subscribePublicEvent(musician.name, musician.getId(), getId()));
+                                eventController.subscribePublicEvent(musician.getName(), musician.getId(), getId()));
                         musicianInterface.publicSubscriptionDone(
                                 musician.getPublicEvents().get(musician.getPublicEvents().size()-1));
                     }
@@ -86,11 +81,11 @@ public class MusicianController extends InputController {
         }
     }
 
-    public UserActions.MusicianActions getMusicianInput() {
+    public UserChoices.MusicianActions getMusicianInput() {
         operation = null;
-        input = scanner.nextInt();
-        if (input >= 0 && input < UserActions.MusicianActions.values().length) {
-            operation = UserActions.MusicianActions.values()[input];
+        input = getInteger();
+        if (input >= 0 && input < UserChoices.MusicianActions.values().length) {
+            operation = UserChoices.MusicianActions.values()[input];
         } else {
             accessInterface.invalidChoice();
             operation = null;

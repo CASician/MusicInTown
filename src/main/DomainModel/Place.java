@@ -1,9 +1,9 @@
 package main.DomainModel;
 
 public abstract class Place {
-    int id;
-    String city;
-    String address;
+    private final int id;
+    private final String city;
+    private final String address;
     int capacity;
 
     boolean indoor;
@@ -15,6 +15,8 @@ public abstract class Place {
         this.capacity = capacity;
         this.indoor = indoor;
     }
+
+    public int getId() { return id; }
 
     public String getCity() {
         return city;

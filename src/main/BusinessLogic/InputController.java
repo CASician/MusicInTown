@@ -3,15 +3,13 @@ package main.BusinessLogic;
 import main.Interface.AccessInterface;
 import main.Interface.BasicUserInterface;
 
-import java.awt.*;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
 public abstract class InputController {
     Scanner scanner;
-    UserActions.BasicUser basicUserOptions;
+    UserChoices.BasicUser basicUserOptions;
     int input;
     BasicUserInterface basicUserInterface;
     AccessInterface accessInterface;
@@ -22,13 +20,13 @@ public abstract class InputController {
         basicUserInterface = new BasicUserInterface();
     }
 
-    public UserActions getFirstInput() {
+    public UserChoices getFirstInput() {
         accessInterface.firstView();
         input = scanner.nextInt();
-        UserActions selectedCategory = null;
+        UserChoices selectedCategory = null;
 
-        if (input >= 0 && input < UserActions.values().length) {
-            selectedCategory = UserActions.values()[input];
+        if (input >= 0 && input < UserChoices.values().length) {
+            selectedCategory = UserChoices.values()[input];
         } else {
             accessInterface.invalidChoice();
             if(tryAgain())
@@ -53,11 +51,11 @@ public abstract class InputController {
         return Objects.equals(scanner.nextInt(), 0);
     }
 
-    public UserActions.BasicUser firstMenuInput() {
+    public UserChoices.BasicUser firstMenuInput() {
         basicUserOptions = null;
         input = scanner.nextInt();
-        if (input >= 0 && input < UserActions.BasicUser.values().length) {
-            basicUserOptions = UserActions.BasicUser.values()[input];
+        if (input >= 0 && input < UserChoices.BasicUser.values().length) {
+            basicUserOptions = UserChoices.BasicUser.values()[input];
         } else {
             accessInterface.invalidChoice();
             basicUserOptions = null;
@@ -91,5 +89,9 @@ public abstract class InputController {
         int day = scanner.nextInt();
 
         return LocalDate.of(year, month, day);
+    }
+
+    public int getInteger() {
+        return scanner.nextInt();
     }
 }

@@ -1,6 +1,6 @@
 package main.BusinessLogic;
 
-public enum UserActions {
+public enum UserChoices {
     LOGIN,
     EXIT;
 
@@ -19,9 +19,17 @@ public enum UserActions {
 
     };
 
-    //TODO: implement all the possible actions
-    public enum OwnerActions {
+    public enum UserActions {
+        Exit,
+        FilterEvents,
+        SeeAllEvents,
+    };
 
+    public enum OwnerActions {
+        Exit,
+        FilterEvents,
+        SeeAllEvents,
+        CreateEvent,
     }
 
 }

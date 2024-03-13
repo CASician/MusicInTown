@@ -17,10 +17,10 @@ public class MusicianInterface extends BasicUserInterface {
     //Function for testing
     public void printMusicianInfo(Musician musician) {
         System.out.println("--------------------");
-        System.out.println("Name: " + musician.name);
+        System.out.println("Name: " + musician.getName());
         System.out.println("Email: " + musician.getEmail());
-        System.out.println("Genre: " + musician.genre);
-        System.out.println("Component Number: " + musician.componentNumb);
+        System.out.println("Genre: " + musician.getGenre());
+        System.out.println("Component Number: " + musician.getComponentNumb());
         System.out.println("City: " + musician.getCity());
         System.out.println("--------------------");
 
