@@ -1,23 +1,16 @@
 package main.DAO;
 
-import main.BusinessLogic.PlacesController;
 import main.DomainModel.Owner;
-import main.DomainModel.PrivatePlace;
 
 import java.sql.*;
 
 public class OwnerDAO {
     public static void add (Owner owner) throws SQLException {
+        // First, we need to add our Owner as a BasicUser
+        BasicUserDAO.add(owner);
+
         // Connect to Database
         Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
-
-        // First, we need to add our Owner as a BasicUser
-        PreparedStatement insertBasicUser = connection.prepareStatement("INSERT INTO BasicUsers(id, email, city, username) VALUES(DEFAULT, ?, ?, ?)");
-        // Add the real values instead of "?"
-        insertBasicUser.setString(1, owner.getEmail());
-        insertBasicUser.setString(2, owner.getCity());
-        insertBasicUser.setString(3, owner.getUsername());
-        insertBasicUser.executeUpdate();
 
         // Use a query to find what ID has been automatically assigned.
         PreparedStatement findId = connection.prepareStatement("SELECT id FROM BasicUsers WHERE email = ? AND city = ? AND username = ?");
@@ -38,7 +31,6 @@ public class OwnerDAO {
 
         // Close connection
         findId.close();
-        insertBasicUser.close();
         insertOwner.close();
         connection.close();
 
@@ -47,4 +39,29 @@ public class OwnerDAO {
     }
 
     //TODO: implement all the other functions: update, delete, getAll
+    public static void delete(Owner owner) throws SQLException {
+        // Connection to DataBase
+        Connection conn = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
+
+        // Find ID in BasicUsers. It is needed to delete the instance in Owner.
+        PreparedStatement findId = conn.prepareStatement("SELECT id FROM BasicUsers WHERE username = ?");
+        findId.setString(1, owner.getUsername());
+
+        // Delete Owner from its table with the ID found before
+        ResultSet resultSet = findId.executeQuery();
+        resultSet.next();
+        PreparedStatement deleteOwner = conn.prepareStatement("delete from Owners where id = ?");
+        deleteOwner.setInt(1, resultSet.getInt("id"));
+        deleteOwner.executeUpdate();
+
+        // Call the BasicUser delete function
+        BasicUserDAO.delete(owner);
+
+        // Close connections
+        findId.close();
+        deleteOwner.close();
+        conn.close();
+
+        // The result is logged in the BasicUserDAO.delete
+    }
 }

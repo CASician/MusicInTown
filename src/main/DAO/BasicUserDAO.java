@@ -26,17 +26,27 @@ public class BasicUserDAO {
         insertBasicUser.close();
         connection.close();
 
-        //Show result
-        System.out.println("New BASIC USER added successfully!");
     }
 
-    //TODO: create ADD function on all basicUsers: municipality, musician, owner, planner, user
-    //TODO: create ADD function on all places and events: places, privatePlaces, publicPlaces, events, publicEvents, privateEvents.
+    public static void delete(BasicUser basicUser) throws SQLException{
+        // Connection to Database
+        Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
-    //TODO: Implementare tutte le altre funzioni
-    public void update (BasicUser basicUser){}
-    public void delete(BasicUser basicUser){}
-    //public BasicUser get(int i){}
+        // Use query to delete the instance
+        PreparedStatement deleteBasicUser = connection.prepareStatement("delete from BasicUsers where username = ?");
+
+        // Add the real value instead of "?"
+        deleteBasicUser.setString(1, basicUser.getUsername());
+
+        // Close connections
+        deleteBasicUser.executeUpdate();
+        deleteBasicUser.close();
+        connection.close();
+
+        // Show results
+        System.out.println(basicUser.getUsername() + " has been deleted from DataBase");
+    }
+    public static void update (BasicUser basicUser){}
 
     //public getAll{};
 }

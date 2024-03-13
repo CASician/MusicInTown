@@ -95,6 +95,8 @@
     CREATE TABLE IF NOT EXISTS PrivateEvents(
         id              INT PRIMARY KEY,
         place           VARCHAR(50) NOT NULL,
+        -- TODO: make sure that planner and OwnerPlanner actually refer to a valid ID. They are FK from planners and owners.
+        -- or maybe it's not necessary: if you do it, you need to pass the ID and not the username.
         planner         VARCHAR(50),
         ownerPlanner    VARCHAR(50),
         FOREIGN KEY(id) REFERENCES Events(id) ON UPDATE CASCADE ON DELETE CASCADE
