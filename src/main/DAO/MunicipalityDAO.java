@@ -10,11 +10,11 @@ public class MunicipalityDAO {
         Connection conn = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
         // First, we need to add our Municipality as a BasicUser
-        PreparedStatement insertBasicUser = conn.prepareStatement("INSERT INTO BasicUsers(id, email, city, username) VALUES(DEFAULT, ?, ?, ?)");
+        PreparedStatement insertBasicUser = conn.prepareStatement("INSERT INTO BasicUsers(id, username, email, city) VALUES(DEFAULT, ?, ?, ?)");
         // Add the real values instead of "?"
-        insertBasicUser.setString(1, municipality.getEmail());
-        insertBasicUser.setString(2, municipality.getCity()); 
-        insertBasicUser.setString(3, municipality.getUsername());
+        insertBasicUser.setString(1, municipality.getUsername());
+        insertBasicUser.setString(2, municipality.getEmail());
+        insertBasicUser.setString(3, municipality.getCity());
         insertBasicUser.executeUpdate();
 
         // Use a query to find what ID has been automatically assigned.
