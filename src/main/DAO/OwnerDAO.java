@@ -33,7 +33,7 @@ public class OwnerDAO {
 
         // Add the real values instead of "?"
         insertOwner.setString(2, owner.getName());
-        insertOwner.setString(3, owner.getPlaceName());
+        insertOwner.setString(3, owner.getPlace().getName());
         insertOwner.executeUpdate();
 
         // Close connection
