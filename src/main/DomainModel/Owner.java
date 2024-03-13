@@ -6,7 +6,7 @@ public class Owner extends BasicUser {
 
     public Owner(String name, String username, String email,
                  String city, PrivatePlace privatePlace) {
-        super(email, username, city);
+        super(username, email, city);
         this.privatePlace = privatePlace;
         this.name = name;
     }
@@ -17,4 +17,6 @@ public class Owner extends BasicUser {
     public PrivatePlace getPlace() {
         return privatePlace;
     }
+
+    public String getPlaceName() {return privatePlace.getName();}
 }
