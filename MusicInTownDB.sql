@@ -126,14 +126,11 @@
 
     CREATE TABLE IF NOT EXISTS PrivatePlaces (
         name    VARCHAR(50) PRIMARY KEY,
-        owner   INT,
         type    VARCHAR(20),
-        FOREIGN KEY(name) REFERENCES Places(name) ON UPDATE CASCADE ON DELETE CASCADE,
-        FOREIGN KEY(owner) REFERENCES Owners(id) ON UPDATE CASCADE ON DELETE CASCADE
+        FOREIGN KEY(name) REFERENCES Places(name) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
     CREATE TABLE IF NOT EXISTS PublicPlaces(
         name    VARCHAR(50) PRIMARY KEY,
-        surface INT,
         FOREIGN KEY (name) REFERENCES Places(name) ON UPDATE CASCADE ON DELETE CASCADE
     );
