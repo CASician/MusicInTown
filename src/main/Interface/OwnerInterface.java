@@ -1,6 +1,7 @@
 package main.Interface;
 
 import main.DomainModel.Owner;
+import main.DomainModel.PrivateEvent;
 
 public class OwnerInterface extends BasicUserInterface {
     public void printOwnerInfo(Owner owner) {
@@ -17,9 +18,22 @@ public class OwnerInterface extends BasicUserInterface {
     }
 
     public void eventsInterface() {
+        basicEventsInterface();
+        System.out.println("3 to create a new event, ");
     }
 
-    public void getEventName() {
-        System.out.println("Event name: ");
+    public void eventCreated(PrivateEvent event) {
+        if(event != null) {
+            System.out.println("The event was created with success, event info: ");
+            System.out.print("EVENT NAME: " + event.getName());
+            System.out.print("DATE: " + event.getDate());
+            System.out.print(", CITY: " + event.getPlace().getCity());
+            System.out.print(", ADDRESS: " + event.getPlace().getAddress());
+            System.out.println(", TYPE: " + event.getName());
+            System.out.println("--------------------");
+        }
+        else {
+            System.out.println("Event was not created");
+        }
     }
 }

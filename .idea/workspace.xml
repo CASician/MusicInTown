@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fceed6ec-ff53-45d6-83ae-a6a8b46ffd39" name="Changes" comment="fix: Changed the flow of the program, the controller are instantiated only once, inside programController.&#10;fix: the DAO is instantiated only once, inside the respective controller.">
+    <list default="true" id="fceed6ec-ff53-45d6-83ae-a6a8b46ffd39" name="Changes" comment="fix: All warnings removed from Domain Model, Interface, Business Logic">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/EventController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/InputController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/InputController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/OwnerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/OwnerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DAO/AccessDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DAO/AccessDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DomainModel/PrivateEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/PrivateEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DomainModel/PublicEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/PublicEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Interface/AccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Interface/AccessInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Interface/BasicUserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Interface/BasicUserInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Interface/OwnerInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Interface/OwnerInterface.java" afterDir="false" />
     </list>
@@ -106,7 +110,7 @@
       <workItem from="1707822107384" duration="57294000" />
       <workItem from="1709031067135" duration="5000" />
       <workItem from="1709031095331" duration="7060000" />
-      <workItem from="1709568527841" duration="39592000" />
+      <workItem from="1709568527841" duration="46324000" />
     </task>
     <task id="LOCAL-00001" summary="fix: UML file updated and fixed">
       <option name="closed" value="true" />
@@ -212,7 +216,23 @@
       <option name="project" value="LOCAL" />
       <updated>1710258362288</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="feat: created the method to generate an event for the owner">
+      <option name="closed" value="true" />
+      <created>1710427420746</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1710427420746</updated>
+    </task>
+    <task id="LOCAL-00015" summary="fix: All warnings removed from Domain Model, Interface, Business Logic">
+      <option name="closed" value="true" />
+      <created>1710428748127</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1710428748127</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -242,7 +262,9 @@
     <MESSAGE value="feat: created basic user usage, implemented UserController, User, UserInterface" />
     <MESSAGE value="fix: attributes from public to private&#10;feat: getter and setter created for the whole domain model" />
     <MESSAGE value="fix: Changed the flow of the program, the controller are instantiated only once, inside programController.&#10;fix: the DAO is instantiated only once, inside the respective controller." />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: Changed the flow of the program, the controller are instantiated only once, inside programController.&#10;fix: the DAO is instantiated only once, inside the respective controller." />
+    <MESSAGE value="feat: created the method to generate an event for the owner" />
+    <MESSAGE value="fix: All warnings removed from Domain Model, Interface, Business Logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: All warnings removed from Domain Model, Interface, Business Logic" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -251,11 +273,6 @@
           <properties class="java.lang.NumberFormatException" package="java.lang" />
           <option name="timeStamp" value="7" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/BusinessLogic/AccessController.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

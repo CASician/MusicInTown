@@ -3,7 +3,7 @@ package main.DomainModel;
 import java.time.LocalDate;
 
 public class PublicEvent extends Event {
-    private final Planner planner;
+    Planner planner;
     PublicPlace place;
 
     public PublicEvent(String name, boolean open, LocalDate date, Planner planner, PublicPlace place,

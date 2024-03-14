@@ -2,6 +2,7 @@ package main.BusinessLogic;
 
 import main.DAO.OwnerDAO;
 import main.DomainModel.Owner;
+import main.DomainModel.PrivateEvent;
 import main.Interface.OwnerInterface;
 
 import java.time.LocalDate;
@@ -63,13 +64,15 @@ public class OwnerController extends InputController {
                     break;
                 case CreateEvent:
                     createEvent();
+
+
             }
         }
     }
 
     public void createEvent() {
-        ownerInterface.getEventName();
-        String eventName = getString();
+        PrivateEvent event;
+        String eventName = getEventName();
         ownerInterface.getOpenEvent();
         Boolean open = getBoolean();
         ownerInterface.getExactDate();
@@ -77,9 +80,10 @@ public class OwnerController extends InputController {
         ownerInterface.getDuration();
         String duration = getInteger() + " giorni";
         String city = owner.getPlace().getCity();
-        ownerInterface.getEventType();
-        String eventType = getString();
-        eventController.createEvent(eventName, open, date, owner, owner.getPlace(), duration, city, eventType);
+        String eventType = getEventInfo();
+        event = eventController.createPrivateEvent(eventName, open, date, owner, owner.getPlace(), duration, city, eventType);
+        //TODO: set the event ID
+        ownerInterface.eventCreated(event);
     }
 
     public UserChoices.OwnerActions getOwnerInput () {

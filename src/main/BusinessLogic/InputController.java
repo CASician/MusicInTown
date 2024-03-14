@@ -109,7 +109,11 @@ public abstract class InputController {
         return scanner.nextInt();
     }
 
-    public String getString() { return scanner.nextLine(); }
+    public String getEventName() {
+        basicUserInterface.getEventName();
+        scanner = new Scanner(System.in);
+        return scanner.nextLine();
+    }
 
     public Boolean getBoolean() {
         Boolean open;
@@ -123,5 +127,11 @@ public abstract class InputController {
             open = getBoolean();
         }
         return open;
+    }
+
+    public String getEventInfo() {
+        basicUserInterface.getEventInfo();
+        scanner = new Scanner(System.in);
+        return scanner.nextLine();
     }
 }

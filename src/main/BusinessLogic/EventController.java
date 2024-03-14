@@ -118,9 +118,13 @@ public class EventController implements Subject {
 
     }
 
-    public void createEvent(String name, Boolean open, LocalDate date, Owner owner,
+    public PrivateEvent createPrivateEvent(String name, Boolean open, LocalDate date, Owner owner,
                             PrivatePlace privatePlace, String duration, String city, String type) {
-        eventsDAO.getPrivateEvents().add(new PrivateEvent(
-                name, open, date, owner, privatePlace, duration, city, type));
+        PrivateEvent event = new PrivateEvent(
+                name, open, date, owner, privatePlace, duration, city, type);
+        eventsDAO.getPrivateEvents().add(event);
+        return event;
     }
+
+
 }

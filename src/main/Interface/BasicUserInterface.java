@@ -45,6 +45,10 @@ public class BasicUserInterface {
     public void getMonth() { System.out.println("Insert month: "); }
     public void getDay() { System.out.println("Insert day: "); }
 
+    public void getEventName() {
+        System.out.println("Event name: ");
+    }
+
     public void logOut() {
         System.out.println("Logout done,");
         System.out.println("See you soon.");
@@ -54,13 +58,12 @@ public class BasicUserInterface {
         if(events != null) {
             System.out.println("--------------------");
             for (PublicEvent event : events) {
-                System.out.print("Event Name: " + event.getName());
-                System.out.println(", ID: " + event.getId());
-                System.out.print("Date: " + event.getDate());
-                System.out.print(", City: " + event.getPlace().getCity());
-                System.out.print(", Address: " + event.getPlace().getAddress());
-                System.out.print(", Duration: " + event.getDuration());
-                System.out.println(", Type: " + event.getType());
+                System.out.print("EVENT NAME: " + event.getName());
+                System.out.print(", DATE: " + event.getDate());
+                System.out.print(", CITY: " + event.getPlace().getCity());
+                System.out.print(", ADDRESS: " + event.getPlace().getAddress());
+                System.out.print(", DURATION: " + event.getDuration());
+                System.out.println(", TYPE: " + event.getType());
                 System.out.println("--------------------");
             }
         }
@@ -70,13 +73,12 @@ public class BasicUserInterface {
         if(events != null) {
             System.out.println("--------------------");
             for (PrivateEvent event : events) {
-                System.out.print("Event Name: " + event.getName());
-                System.out.println(", ID: " + event.getId());
-                System.out.print("Date: " + event.getDate());
-                System.out.print(", City: " + event.getPlace().getCity());
-                System.out.print(", Address: " + event.getPlace().getAddress());
-                System.out.print(", Duration: " + event.getDuration());
-                System.out.println(", Type: " + event.getType());
+                System.out.print("EVENT NAME: " + event.getName());
+                System.out.print(", DATE: " + event.getDate());
+                System.out.print(", CITY: " + event.getPlace().getCity());
+                System.out.print(", ADDRESS: " + event.getPlace().getAddress());
+                System.out.print(", DURATION: " + event.getDuration());
+                System.out.println(", TYPE: " + event.getType());
                 System.out.println("--------------------");
             }
         }
@@ -97,5 +99,9 @@ public class BasicUserInterface {
 
     public void getEventType() {
         System.out.println("Insert the type of event: ");
+    }
+
+    public void getEventInfo() {
+        System.out.println("Insert some short event info: ");
     }
 }

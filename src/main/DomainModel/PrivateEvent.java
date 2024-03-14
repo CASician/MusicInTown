@@ -17,7 +17,7 @@ public class PrivateEvent extends Event {
 
     public PrivateEvent(String name, boolean open, LocalDate date, Owner owner, PrivatePlace place,
                         String duration, String city, String type) {
-        super(name, open, date, duration, city, type);
+        super(name, open, date, city, type, duration);
         this.planner = null;
         this.place = place;
         this.ownerPlanner = owner;
