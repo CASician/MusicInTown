@@ -1,5 +1,6 @@
 package main.DAO;
 
+import main.DomainModel.Place;
 import main.DomainModel.PrivatePlace;
 
 import java.sql.Connection;
@@ -28,5 +29,23 @@ public class PrivatePlacesDAO {
 
         // Show results
         System.out.println("New PRIVATE PLACE added successfully!");
+    }
+    public static void delete(PrivatePlace privatePlace) throws SQLException{
+        // Connection to database
+        Connection conn = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
+
+        // Delete PrivatePlace from its table
+        PreparedStatement deletePrivatePlace = conn.prepareStatement("delete from PrivatePlaces where name = ?");
+        deletePrivatePlace.setString(1, privatePlace.getName());
+
+        // Call the Place delete function
+        PlacesDAO.delete(privatePlace);
+
+        // Close connections
+        deletePrivatePlace.executeUpdate();
+        deletePrivatePlace.close();
+        conn.close();
+
+        // The result is logged in the PlaceDAO.delete
     }
 }

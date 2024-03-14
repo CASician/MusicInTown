@@ -30,4 +30,23 @@ public class PlacesDAO {
     }
 
     // TODO: implement all other functions: update, delete, getAll
+
+    public static void delete(Place place) throws SQLException{
+        // Connection to DataBase
+        Connection conn = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
+
+        // Use query to delete the instance
+        PreparedStatement deletePlace = conn.prepareStatement("delete from Places where name = ?");
+
+        // Add the real value instead of "?"
+        deletePlace.setString(1, place.getName());
+
+        // Close connections
+        deletePlace.executeUpdate();
+        deletePlace.close();
+        conn.close();
+
+        // Show results
+        System.out.println(place.getName() + " has been deleted from DataBase");
+    }
 }
