@@ -6,8 +6,6 @@ package main.DAO;
 import main.DomainModel.BasicUser;
 
 import java.sql.*;
-import java.util.ArrayList;
-import main.DAO.DBconnection;
 
 public class BasicUserDAO {
     public static void add (BasicUser basicUser) throws SQLException {

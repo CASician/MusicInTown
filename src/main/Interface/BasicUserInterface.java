@@ -1,6 +1,4 @@
 package main.Interface;
-
-import main.DAO.EventsDAO;
 import main.DomainModel.PrivateEvent;
 import main.DomainModel.PublicEvent;
 
@@ -25,7 +23,6 @@ public class BasicUserInterface {
     public void eventId() {
         System.out.println("Enter the event ID: ");
     }
-    public void tryAgainId() { System.out.println("Invalid selection, try again: ");}
     public void eventType() {
         System.out.println("Press: ");
         System.out.println("0 if event is private, ");
@@ -48,10 +45,6 @@ public class BasicUserInterface {
     public void getMonth() { System.out.println("Insert month: "); }
     public void getDay() { System.out.println("Insert day: "); }
 
-    public void filterPlace() {
-        System.out.println("Insert municipality name: ");
-    }
-
     public void logOut() {
         System.out.println("Logout done,");
         System.out.println("See you soon.");
@@ -61,13 +54,13 @@ public class BasicUserInterface {
         if(events != null) {
             System.out.println("--------------------");
             for (PublicEvent event : events) {
-                System.out.print("Private Event Name: " + event.getName());
+                System.out.print("Event Name: " + event.getName());
                 System.out.println(", ID: " + event.getId());
                 System.out.print("Date: " + event.getDate());
                 System.out.print(", City: " + event.getPlace().getCity());
                 System.out.print(", Address: " + event.getPlace().getAddress());
                 System.out.print(", Duration: " + event.getDuration());
-                System.out.println(", Type: " + event.getName());
+                System.out.println(", Type: " + event.getType());
                 System.out.println("--------------------");
             }
         }
@@ -77,7 +70,7 @@ public class BasicUserInterface {
         if(events != null) {
             System.out.println("--------------------");
             for (PrivateEvent event : events) {
-                System.out.print("Public Event Name: " + event.getName());
+                System.out.print("Event Name: " + event.getName());
                 System.out.println(", ID: " + event.getId());
                 System.out.print("Date: " + event.getDate());
                 System.out.print(", City: " + event.getPlace().getCity());

@@ -2,11 +2,9 @@ package main.BusinessLogic;
 
 import main.DAO.OwnerDAO;
 import main.DomainModel.Owner;
-import main.DomainModel.PrivatePlace;
 import main.Interface.OwnerInterface;
 
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.Objects;
 
 public class OwnerController extends InputController {
@@ -16,7 +14,6 @@ public class OwnerController extends InputController {
     protected OwnerDAO ownerDAO;
     private final Owner owner;
     protected PlacesController placesController;
-    protected UserChoices.OwnerActions operation;
 
     public OwnerController(String owner, EventController eventController, PlacesController placesController) {
         ownerInterface = new OwnerInterface();
@@ -50,8 +47,8 @@ public class OwnerController extends InputController {
         boolean quitMenu = false;
         while (!quitMenu) {
             ownerInterface.eventsInterface();
-            operation = getOwnerInput();
-            switch (operation) {
+            ownerActions = getOwnerInput();
+            switch (ownerActions) {
                 case Exit:
                     quitMenu = true;
                     break;
@@ -66,7 +63,6 @@ public class OwnerController extends InputController {
                     break;
                 case CreateEvent:
                     createEvent();
-
             }
         }
     }
@@ -87,15 +83,15 @@ public class OwnerController extends InputController {
     }
 
     public UserChoices.OwnerActions getOwnerInput () {
-        operation = null;
+        ownerActions = null;
         input = getInteger();
         if (input >= 0 && input < UserChoices.OwnerActions.values().length) {
-            operation = UserChoices.OwnerActions.values()[input];
+            ownerActions = UserChoices.OwnerActions.values()[input];
         } else {
             accessInterface.invalidChoice();
-            operation = null;
+            ownerActions = null;
         }
         input = 0;
-        return operation;
+        return ownerActions;
     }
 }

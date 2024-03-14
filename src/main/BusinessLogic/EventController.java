@@ -101,16 +101,12 @@ public class EventController implements Subject {
         return filteredEvents;
     }
 
-    public void getEventSubscriptions(int id) {
-        //Search in all the events the one with the right ID
-
-    }
-
     /*
-    public Event[] getAllEvents() {
-        return eventsDAO.getEvents();
+    public void getEventSubscriptions(int id) {
+        Search in all the events the one with the right ID
+
     }
-     */
+    */
 
     @Override
     public void notifyEventObservers(int eventId) {

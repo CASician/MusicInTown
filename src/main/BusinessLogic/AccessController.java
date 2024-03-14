@@ -2,10 +2,8 @@ package main.BusinessLogic;
 
 import main.DAO.AccessDAO;
 import main.DomainModel.UserType;
-import main.Interface.AccessInterface;
 
 import java.util.HashMap;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class AccessController extends InputController {

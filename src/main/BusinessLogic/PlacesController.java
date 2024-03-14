@@ -15,12 +15,15 @@ public class PlacesController {
 
     public PlacesDAO getPlacesDAO() { return placesDAO; }
 
+    /*
     public PublicPlace getPublicPlace(int id) {
         return placesDAO.getPublicPlaces().get(id);
     }
     public PrivatePlace getPrivatePlace(int id) {
         return placesDAO.getPrivatePlaces().get(id);
     }
+    */
+
     public HashMap<Integer, PublicPlace> getPublicPlaces() {
         return placesDAO.getPublicPlaces();
     }

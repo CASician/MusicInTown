@@ -23,14 +23,6 @@ public class PrivateEvent extends Event {
         this.ownerPlanner = owner;
     }
 
-    public Planner getPlanner() {
-        return planner;
-    }
-
-    public Owner getOwnerPlanner() {
-        return ownerPlanner;
-    }
-
     public PrivatePlace getPlace() {
         return place;
     }

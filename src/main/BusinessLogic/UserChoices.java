@@ -17,13 +17,13 @@ public enum UserChoices {
         SeeEventsSubscriptions,
         SubscribeEvent,
 
-    };
+    }
 
     public enum UserActions {
         Exit,
         FilterEvents,
         SeeAllEvents,
-    };
+    }
 
     public enum OwnerActions {
         Exit,

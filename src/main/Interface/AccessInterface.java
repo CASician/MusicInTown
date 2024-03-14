@@ -1,6 +1,4 @@
 package main.Interface;
-
-import java.util.Objects;
 import java.util.Scanner;
 
 public class AccessInterface extends BasicUserInterface {

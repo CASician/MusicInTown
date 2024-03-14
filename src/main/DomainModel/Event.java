@@ -1,7 +1,6 @@
 package main.DomainModel;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.HashMap;
 
 public abstract class Event {
@@ -52,4 +51,5 @@ public abstract class Event {
         this.id = lastId;
     }
     public boolean isOpen() { return open; }
+
 }

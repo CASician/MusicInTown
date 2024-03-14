@@ -13,9 +13,6 @@ public class PublicEvent extends Event {
         this.place = place;
     }
 
-    public Planner getPlanner() {
-        return planner;
-    }
 
     public PublicPlace getPlace() {
         return place;

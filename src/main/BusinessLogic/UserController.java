@@ -9,7 +9,7 @@ import java.util.Objects;
 public class UserController extends InputController {
 
     private final User user;
-    private final UserDAO userDAO;
+    UserDAO userDAO;
     private final EventController eventController;
     private final UserInterface userInterface;
     private UserChoices.UserActions userActions;

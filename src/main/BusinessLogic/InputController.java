@@ -5,7 +5,6 @@ import main.Interface.BasicUserInterface;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -93,10 +92,13 @@ public abstract class InputController {
         int month = scanner.nextInt();
         basicUserInterface.getDay();
         int day = scanner.nextInt();
-        LocalDate dateNow = LocalDate.now();
         LocalDate date;
         try { date = LocalDate.of(year, month, day); }
         catch (DateTimeException error) {
+            tryAgain();
+            date = getDate();
+        }
+        if(date.isBefore(LocalDate.now())) {
             tryAgain();
             date = getDate();
         }

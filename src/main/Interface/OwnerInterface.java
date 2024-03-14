@@ -21,5 +21,5 @@ public class OwnerInterface extends BasicUserInterface {
 
     public void getEventName() {
         System.out.println("Event name: ");
-    };
+    }
 }

@@ -1,7 +1,6 @@
 package main.DomainModel;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Musician extends BasicUser {
