@@ -89,4 +89,20 @@ public class BasicUserInterface {
         }
     }
 
+    public void getOpenEvent() {
+        System.out.println("Is the event open?");
+        System.out.println("insert 0 for true, 1 for false");
+    }
+
+    public void getExactDate() {
+        System.out.println("Insert the date of the event: ");
+    }
+
+    public void getDuration() {
+        System.out.println("Insert the duration of the event in days: ");
+    }
+
+    public void getEventType() {
+        System.out.println("Insert the type of event: ");
+    }
 }

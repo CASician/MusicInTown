@@ -1,9 +1,7 @@
 package main.BusinessLogic;
 
 import main.DAO.EventsDAO;
-import main.DomainModel.Event;
-import main.DomainModel.PrivateEvent;
-import main.DomainModel.PublicEvent;
+import main.DomainModel.*;
 import main.Interface.BasicUserInterface;
 
 import java.time.LocalDate;
@@ -122,5 +120,11 @@ public class EventController implements Subject {
     @Override
     public void notifyPlaceObservers(int placeId) {
 
+    }
+
+    public void createEvent(String name, Boolean open, LocalDate date, Owner owner,
+                            PrivatePlace privatePlace, String duration, String city, String type) {
+        eventsDAO.getPrivateEvents().add(new PrivateEvent(
+                name, open, date, owner, privatePlace, duration, city, type));
     }
 }

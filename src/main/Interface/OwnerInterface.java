@@ -16,6 +16,10 @@ public class OwnerInterface extends BasicUserInterface {
 
     }
 
-    public void eventsManagement() {
+    public void eventsInterface() {
     }
+
+    public void getEventName() {
+        System.out.println("Event name: ");
+    };
 }

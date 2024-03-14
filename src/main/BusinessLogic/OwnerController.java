@@ -5,6 +5,8 @@ import main.DomainModel.Owner;
 import main.DomainModel.PrivatePlace;
 import main.Interface.OwnerInterface;
 
+import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class OwnerController extends InputController {
@@ -14,6 +16,7 @@ public class OwnerController extends InputController {
     protected OwnerDAO ownerDAO;
     private final Owner owner;
     protected PlacesController placesController;
+    protected UserChoices.OwnerActions operation;
 
     public OwnerController(String owner, EventController eventController, PlacesController placesController) {
         ownerInterface = new OwnerInterface();
@@ -24,7 +27,7 @@ public class OwnerController extends InputController {
     }
 
     public void ownerFunctions() {
-        while(!Objects.equals(basicUserOptions, UserChoices.BasicUser.Exit)) {
+        while (!Objects.equals(basicUserOptions, UserChoices.BasicUser.Exit)) {
             ownerInterface.basicInterface();
             basicUserOptions = firstMenuInput();
             switch (basicUserOptions) {
@@ -32,7 +35,7 @@ public class OwnerController extends InputController {
                     ownerInterface.printOwnerInfo(owner);
                     break;
                 case SeeEventsMenu:
-                    ownerInterface.eventsManagement();
+                    eventsManagement();
                     break;
                 case Exit:
                     ownerInterface.logOut();
@@ -41,5 +44,58 @@ public class OwnerController extends InputController {
                     break;
             }
         }
+    }
+
+    public void eventsManagement() {
+        boolean quitMenu = false;
+        while (!quitMenu) {
+            ownerInterface.eventsInterface();
+            operation = getOwnerInput();
+            switch (operation) {
+                case Exit:
+                    quitMenu = true;
+                    break;
+                case SeeAllEvents:
+                    ownerInterface.printPrivateEvents(eventController.getPrivateEvents());
+                    ownerInterface.printPublicEvents(eventController.getPublicEvents());
+                    break;
+                case FilterEvents:
+                    LocalDate date = getDateFilter();
+                    ownerInterface.printPrivateEvents(eventController.getPrivateEventsFiltered(date));
+                    ownerInterface.printPublicEvents(eventController.getPublicEventsFiltered(date));
+                    break;
+                case CreateEvent:
+                    createEvent();
+
+            }
+        }
+    }
+
+    public void createEvent() {
+        ownerInterface.getEventName();
+        String eventName = getString();
+        ownerInterface.getOpenEvent();
+        Boolean open = getBoolean();
+        ownerInterface.getExactDate();
+        LocalDate date = getDate();
+        ownerInterface.getDuration();
+        String duration = getInteger() + " giorni";
+        String city = owner.getPlace().getCity();
+        ownerInterface.getEventType();
+        String eventType = getString();
+        eventController.createEvent(eventName, open, date, owner, owner.getPlace(), duration, city, eventType);
+    }
+
+    public UserChoices.OwnerActions getOwnerInput () {
+        operation = null;
+        input = getInteger();
+        if (input >= 0 && input < UserChoices.OwnerActions.values().length) {
+            operation = UserChoices.OwnerActions.values()[input];
+        } else {
+            accessInterface.invalidChoice();
+            operation = null;
+        }
+        input = 0;
+        return operation;
     }
 }

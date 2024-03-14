@@ -3,7 +3,9 @@ package main.BusinessLogic;
 import main.Interface.AccessInterface;
 import main.Interface.BasicUserInterface;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -81,17 +83,43 @@ public abstract class InputController {
 
     public LocalDate getDateFilter() {
         basicUserInterface.filter();
+        return getDate();
+    }
+
+    public LocalDate getDate() {
         basicUserInterface.getYear();
         int year = scanner.nextInt();
         basicUserInterface.getMonth();
         int month = scanner.nextInt();
         basicUserInterface.getDay();
         int day = scanner.nextInt();
-
-        return LocalDate.of(year, month, day);
+        LocalDate dateNow = LocalDate.now();
+        LocalDate date;
+        try { date = LocalDate.of(year, month, day); }
+        catch (DateTimeException error) {
+            tryAgain();
+            date = getDate();
+        }
+        return date;
     }
 
     public int getInteger() {
         return scanner.nextInt();
+    }
+
+    public String getString() { return scanner.nextLine(); }
+
+    public Boolean getBoolean() {
+        Boolean open;
+        int insertion = scanner.nextInt();
+        if(insertion == 0) {
+            open = true;
+        } else if (insertion == 1) {
+            open = false;
+        } else {
+            tryAgain();
+            open = getBoolean();
+        }
+        return open;
     }
 }
