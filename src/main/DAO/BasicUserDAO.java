@@ -15,7 +15,6 @@ public class BasicUserDAO {
         PreparedStatement insertBasicUser = connection.prepareStatement("INSERT INTO BasicUsers(id, email, city, username) VALUES(DEFAULT, ?, ?, ?)");
 
         // Add the real values instead of "?"
-        insertBasicUser.setString(1, basicUser.getEmail());
         insertBasicUser.setString(3, basicUser.getUsername());
 
         //Close connection

@@ -10,8 +10,8 @@ public class Musician extends BasicUser {
     private final String genre;
     private final int componentNumb;
 
-    public Musician(String name, String genre, String username, String email, int id, int numb) {
-        super(id, email, username);
+    public Musician(String name, String genre, String username, int id, int numb) {
+        super(id, username);
         publicEvents = new ArrayList<>();
         privateEvents = new ArrayList<>();
         this.name = name;
@@ -25,10 +25,20 @@ public class Musician extends BasicUser {
         privateEvents.add(event);
     }
     public List<PrivateEvent> getPrivateEvents() {
-        return privateEvents;
+        if(privateEvents.isEmpty()) {
+            return new ArrayList<>();
+        }
+        else {
+            return privateEvents;
+        }
     }
     public List<PublicEvent> getPublicEvents() {
-        return publicEvents;
+        if(publicEvents.isEmpty()) {
+            return new ArrayList<>();
+        }
+        else {
+            return publicEvents;
+        }
     }
     public int getComponentNumb() {
         return componentNumb;

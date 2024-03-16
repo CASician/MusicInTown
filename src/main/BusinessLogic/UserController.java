@@ -14,9 +14,9 @@ public class UserController extends InputController {
     private final UserInterface userInterface;
     private UserChoices.UserActions userActions;
 
-    public UserController(String user, EventController eventController) {
+    public UserController(String username, EventController eventController) {
         this.eventController = eventController;
-        userDAO = new UserDAO(user);
+        userDAO = new UserDAO(username);
         this.user = userDAO.getUser();
         userInterface = new UserInterface();
         userActions = null;

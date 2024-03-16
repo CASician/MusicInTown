@@ -6,7 +6,7 @@ import java.sql.SQLException;
 public class DataBaseTests {
     public static void main(String[] string) throws SQLException {
 
-        User miguel = new User(11, "miguelito", "miguelito@gmail.com", "lollone");
+        User miguel = new User(11, "miguelito", "lollone");
         BasicUserDAO.add(miguel);
     }
 }

@@ -9,13 +9,13 @@ import java.util.Scanner;
 public class AccessController extends InputController {
     private final AccessDAO accessDAO;
 
-    public String email;
+    public String username;
     UserType userType;
 
     public AccessController() {
         accessDAO = new AccessDAO();
         scanner = new Scanner(System.in);
-        email = null;
+        username = null;
         userType = null;
     }
 
@@ -28,8 +28,8 @@ public class AccessController extends InputController {
 
         HashMap<String, String> input = new HashMap<>();
 
-        input.put("email" , getEmailInput());
-        email = input.get("email");
+        input.put("username" , getEmailInput());
+        username = input.get("username");
         input.put("password", getPasswordInput());
         userType = accessDAO.login(input);
         boolean loop = true;
@@ -37,7 +37,7 @@ public class AccessController extends InputController {
         while(loop) {
 
             if (userType != null) {
-                accessInterface.success(email);
+                accessInterface.success(username);
                 loop = false;
             } else {
                 accessInterface.loginFailure();

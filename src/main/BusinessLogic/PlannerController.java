@@ -19,10 +19,10 @@ public class PlannerController extends InputController {
     private final Planner planner;
     protected PlacesController placesController;
 
-    public PlannerController(String planner, EventController eventController, PlacesController placesController) {
+    public PlannerController(String username, EventController eventController, PlacesController placesController) {
         this.eventController = eventController;
         plannerDAO = new PlannerDAO();
-        this.planner = plannerDAO.getPlanner(planner);
+        this.planner = plannerDAO.getPlanner(username);
         plannerInterface = new PlannerInterface();
         this.placesController = placesController;
     }

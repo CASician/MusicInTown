@@ -14,7 +14,7 @@ public class AccessInterface extends BasicUserInterface {
     }
 
     public void askEmail() {
-        System.out.println("Email: ");
+        System.out.println("Username: ");
     }
 
     public void askPassword() {
@@ -26,7 +26,7 @@ public class AccessInterface extends BasicUserInterface {
     }
 
     public void loginFailure() {
-        System.out.println("Wrong Email or Password");
+        System.out.println("Wrong Username or Password");
     }
 
     public void tryAgain() {

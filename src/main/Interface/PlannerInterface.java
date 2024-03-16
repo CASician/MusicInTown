@@ -3,6 +3,7 @@ package main.Interface;
 import main.DomainModel.Planner;
 import main.DomainModel.PrivateEvent;
 import main.DomainModel.PublicEvent;
+import main.DomainModel.UserType;
 
 public class PlannerInterface extends BasicUserInterface {
     public PlannerInterface() {
@@ -11,7 +12,9 @@ public class PlannerInterface extends BasicUserInterface {
 
     public void printPlannerInfo(Planner planner) {
         System.out.println("--------------------");
-        System.out.println("Name: " + planner.getUsername());
+        System.out.println("User Type: " + UserType.PLANNER);
+        System.out.println("Name: " + planner.getName());
+        System.out.println("Username: " + planner.getUsername());
         System.out.println("ID: " + planner.getId());
         System.out.println("--------------------");
     }

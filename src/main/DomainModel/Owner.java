@@ -4,8 +4,8 @@ public class Owner extends BasicUser {
     public PrivatePlace privatePlace;
     private final String name;
 
-    public Owner(String name, String username, String email, int id, PrivatePlace privatePlace) {
-        super(id, email, username);
+    public Owner(String name, String username, int id, PrivatePlace privatePlace) {
+        super(id, username);
         this.privatePlace = privatePlace;
         this.name = name;
     }

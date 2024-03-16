@@ -3,6 +3,7 @@ package main.Interface;
 import main.DomainModel.Musician;
 import main.DomainModel.PrivateEvent;
 import main.DomainModel.PublicEvent;
+import main.DomainModel.UserType;
 
 import java.util.List;
 
@@ -17,8 +18,9 @@ public class MusicianInterface extends BasicUserInterface {
     //Function for testing
     public void printMusicianInfo(Musician musician) {
         System.out.println("--------------------");
+        System.out.println("User Type: " + UserType.MUSICIAN);
         System.out.println("Name: " + musician.getName());
-        System.out.println("Email: " + musician.getEmail());
+        System.out.println("Username: " + musician.getUsername());
         System.out.println("Genre: " + musician.getGenre());
         System.out.println("Component Number: " + musician.getComponentNumb());
         System.out.println("Username: " + musician.getUsername());

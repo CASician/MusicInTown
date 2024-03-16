@@ -12,14 +12,12 @@ public class MunicipalityDAO {
         // First, we need to add our Municipality as a BasicUser
         PreparedStatement insertBasicUser = conn.prepareStatement("INSERT INTO BasicUsers(id, email, city, username) VALUES(DEFAULT, ?, ?, ?)");
         // Add the real values instead of "?"
-        insertBasicUser.setString(1, municipality.getEmail());
         insertBasicUser.setString(2, municipality.getCity()); 
         insertBasicUser.setString(3, municipality.getUsername());
         insertBasicUser.executeUpdate();
 
         // Use a query to find what ID has been automatically assigned.
         PreparedStatement findId = conn.prepareStatement("SELECT id FROM BasicUsers WHERE email = ? AND city = ? AND username = ?");
-        findId.setString(1, municipality.getEmail());
         findId.setString(2, municipality.getCity());
         findId.setString(3, municipality.getUsername());
 

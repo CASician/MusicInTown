@@ -8,7 +8,7 @@ public class UserDAO {
 
     public UserDAO(String user) {
         //Access the database to retrieve the info of the musician and generate a new instance
-        this.user = new User(11, "miguelito", "miguelito@gmail.com", "lollone");
+        this.user = new User(11, "miguelito", "lollone");
     }
 
     public User getUser() {

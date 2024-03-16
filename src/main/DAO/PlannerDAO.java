@@ -12,9 +12,9 @@ public class PlannerDAO {
     public PlannerDAO() {
         planners = new ArrayList<>();
 
-        planners.add( new Planner(1, "briatore@gmail.com", "flavio"));
-        planners.add( new Planner(2, "basalari@gmail.com", "steven"));
-        planners.add( new Planner(3, "bryan@gmail.com", "bryanino"));
+        planners.add( new Planner(1, "Flavio", "briatore"));
+        planners.add( new Planner(2, "Steven", "basalari"));
+        planners.add( new Planner(3, "Bryan","bryanino"));
     }
 
     public Planner getPlanner(String planner) {

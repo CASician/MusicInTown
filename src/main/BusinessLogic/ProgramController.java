@@ -37,22 +37,22 @@ public class ProgramController extends InputController {
         if(userType != null) {
             switch (userType) {
                 case MUSICIAN:
-                    this.musicianController = new MusicianController(accessController.email, eventController);
+                    this.musicianController = new MusicianController(accessController.username, eventController);
                     this.musicianController.musicianFunctions();
                     break;
                 case PLANNER:
-                    this.plannerController = new PlannerController(accessController.email, eventController, placesController);
+                    this.plannerController = new PlannerController(accessController.username, eventController, placesController);
                     this.plannerController.plannerFunctions();
                     break;
                 case MUNICIPALITY:
-                    this.municipalityController = new MunicipalityController(accessController.email);
+                    this.municipalityController = new MunicipalityController(accessController.username);
                     break;
                 case USER:
-                    this.userController = new UserController(accessController.email, eventController);
+                    this.userController = new UserController(accessController.username, eventController);
                     this.userController.userFunctions();
                     break;
                 case OWNER:
-                    this.ownerController = new OwnerController(accessController.email, eventController, placesController);
+                    this.ownerController = new OwnerController(accessController.username, eventController, placesController);
                     this.ownerController.ownerFunctions();
 
             }

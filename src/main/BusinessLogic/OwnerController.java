@@ -16,9 +16,9 @@ public class OwnerController extends InputController {
     private final Owner owner;
     protected PlacesController placesController;
 
-    public OwnerController(String owner, EventController eventController, PlacesController placesController) {
+    public OwnerController(String username, EventController eventController, PlacesController placesController) {
         ownerInterface = new OwnerInterface();
-        ownerDAO = new OwnerDAO(owner, placesController);
+        ownerDAO = new OwnerDAO(username, placesController);
         this.owner = ownerDAO.getOwner();
         this.placesController = placesController;
         this.eventController = eventController;
