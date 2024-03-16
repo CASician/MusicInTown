@@ -29,6 +29,8 @@ public abstract class Event {
         subscriptions.put(musicianId, musicianName);
     }
 
+    public HashMap<Integer, String> getSubscriptions() { return subscriptions; }
+
     public String getCity() {
         return city;
     }

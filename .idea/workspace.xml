@@ -4,32 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fceed6ec-ff53-45d6-83ae-a6a8b46ffd39" name="Changes" comment="feat: all planner user functions implemented">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataBaseTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataBaseTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/AccessController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/AccessController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/OwnerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/OwnerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/PlannerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/PlannerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/ProgramController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/ProgramController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DAO/AccessDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DAO/AccessDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DAO/BasicUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DAO/BasicUserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DAO/MunicipalityDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DAO/MunicipalityDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DAO/MusicianDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DAO/MusicianDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DAO/OwnerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DAO/OwnerDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DAO/PlannerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DAO/PlannerDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DAO/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DAO/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DomainModel/BasicUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/BasicUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DomainModel/Municipality.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/Municipality.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DomainModel/Musician.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/Musician.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DomainModel/Owner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/Owner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DomainModel/Planner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/Planner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DomainModel/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Interface/AccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Interface/AccessInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Interface/MusicianInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Interface/MusicianInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Interface/OwnerInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Interface/OwnerInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Interface/PlannerInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Interface/PlannerInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Interface/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Interface/UserInterface.java" afterDir="false" />
+    <list default="true" id="fceed6ec-ff53-45d6-83ae-a6a8b46ffd39" name="Changes" comment="fix: removed all the email attributes and methods">
+      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/EventController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DomainModel/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Interface/BasicUserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Interface/BasicUserInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +103,7 @@
       <workItem from="1707822107384" duration="57294000" />
       <workItem from="1709031067135" duration="5000" />
       <workItem from="1709031095331" duration="7060000" />
-      <workItem from="1709568527841" duration="56274000" />
+      <workItem from="1709568527841" duration="57474000" />
     </task>
     <task id="LOCAL-00001" summary="fix: UML file updated and fixed">
       <option name="closed" value="true" />
@@ -271,7 +249,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710603623871</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="fix: removed all the email attributes and methods">
+      <option name="closed" value="true" />
+      <created>1710609269724</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1710609269724</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -317,7 +303,8 @@
     <MESSAGE value="feat: Owner functions and profile completed" />
     <MESSAGE value="fix: City attribute removed from all the users except for Municipality" />
     <MESSAGE value="feat: all planner user functions implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: all planner user functions implemented" />
+    <MESSAGE value="fix: removed all the email attributes and methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: removed all the email attributes and methods" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

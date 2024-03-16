@@ -108,4 +108,10 @@ public class BasicUserInterface {
     public void getEventInfo() {
         System.out.println("Insert some short event info: ");
     }
+
+    public void alreadySubscribed() {
+        System.out.println("--------------------");
+        System.out.println("You are already subscribed to this event");
+        System.out.println("--------------------");
+    }
 }

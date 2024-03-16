@@ -6,6 +6,7 @@ import main.Interface.BasicUserInterface;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -24,12 +25,16 @@ public class EventController implements Subject {
 
     public PublicEvent subscribePublicEvent(String musicianName, int musicianId, int eventId) {
         boolean found = false;
+        boolean alreadySubscribed = false;
         publicEvent = null;
         publicEvents = eventsDAO.getPublicEvents();
         for (PublicEvent event : publicEvents) {
             if (event.getId() == eventId) {
-                publicEvent = event;
                 found = true;
+                if(!event.getSubscriptions().containsKey(musicianId)) {
+                    publicEvent = event;
+                }
+                else { alreadySubscribed = true; }
                 break;
             }
         }
@@ -37,19 +42,27 @@ public class EventController implements Subject {
             basicUserInterface.eventNotFound();
         }
         else {
-            publicEvent.addSubscription(musicianName, musicianId);
+            if(!alreadySubscribed) {
+                publicEvent.addSubscription(musicianName, musicianId);
+            }
+            else {
+                basicUserInterface.alreadySubscribed();
+            }
         }
         return publicEvent;
     }
 
     public PrivateEvent subscribePrivateEvent(String musicianName, int musicianId, int eventId) {
         boolean found = false;
+        boolean alreadySubscribed = false;
         privateEvent = null;
         privateEvents = eventsDAO.getPrivateEvents();
         for (PrivateEvent event : privateEvents) {
             if (event.getId() == eventId) {
-                privateEvent = event;
                 found = true;
+                if(!event.getSubscriptions().containsKey(musicianId)) {
+                    privateEvent = event;
+                } else { alreadySubscribed = true; }
                 break;
             }
         }
@@ -57,7 +70,12 @@ public class EventController implements Subject {
             basicUserInterface.eventNotFound();
         }
         else {
-            privateEvent.addSubscription(musicianName, musicianId);
+            if(!alreadySubscribed) {
+                privateEvent.addSubscription(musicianName, musicianId);
+            }
+            else {
+                basicUserInterface.alreadySubscribed();
+            }
         }
         return privateEvent;
     }
