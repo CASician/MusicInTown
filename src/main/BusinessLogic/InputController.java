@@ -95,11 +95,11 @@ public abstract class InputController {
         LocalDate date;
         try { date = LocalDate.of(year, month, day); }
         catch (DateTimeException error) {
-            tryAgain();
+            basicUserInterface.tryAgain();
             date = getDate();
         }
         if(date.isBefore(LocalDate.now())) {
-            tryAgain();
+            basicUserInterface.tryAgain();
             date = getDate();
         }
         return date;

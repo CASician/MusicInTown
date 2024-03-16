@@ -14,7 +14,7 @@ public class OwnerDAO {
         //The instance must contain the place that he owns retrieved from the database
         placesDAO = placesController.getPlacesDAO();
         this.privatePlace = placesDAO.getPrivatePlace(1);
-        this.owner = new Owner("owner", owner, "owner@gmail.com", 5,"Firenze", this.privatePlace);
+        this.owner = new Owner("owner", owner, "owner@gmail.com", 5, this.privatePlace);
     }
 
     public Owner getOwner() {

@@ -16,7 +16,6 @@ public class BasicUserDAO {
 
         // Add the real values instead of "?"
         insertBasicUser.setString(1, basicUser.getEmail());
-        insertBasicUser.setString(2, basicUser.getCity());
         insertBasicUser.setString(3, basicUser.getUsername());
 
         //Close connection

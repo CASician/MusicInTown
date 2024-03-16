@@ -8,7 +8,6 @@ public class OwnerInterface extends BasicUserInterface {
         System.out.println("--------------------");
         System.out.println("Name: " + owner.getName());
         System.out.println("Email: " + owner.getEmail());
-        System.out.println("City: " + owner.getCity());
         System.out.println("PLACE OWNED");
         System.out.println("Name: " + owner.getPlace().getName());
         System.out.println("City: " + owner.getPlace().getCity());
@@ -26,10 +25,10 @@ public class OwnerInterface extends BasicUserInterface {
         if(event != null) {
             System.out.println("The event was created with success, event info: ");
             System.out.print("EVENT NAME: " + event.getName());
-            System.out.print("DATE: " + event.getDate());
+            System.out.print(", DATE: " + event.getDate());
             System.out.print(", CITY: " + event.getPlace().getCity());
             System.out.print(", ADDRESS: " + event.getPlace().getAddress());
-            System.out.println(", TYPE: " + event.getName());
+            System.out.println(", TYPE: " + event.getType());
             System.out.println("--------------------");
         }
         else {

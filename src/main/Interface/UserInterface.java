@@ -8,7 +8,7 @@ public class UserInterface extends BasicUserInterface {
         System.out.println("--------------------");
         System.out.println("Name: " + user.getName());
         System.out.println("Email: " + user.getEmail());
-        System.out.println("City: " + user.getCity());
+        System.out.println("Username: " + user.getUsername());
         System.out.println("--------------------");
 
     }

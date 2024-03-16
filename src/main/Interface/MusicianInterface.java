@@ -21,7 +21,7 @@ public class MusicianInterface extends BasicUserInterface {
         System.out.println("Email: " + musician.getEmail());
         System.out.println("Genre: " + musician.getGenre());
         System.out.println("Component Number: " + musician.getComponentNumb());
-        System.out.println("City: " + musician.getCity());
+        System.out.println("Username: " + musician.getUsername());
         System.out.println("--------------------");
 
     }

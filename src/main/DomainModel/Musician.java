@@ -10,9 +10,8 @@ public class Musician extends BasicUser {
     private final String genre;
     private final int componentNumb;
 
-    public Musician(String name, String genre, String username, String email, int id, int numb,
-                    String city) {
-        super(id, email, username, city);
+    public Musician(String name, String genre, String username, String email, int id, int numb) {
+        super(id, email, username);
         publicEvents = new ArrayList<>();
         privateEvents = new ArrayList<>();
         this.name = name;

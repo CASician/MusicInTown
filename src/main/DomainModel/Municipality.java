@@ -1,10 +1,18 @@
 package main.DomainModel;
 
-public class Municipality extends BasicUser {
-    PublicPlace[] publicPlaces;
+import java.util.List;
 
-    public Municipality(int id, String email, String username, String city, PublicPlace[] publicPlaces) {
-        super(id, email, username, city);
+public class Municipality extends BasicUser {
+    List<PublicPlace> publicPlaces;
+    String city;
+
+    public Municipality(int id, String email, String username, String city, List<PublicPlace> publicPlaces) {
+        super(id, email, username);
+        this.city = city;
         this.publicPlaces = publicPlaces;
+    }
+
+    public String getCity() {
+        return city;
     }
 }

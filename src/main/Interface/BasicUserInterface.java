@@ -69,6 +69,10 @@ public class BasicUserInterface {
         }
     }
 
+    public void tryAgain() {
+        System.out.println("Wrong value inserted, try again");
+    }
+
     public void printPrivateEvents(List<PrivateEvent> events) {
         if(events != null) {
             System.out.println("--------------------");

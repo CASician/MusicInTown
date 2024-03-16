@@ -5,6 +5,7 @@ import main.DomainModel.PrivatePlace;
 import main.DomainModel.PublicPlace;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class PlacesController {
     protected PlacesDAO placesDAO;
