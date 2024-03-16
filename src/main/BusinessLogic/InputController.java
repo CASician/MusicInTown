@@ -134,4 +134,15 @@ public abstract class InputController {
         scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
+
+    public int privatePublicEvent() {
+        int privateEvent;
+        scanner = new Scanner(System.in);
+        privateEvent = scanner.nextInt();
+        if(privateEvent != 0 && privateEvent != 1) {
+            basicUserInterface.tryAgain();
+            privatePublicEvent();
+        }
+        return privateEvent;
+    }
 }

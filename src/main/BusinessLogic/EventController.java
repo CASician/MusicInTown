@@ -126,5 +126,19 @@ public class EventController implements Subject {
         return event;
     }
 
+    public PrivateEvent createPrivateEvent(String name, Boolean open, LocalDate date, Planner planner,
+                                           PrivatePlace privatePlace, String duration, String city, String type) {
+        PrivateEvent event = new PrivateEvent(
+                name, open, date, planner, privatePlace, duration, city, type);
+        eventsDAO.getPrivateEvents().add(event);
+        return event;
+    }
 
+    public PublicEvent createPublicEvent(String eventName, Boolean open, LocalDate date, Planner planner,
+                                         PublicPlace publicPlace, String duration, String city, String eventType) {
+        PublicEvent event = new PublicEvent(
+                eventName, open, date, planner, publicPlace, duration, city, eventType);
+        eventsDAO.getPublicEvents().add(event);
+        return event;
+    }
 }

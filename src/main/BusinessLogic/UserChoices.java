@@ -25,7 +25,7 @@ public enum UserChoices {
         SeeAllEvents,
     }
 
-    public enum OwnerActions {
+    public enum OwnerPlannerActions {
         Exit,
         FilterEvents,
         SeeAllEvents,

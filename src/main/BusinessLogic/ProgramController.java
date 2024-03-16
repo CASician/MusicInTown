@@ -41,7 +41,8 @@ public class ProgramController extends InputController {
                     this.musicianController.musicianFunctions();
                     break;
                 case PLANNER:
-                    this.plannerController = new PlannerController(accessController.email);
+                    this.plannerController = new PlannerController(accessController.email, eventController, placesController);
+                    this.plannerController.plannerFunctions();
                     break;
                 case MUNICIPALITY:
                     this.municipalityController = new MunicipalityController(accessController.email);

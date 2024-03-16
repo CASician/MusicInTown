@@ -2,15 +2,29 @@ package main.DAO;
 
 import main.DomainModel.Planner;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 public class PlannerDAO {
-    Planner[] planners;
+    List<Planner> planners;
 
     public PlannerDAO() {
-        planners = new Planner[3];
+        planners = new ArrayList<>();
 
-        planners[0] = new Planner(1, "briatore@gmail.com", "flavio");
-        planners[1] = new Planner(2, "basalari@gmail.com", "steven");
-        planners[2] = new Planner(3, "bryan@gmail.com", "bryanino");
+        planners.add( new Planner(1, "briatore@gmail.com", "flavio"));
+        planners.add( new Planner(2, "basalari@gmail.com", "steven"));
+        planners.add( new Planner(3, "bryan@gmail.com", "bryanino"));
     }
 
+    public Planner getPlanner(String planner) {
+        Planner planner1 = null;
+        for (Planner value : planners) {
+            if (Objects.equals(value.getUsername(), planner)) {
+                planner1 = value;
+                break;
+            }
+        }
+        return planner1;
+    }
 }

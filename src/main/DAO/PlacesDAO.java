@@ -45,10 +45,16 @@ public class PlacesDAO {
     public PrivatePlace getPrivatePlace(Integer id) {
         return privatePlaces.get(id);
     }
+    public PublicPlace getPublicPlace(int id) {
+        return publicPlaces.get(id);
+    }
+
     public HashMap<Integer, PrivatePlace> getPrivatePlaces() {
         return privatePlaces;
     }
     public HashMap<Integer, PublicPlace> getPublicPlaces() {
         return publicPlaces;
     }
+
+
 }

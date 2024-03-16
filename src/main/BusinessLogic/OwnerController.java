@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class OwnerController extends InputController {
-    private UserChoices.OwnerActions ownerActions;
+    private UserChoices.OwnerPlannerActions ownerActions;
     protected EventController eventController;
     private final OwnerInterface ownerInterface;
     protected OwnerDAO ownerDAO;
@@ -64,8 +64,6 @@ public class OwnerController extends InputController {
                     break;
                 case CreateEvent:
                     createEvent();
-
-
             }
         }
     }
@@ -86,11 +84,11 @@ public class OwnerController extends InputController {
         ownerInterface.eventCreated(event);
     }
 
-    public UserChoices.OwnerActions getOwnerInput () {
+    public UserChoices.OwnerPlannerActions getOwnerInput () {
         ownerActions = null;
         input = getInteger();
-        if (input >= 0 && input < UserChoices.OwnerActions.values().length) {
-            ownerActions = UserChoices.OwnerActions.values()[input];
+        if (input >= 0 && input < UserChoices.OwnerPlannerActions.values().length) {
+            ownerActions = UserChoices.OwnerPlannerActions.values()[input];
         } else {
             accessInterface.invalidChoice();
             ownerActions = null;

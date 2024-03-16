@@ -20,6 +20,9 @@ public class AccessDAO {
         if(Objects.equals(input.get("email"), "owner@gmail.com") && Objects.equals(input.get("password"), "123")) {
             userType = UserType.OWNER; //Return the userType of the profile
         }
+        if(Objects.equals(input.get("email"), "steven") && Objects.equals(input.get("password"), "123")){
+            userType = UserType.PLANNER;
+        }
         return userType;
     }
 }

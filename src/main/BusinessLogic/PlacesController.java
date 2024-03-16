@@ -31,4 +31,12 @@ public class PlacesController {
     public HashMap<Integer, PrivatePlace> getPrivatePlaces() {
         return placesDAO.getPrivatePlaces();
     }
+
+    public PrivatePlace getPrivatePlace(int id) {
+        return placesDAO.getPrivatePlace(id);
+    }
+
+    public PublicPlace getPublicPlace(int id) {
+        return placesDAO.getPublicPlace(id);
+    }
 }

@@ -50,19 +50,19 @@ public class EventsDAO {
         int privatePlacesLength = placesController.getPrivatePlaces().size();
         int publicPlacesLength = placesController.getPublicPlaces().size();
 
-        publicEvents.add(new PublicEvent("Festival Jazz Fusion", true, LocalDate.of(2024, 5, 25), plannerDAO.planners[0],
+        publicEvents.add(new PublicEvent("Festival Jazz Fusion", true, LocalDate.of(2024, 5, 25), plannerDAO.planners.get(0),
                 placesController.getPublicPlaces().get(0), "3 giorni", "firenze","Jazz Fusion"));
         lastId += 1;
         publicEvents.get(0).setId(lastId);
-        publicEvents.add(new PublicEvent("Concerto Rock Indie", true, LocalDate.of(2025, 1, 20), plannerDAO.planners[1],
+        publicEvents.add(new PublicEvent("Concerto Rock Indie", true, LocalDate.of(2025, 1, 20), plannerDAO.planners.get(1),
                 placesController.getPublicPlaces().get(1), "1 giorno", "milano","Rock Indie"));
         lastId += 1;
         publicEvents.get(1).setId(lastId);
-        publicEvents.add(new PublicEvent("Concerto Classico Contemporaneo", false, LocalDate.of(2024, 10, 20), plannerDAO.planners[1],
+        publicEvents.add(new PublicEvent("Concerto Classico Contemporaneo", false, LocalDate.of(2024, 10, 20), plannerDAO.planners.get(2),
                 placesController.getPublicPlaces().get(2), "1 giorno", "bologna","Classico Contemporaneo"));
         lastId += 1;
         publicEvents.get(2).setId(lastId);
-        publicEvents.add(new PublicEvent("Concerto Indie Acustico", false, LocalDate.of(2024, 8, 2), plannerDAO.planners[2],
+        publicEvents.add(new PublicEvent("Concerto Indie Acustico", false, LocalDate.of(2024, 8, 2), plannerDAO.planners.get(0),
                 placesController.getPublicPlaces().get(0), "2 giorni", "firenze","Indie Acustico"));
         lastId += 1;
         publicEvents.get(3).setId(lastId);
