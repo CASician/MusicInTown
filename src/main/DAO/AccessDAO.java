@@ -23,6 +23,9 @@ public class AccessDAO {
         if(Objects.equals(input.get("username"), "steven") && Objects.equals(input.get("password"), "123")){
             userType = UserType.PLANNER;
         }
+        if(Objects.equals(input.get("username"), "florence") && Objects.equals(input.get("password"), "123")) {
+            userType = UserType.MUNICIPALITY;
+        }
         return userType;
     }
 }

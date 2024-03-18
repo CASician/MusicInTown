@@ -33,4 +33,12 @@ public enum UserChoices {
         CreateEvent,
     }
 
+    public enum MunicipalityActions {
+        Exit,
+        FilterEvents,
+        SeeAllEvents,
+        CreateEvent,
+        AcceptEvents,
+    }
+
 }

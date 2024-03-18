@@ -5,6 +5,8 @@ import main.DomainModel.Municipality;
 import java.sql.*;
 public class MunicipalityDAO {
 
+    Municipality municipality;
+
     public static void add (Municipality municipality)  throws SQLException {
         // Connect to Database
         Connection conn = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
@@ -36,6 +38,12 @@ public class MunicipalityDAO {
 
         // Show results
         System.out.println("New MUNICIPALITY added successfully!");
+    }
+
+    public Municipality getMunicipality(String municipality) {
+        //Get the municipality from the Database
+        this.municipality = new Municipality(1, municipality, "Florence");
+        return this.municipality;
     }
 
     //TODO: implement other functions: update, delete, get(id), getAll

@@ -46,7 +46,7 @@ public class ProgramController extends BasicUserController {
                     this.plannerController.plannerFunctions();
                     break;
                 case MUNICIPALITY:
-                    this.municipalityController = new MunicipalityController(accessController.username, placesController);
+                    this.municipalityController = new MunicipalityController(accessController.username, eventController, placesController);
                     break;
                 case USER:
                     this.userController = new UserController(accessController.username, eventController, placesController);
