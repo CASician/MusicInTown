@@ -3,12 +3,14 @@ package main.BusinessLogic;
 import main.Interface.AccessInterface;
 import main.Interface.BasicUserInterface;
 
+import javax.swing.*;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Scanner;
 
 public abstract class InputController {
+    JOptionPane jOptionPane;
     Scanner scanner;
     UserChoices.BasicUser basicUserOptions;
     int input;
@@ -16,6 +18,7 @@ public abstract class InputController {
     AccessInterface accessInterface;
 
     public InputController() {
+        jOptionPane = new JOptionPane();
         scanner = new Scanner(System.in);
         accessInterface = new AccessInterface();
         basicUserInterface = new BasicUserInterface();
@@ -23,15 +26,17 @@ public abstract class InputController {
 
     public UserChoices getFirstInput() {
         accessInterface.firstView();
-        input = scanner.nextInt();
+        input = Integer.parseInt(scanner.nextLine());
         UserChoices selectedCategory = null;
 
         if (input >= 0 && input < UserChoices.values().length) {
             selectedCategory = UserChoices.values()[input];
         } else {
             accessInterface.invalidChoice();
-            if(tryAgain())
+            if(tryAgain()) {
+                scanner.nextLine();
                 selectedCategory = getFirstInput();
+            }
         }
         input = 0;
         return selectedCategory;
@@ -39,21 +44,25 @@ public abstract class InputController {
 
     public String getEmailInput() {
         accessInterface.askEmail();
+        scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
 
     public String getPasswordInput() {
         accessInterface.askPassword();
+        scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
 
     public boolean tryAgain() {
         accessInterface.tryAgain();
+        scanner = new Scanner(System.in);
         return Objects.equals(scanner.nextInt(), 0);
     }
 
     public UserChoices.BasicUser firstMenuInput() {
         basicUserOptions = null;
+        scanner = new Scanner(System.in);
         input = scanner.nextInt();
         if (input >= 0 && input < UserChoices.BasicUser.values().length) {
             basicUserOptions = UserChoices.BasicUser.values()[input];
@@ -66,12 +75,14 @@ public abstract class InputController {
     }
     public int getId() {
         basicUserInterface.eventId();
+        scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
 
     public int getEventType() {
         basicUserInterface.eventType();
         int input;
+        scanner = new Scanner(System.in);
         input = scanner.nextInt();
         while(input != 0 && input != 1) {
             basicUserInterface.tryAgainType();
@@ -86,12 +97,13 @@ public abstract class InputController {
     }
 
     public LocalDate getDate() {
+        scanner = new Scanner(System.in);
         basicUserInterface.getYear();
-        int year = scanner.nextInt();
+        int year = Integer.parseInt(scanner.nextLine());
         basicUserInterface.getMonth();
-        int month = scanner.nextInt();
+        int month = Integer.parseInt(scanner.nextLine());
         basicUserInterface.getDay();
-        int day = scanner.nextInt();
+        int day = Integer.parseInt(scanner.nextLine());
         LocalDate date;
         try { date = LocalDate.of(year, month, day); }
         catch (DateTimeException error) {
@@ -106,7 +118,8 @@ public abstract class InputController {
     }
 
     public int getInteger() {
-        return scanner.nextInt();
+        scanner = new Scanner(System.in);
+        return Integer.parseInt(scanner.nextLine());
     }
 
     public String getEventName() {
@@ -117,6 +130,7 @@ public abstract class InputController {
 
     public Boolean getBoolean() {
         Boolean open;
+        scanner = new Scanner(System.in);
         int insertion = scanner.nextInt();
         if(insertion == 0) {
             open = true;
@@ -137,8 +151,9 @@ public abstract class InputController {
 
     public int privatePublicEvent() {
         int privateEvent;
+        basicUserInterface.isPrivatePublicEvent();
         scanner = new Scanner(System.in);
-        privateEvent = scanner.nextInt();
+        privateEvent = Integer.parseInt(scanner.nextLine());
         if(privateEvent != 0 && privateEvent != 1) {
             basicUserInterface.tryAgain();
             privatePublicEvent();

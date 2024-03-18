@@ -35,6 +35,7 @@ public class PlannerInterface extends BasicUserInterface {
             System.out.println("The event was created and now is waiting for approval from the owner, event info: ");
             System.out.print("EVENT NAME: " + event.getName());
             System.out.print(", DATE: " + event.getDate());
+            System.out.print(", CLUB NAME: " + event.getName());
             System.out.print(", CITY: " + event.getPlace().getCity());
             System.out.println(", TYPE: " + event.getType());
             System.out.print(", ADDRESS: " + event.getPlace().getAddress());

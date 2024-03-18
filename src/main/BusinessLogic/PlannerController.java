@@ -133,7 +133,7 @@ public class PlannerController extends InputController {
 
     public UserChoices.OwnerPlannerActions getPlannerInput() {
         plannerActions = null;
-        input = scanner.nextInt();
+        input = getInteger();
         if (input >= 0 && input < UserChoices.OwnerPlannerActions.values().length) {
             plannerActions = UserChoices.OwnerPlannerActions.values()[input];
         } else {

@@ -88,6 +88,10 @@ public class BasicUserInterface {
         }
     }
 
+    public void isPrivatePublicEvent() {
+        System.out.println("Where will the event take place?");
+        System.out.println("insert 0 for private place, 1 for public place");
+    }
     public void getOpenEvent() {
         System.out.println("Is the event open?");
         System.out.println("insert 0 for true, 1 for false");
