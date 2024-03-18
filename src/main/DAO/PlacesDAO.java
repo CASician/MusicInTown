@@ -43,7 +43,7 @@ public class PlacesDAO {
         publicPlaces.put(publicPlace3.getId(), publicPlace3);
     }
     public PrivatePlace getPrivatePlace(Integer id) {
-        return privatePlaces.get(id);
+        return privatePlaces.getOrDefault(id, null);
     }
     public PublicPlace getPublicPlace(int id) {
         return publicPlaces.get(id);

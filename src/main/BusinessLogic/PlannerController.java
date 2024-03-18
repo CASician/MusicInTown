@@ -31,14 +31,16 @@ public class PlannerController extends InputController {
         while (!Objects.equals(basicUserOptions, UserChoices.BasicUser.Exit)) {
             plannerInterface.basicInterface();
             basicUserOptions = firstMenuInput();
+            if(planner == null) {
+                plannerInterface.loginError();
+                basicUserOptions = UserChoices.BasicUser.Exit;
+            }
             switch (basicUserOptions) {
                 case SeeEventsMenu:
                     eventsManagement();
                     break;
                 case Exit:
                     plannerInterface.logOut();
-                    break;
-                default:
                     break;
                 case SeeInfo:
                     plannerInterface.printPlannerInfo(planner);
@@ -69,6 +71,7 @@ public class PlannerController extends InputController {
                     else {
                         createPublicEvent();
                     }
+                    break;
                 case Exit:
                     quitMenu = true;
                     break;
@@ -99,7 +102,7 @@ public class PlannerController extends InputController {
         privatePlace = placesController.getPrivatePlace(getId());
         if(privatePlace == null) {
             plannerInterface.tryAgain();
-            getPrivatePlace();
+            privatePlace = getPrivatePlace();
         }
         return privatePlace;
     }

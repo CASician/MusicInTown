@@ -56,15 +56,14 @@ public class BasicUserInterface {
 
     public void printPublicEvents(List<PublicEvent> events) {
         if(events != null) {
-            System.out.println("--------------------");
             for (PublicEvent event : events) {
+                System.out.println("--------------------");
                 System.out.print("EVENT NAME: " + event.getName());
                 System.out.print(", DATE: " + event.getDate());
                 System.out.print(", CITY: " + event.getPlace().getCity());
                 System.out.print(", ADDRESS: " + event.getPlace().getAddress());
                 System.out.print(", DURATION: " + event.getDuration());
                 System.out.println(", TYPE: " + event.getType());
-                System.out.println("--------------------");
             }
         }
     }
@@ -75,15 +74,15 @@ public class BasicUserInterface {
 
     public void printPrivateEvents(List<PrivateEvent> events) {
         if(events != null) {
-            System.out.println("--------------------");
             for (PrivateEvent event : events) {
+                System.out.println("--------------------");
                 System.out.print("EVENT NAME: " + event.getName());
                 System.out.print(", DATE: " + event.getDate());
+                System.out.print(", CLUB NAME: " + event.getPlace().getName());
                 System.out.print(", CITY: " + event.getPlace().getCity());
                 System.out.print(", ADDRESS: " + event.getPlace().getAddress());
                 System.out.print(", DURATION: " + event.getDuration());
                 System.out.println(", TYPE: " + event.getType());
-                System.out.println("--------------------");
             }
         }
     }
@@ -117,5 +116,15 @@ public class BasicUserInterface {
         System.out.println("--------------------");
         System.out.println("You are already subscribed to this event");
         System.out.println("--------------------");
+    }
+
+    public void loginError() {
+        System.out.println("--------------------");
+        System.out.println("Database error during Login, the application will be shut down");
+        System.out.println("--------------------");
+    }
+
+    public void newValue() {
+        System.out.println("Insert a new value: ");
     }
 }

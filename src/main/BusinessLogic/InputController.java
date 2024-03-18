@@ -68,7 +68,13 @@ public abstract class InputController {
             basicUserOptions = UserChoices.BasicUser.values()[input];
         } else {
             accessInterface.invalidChoice();
-            basicUserOptions = null;
+            if(!tryAgain()) {
+                basicUserOptions = UserChoices.BasicUser.Exit;
+            }
+            else {
+                basicUserInterface.newValue();
+                basicUserOptions = firstMenuInput();
+            }
         }
         input = 0;
         return basicUserOptions;
@@ -156,7 +162,7 @@ public abstract class InputController {
         privateEvent = Integer.parseInt(scanner.nextLine());
         if(privateEvent != 0 && privateEvent != 1) {
             basicUserInterface.tryAgain();
-            privatePublicEvent();
+            privateEvent = privatePublicEvent();
         }
         return privateEvent;
     }

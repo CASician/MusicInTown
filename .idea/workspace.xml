@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fceed6ec-ff53-45d6-83ae-a6a8b46ffd39" name="Changes" comment="fix: fixed some bugs inside musician logic">
-      <change afterPath="$PROJECT_DIR$/src/main/Interface/MunicipalityInterface.java" afterDir="false" />
+    <list default="true" id="fceed6ec-ff53-45d6-83ae-a6a8b46ffd39" name="Changes" comment="fix: fixed some bugs inside input/output logic">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/AccessController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/AccessController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/InputController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/InputController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/PlannerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/PlannerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DAO/PlacesDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DAO/PlacesDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/DAO/PlannerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DAO/PlannerDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Interface/BasicUserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Interface/BasicUserInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Interface/PlannerInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Interface/PlannerInterface.java" afterDir="false" />
     </list>
@@ -107,7 +107,7 @@
       <workItem from="1707822107384" duration="57294000" />
       <workItem from="1709031067135" duration="5000" />
       <workItem from="1709031095331" duration="7060000" />
-      <workItem from="1709568527841" duration="62250000" />
+      <workItem from="1709568527841" duration="63754000" />
     </task>
     <task id="LOCAL-00001" summary="fix: UML file updated and fixed">
       <option name="closed" value="true" />
@@ -269,7 +269,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710610560950</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="fix: fixed some bugs inside input/output logic">
+      <option name="closed" value="true" />
+      <created>1710774117374</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1710774117374</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -317,20 +325,26 @@
     <MESSAGE value="feat: all planner user functions implemented" />
     <MESSAGE value="fix: removed all the email attributes and methods" />
     <MESSAGE value="fix: fixed some bugs inside musician logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: fixed some bugs inside musician logic" />
+    <MESSAGE value="fix: fixed some bugs inside input/output logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: fixed some bugs inside input/output logic" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/BusinessLogic/PlannerController.java</url>
-          <line>134</line>
+          <line>137</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/BusinessLogic/InputController.java</url>
-          <line>120</line>
+          <line>125</line>
           <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/BusinessLogic/InputController.java</url>
+          <line>66</line>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
