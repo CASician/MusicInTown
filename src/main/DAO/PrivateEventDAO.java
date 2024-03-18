@@ -43,5 +43,31 @@ public class PrivateEventDAO {
         System.out.println("New PRIVATE EVENT added successfully!");
     }
 
-    // TODO: implement the other functions: update, delete, getAll
+    public static void delete(PrivateEvent privateEvent) throws SQLException {
+        // Connection to database
+        Connection conn = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
+
+        // Use a query to find what ID has been automatically assigned.
+        PreparedStatement findId = conn.prepareStatement("SELECT id FROM Events WHERE name = ?");
+        findId.setString(1, privateEvent.getName());
+        ResultSet resultSet = findId.executeQuery();
+        resultSet.next();
+
+        // Delete PrivateEvent from its table
+        PreparedStatement deletePrivateEvent = conn.prepareStatement("delete from PrivateEvents where id = ?");
+        deletePrivateEvent.setInt(1, resultSet.getInt("id"));
+
+        // Call the Events delete function
+        EventsDAO.delete(privateEvent);
+
+        // Close connections
+        findId.close();
+        deletePrivateEvent.executeUpdate();
+        deletePrivateEvent.close();
+        conn.close();
+
+        // The results are logged in the EventsDAO.delete
+    }
+
+    // TODO: getAll
 }

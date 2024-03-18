@@ -35,5 +35,27 @@ public class EventsDAO {
         conn.close();
     };
 
-    //TODO: implementare le altre DAO: update, delete, getAll
+    public static void delete(Event event) throws SQLException{
+        // Connection to DataBase
+        Connection conn = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
+
+        // Use query to delete the instance
+        PreparedStatement deleteEvent = conn.prepareStatement("delete from Events where name = ?");
+
+        // Add the real value instead of "?"
+        deleteEvent.setString(1, event.getName());
+
+        // Close connections
+        deleteEvent.executeUpdate();
+        deleteEvent.close();
+        conn.close();
+
+        // Show results
+        System.out.println(event.getName() + " has been deleted from DataBase");
+
+
+
+    }
+
+    // TODO: getAll
 }

@@ -36,5 +36,31 @@ public class PublicEventsDAO {
         System.out.println("New PUBLIC EVENT added successfully! ");
     }
 
-    // TODO implement the other functions: update, delete, getAll
+    public static void delete(PublicEvent publicEvent) throws SQLException{
+        // Connection to database
+        Connection conn = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
+
+        // Use a query to find what ID has been automatically assigned.
+        PreparedStatement findId = conn.prepareStatement("SELECT id FROM Events WHERE name = ?");
+        findId.setString(1, publicEvent.getName());
+        ResultSet resultSet = findId.executeQuery();
+        resultSet.next();
+
+        // Delete PublicEvent from its table
+        PreparedStatement deletePublicEvent = conn.prepareStatement("delete from PublicEvents where id = ?");
+        deletePublicEvent.setInt(1, resultSet.getInt("id"));
+
+        // Call the Events delete function
+        EventsDAO.delete(publicEvent);
+
+        // Close connections
+        findId.close();
+        deletePublicEvent.executeUpdate();
+        deletePublicEvent.close();
+        conn.close();
+
+        // The results are logged in the EventsDAO.delete
+    }
+
+    // TODO: getAll
 }
