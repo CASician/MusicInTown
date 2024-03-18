@@ -1,16 +1,13 @@
 package main.BusinessLogic;
 
-import main.DAO.OwnerDAO;
 import main.DAO.PlannerDAO;
 import main.DomainModel.*;
-import main.Interface.OwnerInterface;
 import main.Interface.PlannerInterface;
 
 import java.time.LocalDate;
 import java.util.Objects;
-import java.util.Scanner;
 
-public class PlannerController extends InputController {
+public class PlannerController extends BasicUserController {
 
     private UserChoices.OwnerPlannerActions plannerActions;
     protected EventController eventController;
@@ -20,6 +17,7 @@ public class PlannerController extends InputController {
     protected PlacesController placesController;
 
     public PlannerController(String username, EventController eventController, PlacesController placesController) {
+        super(placesController);
         this.eventController = eventController;
         plannerDAO = new PlannerDAO();
         this.planner = plannerDAO.getPlanner(username);
@@ -44,6 +42,10 @@ public class PlannerController extends InputController {
                     break;
                 case SeeInfo:
                     plannerInterface.printPlannerInfo(planner);
+                    break;
+                case SeeAllPlaces:
+                    plannerInterface.printPrivatePlaces(placesController.getPrivatePlacesList());
+                    plannerInterface.printPublicPlaces(placesController.getPublicPlacesList());
                     break;
             }
         }

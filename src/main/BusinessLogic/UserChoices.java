@@ -7,7 +7,8 @@ public enum UserChoices {
     public enum BasicUser {
         Exit,
         SeeEventsMenu,
-        SeeInfo
+        SeeInfo,
+        SeeAllPlaces,
     }
 
     public enum MusicianActions {

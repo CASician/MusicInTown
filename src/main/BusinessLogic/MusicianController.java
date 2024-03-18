@@ -7,14 +7,15 @@ import main.Interface.MusicianInterface;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class MusicianController extends InputController {
+public class MusicianController extends BasicUserController {
     MusicianDAO musicianDAO;
     Musician musician;
     MusicianInterface musicianInterface;
     UserChoices.MusicianActions operation;
     EventController eventController;
 
-    public MusicianController(String musician, EventController eventController) {
+    public MusicianController(String musician, EventController eventController, PlacesController placesController) {
+        super(placesController);
         musicianDAO = new MusicianDAO(musician);
         this.musician = musicianDAO.getMusician();
         musicianInterface = new MusicianInterface();
@@ -35,6 +36,10 @@ public class MusicianController extends InputController {
                     break;
                 case Exit:
                     musicianInterface.logOut();
+                    break;
+                case SeeAllPlaces:
+                    musicianInterface.printPrivatePlaces(placesController.getPrivatePlacesList());
+                    musicianInterface.printPublicPlaces(placesController.getPublicPlacesList());
                     break;
                 default:
                     break;

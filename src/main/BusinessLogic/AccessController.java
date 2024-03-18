@@ -6,7 +6,7 @@ import main.DomainModel.UserType;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class AccessController extends InputController {
+public class AccessController extends BasicUserController {
     private final AccessDAO accessDAO;
 
     public String username;
@@ -14,6 +14,7 @@ public class AccessController extends InputController {
     HashMap<String, String> input;
 
     public AccessController() {
+        super(new PlacesController());
         accessDAO = new AccessDAO();
         scanner = new Scanner(System.in);
         username = null;

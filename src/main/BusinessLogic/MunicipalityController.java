@@ -2,7 +2,7 @@ package main.BusinessLogic;
 
 public class MunicipalityController {
 
-    public MunicipalityController(String municipality) {
+    public MunicipalityController(String municipality, PlacesController placesController) {
 
     }
 }

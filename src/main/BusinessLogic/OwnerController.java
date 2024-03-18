@@ -8,7 +8,7 @@ import main.Interface.OwnerInterface;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class OwnerController extends InputController {
+public class OwnerController extends BasicUserController {
     private UserChoices.OwnerPlannerActions ownerActions;
     protected EventController eventController;
     private final OwnerInterface ownerInterface;
@@ -17,6 +17,7 @@ public class OwnerController extends InputController {
     protected PlacesController placesController;
 
     public OwnerController(String username, EventController eventController, PlacesController placesController) {
+        super(placesController);
         ownerInterface = new OwnerInterface();
         ownerDAO = new OwnerDAO(username, placesController);
         this.owner = ownerDAO.getOwner();
@@ -37,6 +38,10 @@ public class OwnerController extends InputController {
                     break;
                 case Exit:
                     ownerInterface.logOut();
+                    break;
+                case SeeAllPlaces:
+                    ownerInterface.printPrivatePlaces(placesController.getPrivatePlacesList());
+                    ownerInterface.printPublicPlaces(placesController.getPublicPlacesList());
                     break;
                 default:
                     break;

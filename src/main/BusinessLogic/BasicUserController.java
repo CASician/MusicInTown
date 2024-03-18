@@ -1,24 +1,25 @@
 package main.BusinessLogic;
 
+import main.DomainModel.PrivatePlace;
 import main.Interface.AccessInterface;
 import main.Interface.BasicUserInterface;
 
-import javax.swing.*;
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-public abstract class InputController {
-    JOptionPane jOptionPane;
+public abstract class BasicUserController {
     Scanner scanner;
+    PlacesController placesController;
     UserChoices.BasicUser basicUserOptions;
     int input;
     BasicUserInterface basicUserInterface;
     AccessInterface accessInterface;
 
-    public InputController() {
-        jOptionPane = new JOptionPane();
+    public BasicUserController(PlacesController placesController) {
+        this.placesController = placesController;
         scanner = new Scanner(System.in);
         accessInterface = new AccessInterface();
         basicUserInterface = new BasicUserInterface();
@@ -79,6 +80,11 @@ public abstract class InputController {
         input = 0;
         return basicUserOptions;
     }
+
+    public List<PrivatePlace> getPrivatePlaces() {
+        return placesController.getPrivatePlacesList();
+    }
+
     public int getId() {
         basicUserInterface.eventId();
         scanner = new Scanner(System.in);

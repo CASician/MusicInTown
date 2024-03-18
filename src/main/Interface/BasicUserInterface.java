@@ -1,6 +1,8 @@
 package main.Interface;
 import main.DomainModel.PrivateEvent;
+import main.DomainModel.PrivatePlace;
 import main.DomainModel.PublicEvent;
+import main.DomainModel.PublicPlace;
 
 import java.util.List;
 
@@ -11,6 +13,7 @@ public class BasicUserInterface {
         System.out.println("0 to exit, ");
         System.out.println("1 to see events menu, ");
         System.out.println("2 to see user info, ");
+        System.out.println("3 to visualize all places ");
     }
 
     public void basicEventsInterface() {
@@ -54,8 +57,12 @@ public class BasicUserInterface {
         System.out.println("See you soon.");
     }
 
+    public void tryAgain() {
+        System.out.println("Wrong value inserted, try again");
+    }
+
     public void printPublicEvents(List<PublicEvent> events) {
-        if(events != null) {
+        if(!events.isEmpty()) {
             for (PublicEvent event : events) {
                 System.out.println("--------------------");
                 System.out.print("EVENT NAME: " + event.getName());
@@ -68,12 +75,8 @@ public class BasicUserInterface {
         }
     }
 
-    public void tryAgain() {
-        System.out.println("Wrong value inserted, try again");
-    }
-
     public void printPrivateEvents(List<PrivateEvent> events) {
-        if(events != null) {
+        if(!events.isEmpty()) {
             for (PrivateEvent event : events) {
                 System.out.println("--------------------");
                 System.out.print("EVENT NAME: " + event.getName());
@@ -94,6 +97,30 @@ public class BasicUserInterface {
     public void getOpenEvent() {
         System.out.println("Is the event open?");
         System.out.println("insert 0 for true, 1 for false");
+    }
+
+    public void printPrivatePlaces(List<PrivatePlace> privatePlaces) {
+        if(!privatePlaces.isEmpty()) {
+            for (PrivatePlace privatePlace : privatePlaces) {
+                System.out.println("--------------------");
+                System.out.print("CLUB NAME: " + privatePlace.getName());
+                System.out.print(", CITY: " + privatePlace.getCity());
+                System.out.print(", ADDRESS: " + privatePlace.getAddress());
+                System.out.print(", ID: " + privatePlace.getId());
+                System.out.println(", OWNER NAME: " + privatePlace.getOwnerName());
+            }
+        }
+    }
+
+    public void printPublicPlaces(List<PublicPlace> publicPlaces) {
+        if(!publicPlaces.isEmpty()) {
+            for (PublicPlace publicPlace : publicPlaces) {
+                System.out.println("--------------------");
+                System.out.print("CITY: " + publicPlace.getCity());
+                System.out.print(", ADDRESS: " + publicPlace.getAddress());
+                System.out.println(", ID: " + publicPlace.getId());
+            }
+        }
     }
 
     public void getExactDate() {

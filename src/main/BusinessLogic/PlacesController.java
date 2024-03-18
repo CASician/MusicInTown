@@ -39,4 +39,11 @@ public class PlacesController {
     public PublicPlace getPublicPlace(int id) {
         return placesDAO.getPublicPlace(id);
     }
+
+    public List<PrivatePlace> getPrivatePlacesList() {
+        return placesDAO.getPrivatePlacesList();
+    }
+    public List<PublicPlace> getPublicPlacesList() {
+        return placesDAO.getPublicPlacesList();
+    }
 }

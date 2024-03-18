@@ -6,7 +6,7 @@ import main.Interface.UserInterface;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class UserController extends InputController {
+public class UserController extends BasicUserController {
 
     private final User user;
     UserDAO userDAO;
@@ -14,7 +14,8 @@ public class UserController extends InputController {
     private final UserInterface userInterface;
     private UserChoices.UserActions userActions;
 
-    public UserController(String username, EventController eventController) {
+    public UserController(String username, EventController eventController, PlacesController placesController) {
+        super(placesController);
         this.eventController = eventController;
         userDAO = new UserDAO(username);
         this.user = userDAO.getUser();
@@ -36,6 +37,10 @@ public class UserController extends InputController {
                     break;
                 case Exit:
                     userInterface.logOut();
+                    break;
+                case SeeAllPlaces:
+                    userInterface.printPrivatePlaces(placesController.getPrivatePlacesList());
+                    userInterface.printPublicPlaces(placesController.getPublicPlacesList());
                     break;
                 default:
                     break;

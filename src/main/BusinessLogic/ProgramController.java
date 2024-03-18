@@ -2,7 +2,7 @@ package main.BusinessLogic;
 
 import main.DomainModel.UserType;
 
-public class ProgramController extends InputController {
+public class ProgramController extends BasicUserController {
     AccessController accessController;
     MusicianController musicianController;
     PlannerController plannerController;
@@ -15,6 +15,7 @@ public class ProgramController extends InputController {
     //String userType = null;
 
     public ProgramController() {
+        super(new PlacesController());
         placesController = new PlacesController();
         eventController = new EventController(placesController);
         this.accessController = new AccessController();
@@ -37,7 +38,7 @@ public class ProgramController extends InputController {
         if(userType != null) {
             switch (userType) {
                 case MUSICIAN:
-                    this.musicianController = new MusicianController(accessController.username, eventController);
+                    this.musicianController = new MusicianController(accessController.username, eventController, placesController);
                     this.musicianController.musicianFunctions();
                     break;
                 case PLANNER:
@@ -45,10 +46,10 @@ public class ProgramController extends InputController {
                     this.plannerController.plannerFunctions();
                     break;
                 case MUNICIPALITY:
-                    this.municipalityController = new MunicipalityController(accessController.username);
+                    this.municipalityController = new MunicipalityController(accessController.username, placesController);
                     break;
                 case USER:
-                    this.userController = new UserController(accessController.username, eventController);
+                    this.userController = new UserController(accessController.username, eventController, placesController);
                     this.userController.userFunctions();
                     break;
                 case OWNER:
