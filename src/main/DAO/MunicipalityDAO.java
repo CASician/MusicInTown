@@ -1,8 +1,10 @@
 package main.DAO;
 
+import main.DomainModel.BasicUser;
 import main.DomainModel.Municipality;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class MunicipalityDAO {
 
@@ -20,11 +22,13 @@ public class MunicipalityDAO {
         // Use the result to give the same ID to Municipality in its own Table.
         ResultSet resultSet = findId.executeQuery();
         resultSet.next();                           // Idk what it does, but it's needed.
-        PreparedStatement insertMunicipality = conn.prepareStatement("INSERT INTO Municipalities(id) VALUES(?)");
+        PreparedStatement insertMunicipality = conn.prepareStatement("INSERT INTO Municipalities(id, city) VALUES(?, ?)");
         insertMunicipality.setInt(1, resultSet.getInt("id"));
+        insertMunicipality.setString(2, municipality.getCity());
         insertMunicipality.executeUpdate();
 
         //Close connections
+        resultSet.close();
         findId.close();
         insertMunicipality.close();
         conn.close();
@@ -33,9 +37,7 @@ public class MunicipalityDAO {
         System.out.println("New MUNICIPALITY added successfully!");
     }
 
-    //TODO: implement other functions: update, delete, get(id), getAll
-
-    public static void delete(Municipality municipality) throws SQLException {
+    public static void delete(Municipality municipality) throws  SQLException {
         // Connection to DataBase
         Connection conn = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
@@ -54,10 +56,41 @@ public class MunicipalityDAO {
         BasicUserDAO.delete(municipality);
 
         // Close connections
+        resultSet.close();
         findId.close();
         deleteMunicipality.close();
         conn.close();
 
         // The result is logged in the BasicUserDAO.delete
+    }
+
+    public static ArrayList<Municipality> getAll() throws SQLException{
+        // Create the array you return
+        ArrayList<Municipality> users = new ArrayList<>();
+
+        // Connect to DataBase
+        Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
+
+        // Retrieve the data from DataBase
+        PreparedStatement getAll = connection.prepareStatement("select m.id, m.city, BU.username from Municipalities M join BasicUsers BU on M.id = BU.id");
+        ResultSet resultSet = getAll.executeQuery();
+
+        // Add data in the array
+        while(resultSet.next()) {
+            int id = resultSet.getInt("id");
+            String city = resultSet.getString("city");
+            String username = resultSet.getString("username");
+            Municipality user = new Municipality(username, city);
+            user.setId(id); // ID is not assigned in the constructor.
+            users.add(user);
+        }
+
+        // Close connections
+        resultSet.close();
+        getAll.close();
+        connection.close();
+
+        // The end
+        return users;
     }
 }

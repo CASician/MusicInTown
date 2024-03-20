@@ -8,18 +8,17 @@ import main.DomainModel.BasicUser;
 import java.sql.*;
 import java.util.ArrayList;
 import main.DAO.DBconnection;
+import org.postgresql.core.ResultCursor;
 
 public class BasicUserDAO {
     public static void add (BasicUser basicUser) throws SQLException {
         // Connect to Database
         Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
-        PreparedStatement insertBasicUser = connection.prepareStatement("INSERT INTO BasicUsers(id, email, city, username) VALUES(DEFAULT, ?, ?, ?)");
+        PreparedStatement insertBasicUser = connection.prepareStatement("INSERT INTO BasicUsers(id, username) VALUES(DEFAULT, ?)");
 
         // Add the real values instead of "?"
-        insertBasicUser.setString(1, basicUser.getEmail());
-        insertBasicUser.setString(2, basicUser.getCity());
-        insertBasicUser.setString(3, basicUser.getUsername());
+        insertBasicUser.setString(1, basicUser.getUsername());
 
         //Close connection
         insertBasicUser.executeUpdate();
@@ -46,7 +45,4 @@ public class BasicUserDAO {
         // Show results
         System.out.println(basicUser.getUsername() + " has been deleted from DataBase");
     }
-    public static void update (BasicUser basicUser){}
-
-    //public getAll{};
 }
