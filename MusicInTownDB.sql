@@ -54,7 +54,7 @@
 
     CREATE TABLE IF NOT EXISTS Musicians(
         id              INT PRIMARY KEY,
-        name            VARCHAR(50) NOT NULL,
+        name            VARCHAR(50) UNIQUE NOT NULL,
         genre           VARCHAR(50),
         componentNumb   INT NOT NULL,
         FOREIGN KEY(id) REFERENCES BasicUsers(id) ON UPDATE CASCADE ON DELETE CASCADE
@@ -62,20 +62,20 @@
 
     CREATE TABLE IF NOT EXISTS Owners(
         id      INT PRIMARY KEY,
-        name    VARCHAR(50) UNIQUE,
+        name    VARCHAR(50) UNIQUE NOT NULL,
         place   VARCHAR(50),
         FOREIGN KEY(id) REFERENCES BasicUsers(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
     CREATE TABLE IF NOT EXISTS Planners(
         id  INT PRIMARY KEY,
-        name VARCHAR(50),
+        name VARCHAR(50) UNIQUE NOT NULL,
         FOREIGN KEY(id) REFERENCES BasicUsers(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
     CREATE TABLE IF NOT EXISTS "Users"(
         id  INT PRIMARY KEY,
-        name VARCHAR(50),
+        name VARCHAR(50) UNIQUE NOT NULL,
         FOREIGN KEY(id) REFERENCES BasicUsers(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
@@ -141,3 +141,58 @@
         id      INT PRIMARY KEY,
         FOREIGN KEY (id) REFERENCES Places(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
+---------------------------------- VIEWS ----------------------------------------
+
+    DROP VIEW IF EXISTS planner_intero;
+    DROP VIEW IF EXISTS privateplace_intero;
+    DROP VIEW IF EXISTS publicplace_intero;
+    DROP VIEW IF EXISTS publicEvents_intero;
+    DROP VIEW IF EXISTS privateEvents_intero;
+    DROP VIEW IF EXISTS owner_intero;
+    DROP VIEW IF EXISTS privateevents_esteso_intero;
+
+    create view planner_intero as
+    select p.id as planner_id, p.name as planner_name, bu.username as planner_username
+    from planners p
+    join basicusers bu on (bu.id = p.id);
+
+
+    create view privateplace_intero as
+    select pp.id as privatePlace_id, p.name as privatePlace_name, pp.type as privatePlace_type, p.city as privatePlace_city,
+           p.address as privatePlace_address, p.capacity as privatePlace_capacity, p.indoor as privatePlace_indoor, pp.owner as privatePlace_ownerName
+    from privateplaces pp
+    join places p on (p.id = pp.id);
+
+
+    create view publicplace_intero as
+    select pp.id as privatePlace_id, p.name as privatePlace_name, p.city as privatePlace_city,
+           p.address as privatePlace_address, p.capacity as privatePlace_capacity, p.indoor as privatePlace_indoor
+    from publicplaces pp
+             join places p on (p.id = pp.id);
+
+    create view publicEvents_intero as
+    select e.id as publicEvent_id, e.name as publicEvent_name, pe.place as publicevent_place, pe.planner as publicevent_planner, e.open as publicevent_open, e.date as publicevent_date, e.city as publicevent_city, e.type as publicevent_type,
+           e.duration as publicevent_duration, e.accepted as publicevent_accepted
+    from publicEvents pe
+             join events e on (pe.id=e.id);
+
+
+    create view privateEvents_intero as
+    select e.id as privateEvent_id, e.name as privateEvent_name, pe.place as privateEvent_place, pe.planner as privateEvent_plannername, pe.ownerplanner as privateEvent_ownerplannername,
+           e.open as privateEvent_open, e.date as privateEvent_date, e.city as privateEvent_city, e.type as privateEvent_type,
+           e.duration as privateEvent_duration, e.accepted as privateEvent_accepted
+    from privateEvents pe
+             join events e on (pe.id=e.id);
+
+
+    create view owner_intero as
+    select o.id as owner_id, o.name as owner_name, bu.username as owner_username
+    from owners o
+             join basicusers bu on (o.id=bu.id);
+
+    create view privateevents_esteso_intero as
+    select *
+    from privateevents_intero pei
+             join planner_intero pli on (pei.privateevent_plannername= pli.planner_name)
+             join owner_intero oi on (pei.privateevent_ownerplannername= oi.owner_name)
+             join privateplace_intero ppi on (pei.privateevent_place = ppi.privateplace_name)
