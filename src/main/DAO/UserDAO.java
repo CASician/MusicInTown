@@ -1,8 +1,10 @@
 package main.DAO;
 
+import main.DomainModel.Owner;
 import main.DomainModel.User;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class UserDAO {
     public static void add (User user) throws SQLException {
@@ -27,6 +29,7 @@ public class UserDAO {
         insertUser.executeUpdate();
 
         // Close connection
+        resultSet.close();
         findId.close();
         insertUser.close();
         connection.close();
@@ -34,8 +37,6 @@ public class UserDAO {
         // Show result
         System.out.println("New USER added successfully!");
     }
-
-    //TODO: implement all the other functions: update, delete, getAll
 
     public static void delete(User user) throws SQLException {
         // Connection to DataBase
@@ -56,10 +57,44 @@ public class UserDAO {
         BasicUserDAO.delete(user);
 
         // Close connections
+        resultSet.close();
         findId.close();
         deleteUser.close();
         conn.close();
 
         // The result is logged in the BasicUserDAO.delete
+    }
+
+    public ArrayList<User> getAll () throws SQLException {
+        // Create the array you return
+        ArrayList<User> users = new ArrayList<>();
+
+        // Connect to DataBase
+        Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
+
+        // Retrieve the data from DataBase
+        PreparedStatement getAll = connection.prepareStatement("select u.id, u.name, BU.username from \"Users\" u join BasicUsers BU on u.id = BU.id");
+        ResultSet resultSet = getAll.executeQuery();
+
+        // Add data in the array
+        while(resultSet.next()) {
+            // Add data
+            int id = resultSet.getInt("id");
+            String name = resultSet.getString("name");
+            String username = resultSet.getString("username");
+
+            // to the array
+            User user = new User(name, username);
+            user.setId(id); // ID is not assigned in the constructor.
+            users.add(user);
+        }
+
+        // Close connections
+        resultSet.close();
+        getAll.close();
+        connection.close();
+
+        // The end
+        return users;
     }
 }

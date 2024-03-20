@@ -1,8 +1,10 @@
 package main.DAO;
 
+import main.DomainModel.Municipality;
 import main.DomainModel.Musician;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class MusicianDAO {
     public static void add (Musician musician) throws SQLException {
@@ -29,6 +31,7 @@ public class MusicianDAO {
         insertMusician.executeUpdate();
 
         // Close connection
+        resultSet.close();
         findId.close();
         insertMusician.close();
         connection.close();
@@ -37,7 +40,6 @@ public class MusicianDAO {
         System.out.println("New MUSICIAN added successfully!");
     }
 
-    // TODO: implement all the other functions: update, delete, getAll
     public static void delete(Musician musician) throws SQLException {
         // Connection to DataBase
         Connection conn = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
@@ -57,10 +59,46 @@ public class MusicianDAO {
         BasicUserDAO.delete(musician);
 
         // Close connections
+        resultSet.close();
         findId.close();
         deleteMusician.close();
         conn.close();
 
         // The result is logged in the BasicUserDAO.delete
+    }
+
+    public ArrayList<Musician> getAll() throws SQLException {
+        // Create the array you return
+        ArrayList<Musician> users = new ArrayList<>();
+
+        // Connect to DataBase
+        Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
+
+        // Retrieve the data from DataBase
+        PreparedStatement getAll = connection.prepareStatement("select m.id, m.name, m.genre, m.componentNumb, BU.username from Musicians M join BasicUsers BU on M.id = BU.id");
+        ResultSet resultSet = getAll.executeQuery();
+
+        // Add data in the array
+        while(resultSet.next()) {
+            // Add data
+            int id = resultSet.getInt("id");
+            String name = resultSet.getString("name");
+            String genre = resultSet.getString("genre");
+            int compNr = resultSet.getInt("componentnumb");
+            String username = resultSet.getString("username");
+
+            // in the array
+            Musician user = new Musician(name, genre, username, compNr);
+            user.setId(id); // ID is not assigned in the constructor.
+            users.add(user);
+        }
+
+        // Close connections
+        resultSet.close();
+        getAll.close();
+        connection.close();
+
+        // The end
+        return users;
     }
 }

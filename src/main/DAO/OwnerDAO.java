@@ -1,8 +1,11 @@
 package main.DAO;
 
+import main.DomainModel.Municipality;
 import main.DomainModel.Owner;
+import main.DomainModel.PrivatePlace;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class OwnerDAO {
     public static void add (Owner owner) throws SQLException {
@@ -13,10 +16,8 @@ public class OwnerDAO {
         Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
         // Use a query to find what ID has been automatically assigned.
-        PreparedStatement findId = connection.prepareStatement("SELECT id FROM BasicUsers WHERE email = ? AND city = ? AND username = ?");
-        findId.setString(1, owner.getEmail());
-        findId.setString(2, owner.getCity());
-        findId.setString(3, owner.getUsername());
+        PreparedStatement findId = connection.prepareStatement("SELECT id FROM BasicUsers WHERE username = ?");
+        findId.setString(1, owner.getUsername());
 
         // Use the result to give the same ID to Musician in its own Table.
         ResultSet resultSet = findId.executeQuery();
@@ -38,7 +39,6 @@ public class OwnerDAO {
         System.out.println("New OWNER added successfully!");
     }
 
-    //TODO: implement all the other functions: update, delete, getAll
     public static void delete(Owner owner) throws SQLException {
         // Connection to DataBase
         Connection conn = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
@@ -63,5 +63,38 @@ public class OwnerDAO {
         conn.close();
 
         // The result is logged in the BasicUserDAO.delete
+    }
+
+    public ArrayList<Owner> getAll() throws SQLException {
+        // Create the array you return
+        ArrayList<Owner> users = new ArrayList<>();
+
+        // Connect to DataBase
+        Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
+
+        // Retrieve the data from DataBase
+        PreparedStatement getAll = connection.prepareStatement("select o.id, o.name, o.place, BU.username from Owners O join BasicUsers BU on O.id = BU.id");
+        ResultSet resultSet = getAll.executeQuery();
+
+        // Add data in the array
+        while(resultSet.next()) {
+            // Add data
+            int id = resultSet.getInt("id");
+            String name = resultSet.getString("name");
+            String username = resultSet.getString("username");
+
+            // to the array
+            Owner user = new Owner(name, username);
+            user.setId(id); // ID is not assigned in the constructor.
+            users.add(user);
+        }
+
+        // Close connections
+        resultSet.close();
+        getAll.close();
+        connection.close();
+
+        // The end
+        return users;
     }
 }
