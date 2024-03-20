@@ -14,6 +14,7 @@ public class UserDAO {
         // Connect to Database
         Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
+        // TODO: use directly getId
         // Use a query to find what ID has been automatically assigned.
         PreparedStatement findId = connection.prepareStatement("SELECT id FROM BasicUsers WHERE username = ?");
         findId.setString(1, user.getUsername());
@@ -42,6 +43,7 @@ public class UserDAO {
         // Connection to DataBase
         Connection conn = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
+        // TODO: use directly getId
         // Find ID in BasicUsers. It is needed to delete the instance in Users.
         PreparedStatement findId = conn.prepareStatement("SELECT id FROM BasicUsers WHERE username = ?");
         findId.setString(1, user.getUsername());

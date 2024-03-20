@@ -16,6 +16,7 @@ public class PrivateEventDAO {
         // Connection to Database
         Connection conn = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
+        // TODO: use directly getId
         // Use a query to find what ID has been automatically assigned.
         PreparedStatement findId = conn.prepareStatement("SELECT id FROM Events WHERE name = ?");
         findId.setString(1, privateEvent.getName());
@@ -52,6 +53,7 @@ public class PrivateEventDAO {
         // Connection to database
         Connection conn = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
+        // TODO: use directly getId
         // Use a query to find what ID has been automatically assigned.
         PreparedStatement findId = conn.prepareStatement("SELECT id FROM Events WHERE name = ?");
         findId.setString(1, privateEvent.getName());

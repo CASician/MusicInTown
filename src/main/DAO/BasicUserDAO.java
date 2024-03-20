@@ -20,6 +20,9 @@ public class BasicUserDAO {
         // Add the real values instead of "?"
         insertBasicUser.setString(1, basicUser.getUsername());
 
+        // TODO: find the id value and give it to basicUser.id.
+        // this way, in the subclasses they can simply use the getId.
+
         //Close connection
         insertBasicUser.executeUpdate();
         insertBasicUser.close();

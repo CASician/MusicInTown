@@ -14,6 +14,7 @@ public class MusicianDAO {
         // Connect to Database
         Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
+        // TODO: use directly getId
         // Use a query to find what ID has been automatically assigned.
         PreparedStatement findId = connection.prepareStatement("SELECT id FROM BasicUsers WHERE username = ?");
         findId.setString(1, musician.getUsername());
@@ -44,6 +45,7 @@ public class MusicianDAO {
         // Connection to DataBase
         Connection conn = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
+        // TODO: use directly getId
         // Find ID in BasicUsers. It is needed to delete the instance in Musician.
         PreparedStatement findId = conn.prepareStatement("SELECT id FROM BasicUsers WHERE username = ?");
         findId.setString(1, musician.getUsername());

@@ -24,6 +24,9 @@ public class EventDAO {
         insertEvent.setString(5, event.getType());
         insertEvent.setString(6, event.getDuration());
 
+        // TODO : assign here the ID to event.id
+        // this way in subclasses can be simply used getID
+
         // Close connections
         insertEvent.executeUpdate();
         insertEvent.close();

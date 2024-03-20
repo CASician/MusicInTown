@@ -9,7 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class PublicPlaceDAO {
-    public static void add(PublicPlace publicPlace) throws SQLException{
+    public static void add(PublicPlace publicPlace) throws SQLException {
         // First, we need to add our PublicPlace as a Place
         PlaceDAO.add(publicPlace);
 

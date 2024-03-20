@@ -24,6 +24,8 @@ public class PlaceDAO {
         insertPlace.setInt(4, place.getCapacity());
         insertPlace.setBoolean(5, place.isIndoor());
 
+        //TODO: assign the ID to the object here so you can use getID
+
         // Close connections
         insertPlace.executeUpdate();
         insertPlace.close();
