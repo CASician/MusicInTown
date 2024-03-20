@@ -1,7 +1,16 @@
 package main.DomainModel;
 
 public class User extends BasicUser {
-    public User(String username, String email, String city) {
-        super(username, email, city);
+
+    private final String name;
+
+    public User(int id, String name, String username) {
+
+        super(id, username);
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 }

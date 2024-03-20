@@ -1,25 +1,20 @@
 package main.DomainModel;
 
 public abstract class BasicUser {
-    protected String email;
-    protected String city;
+    protected int id;
     protected String username;
 
-    public BasicUser(String username, String email, String city) {
-        this.email = email;
+    public BasicUser(int id, String username) {
+        this.id = id;
         this.username = username;
-        this.city = city;
     }
 
-    public String getEmail() {
-        return email;
+    public int getId() {
+        return id;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public String getCity() {
-        return city;
-    }
 }

@@ -33,7 +33,7 @@ public class EventsDAO {
         insertEvent.executeUpdate();
         insertEvent.close();
         conn.close();
-    };
+    }
 
     public static void delete(Event event) throws SQLException{
         // Connection to DataBase

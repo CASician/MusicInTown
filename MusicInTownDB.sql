@@ -43,14 +43,13 @@
      */
     CREATE TABLE IF NOT EXISTS BasicUsers(
         id       SERIAL PRIMARY KEY,
-        username VARCHAR(50) UNIQUE NOT NULL,
-        email    VARCHAR(50),
-        city     VARCHAR(20)
+        username VARCHAR(50) UNIQUE NOT NULL
     );
 
     CREATE TABLE IF NOT EXISTS Municipalities (
-        id  INT PRIMARY KEY, CONSTRAINT basicUser_fk
-            FOREIGN KEY(id) REFERENCES BasicUsers(id) ON UPDATE CASCADE ON DELETE CASCADE
+        id  INT PRIMARY KEY,
+        city VARCHAR(20),
+        FOREIGN KEY(id) REFERENCES BasicUsers(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
     CREATE TABLE IF NOT EXISTS Musicians(
@@ -63,19 +62,21 @@
 
     CREATE TABLE IF NOT EXISTS Owners(
         id      INT PRIMARY KEY,
+        name    VARCHAR(50) UNIQUE,
         place   VARCHAR(50),
-        name    VARCHAR(50),
         FOREIGN KEY(id) REFERENCES BasicUsers(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
     CREATE TABLE IF NOT EXISTS Planners(
-        id  INT PRIMARY KEY, CONSTRAINT basicUser_fk
-            FOREIGN KEY(id) REFERENCES BasicUsers(id) ON UPDATE CASCADE ON DELETE CASCADE
+        id  INT PRIMARY KEY,
+        name VARCHAR(50),
+        FOREIGN KEY(id) REFERENCES BasicUsers(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
     CREATE TABLE IF NOT EXISTS "Users"(
-        id  INT PRIMARY KEY, CONSTRAINT basicUser_fk
-            FOREIGN KEY(id) REFERENCES BasicUsers(id) ON UPDATE CASCADE ON DELETE CASCADE
+        id  INT PRIMARY KEY,
+        name VARCHAR(50),
+        FOREIGN KEY(id) REFERENCES BasicUsers(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
     /*
@@ -89,7 +90,8 @@
         date     DATE,
         city     VARCHAR(50),
         type     VARCHAR(50),
-        duration VARCHAR(50)
+        duration VARCHAR(50),
+        accepted BOOLEAN    -- TODO: add this in the DAO
     );
 
     CREATE TABLE IF NOT EXISTS PrivateEvents(
@@ -114,7 +116,8 @@
      ----------------------PLACES--------------------------
      */
     CREATE TABLE IF NOT EXISTS Places(
-        name        VARCHAR(50) PRIMARY KEY,
+        id          SERIAL PRIMARY KEY,
+        name        VARCHAR(50) UNIQUE,
         city        VARCHAR(50),
         address     VARCHAR(50),
         capacity    INT,
@@ -127,12 +130,18 @@
 
 
     CREATE TABLE IF NOT EXISTS PrivatePlaces (
-        name    VARCHAR(50) PRIMARY KEY,
+        id      INT PRIMARY KEY,
+        name    VARCHAR(50) UNIQUE,
         type    VARCHAR(20),
-        FOREIGN KEY(name) REFERENCES Places(name) ON UPDATE CASCADE ON DELETE CASCADE
+        owner   VARCHAR(50),
+        FOREIGN KEY(id) REFERENCES Places(id) ON UPDATE CASCADE ON DELETE CASCADE,
+        FOREIGN KEY(name) REFERENCES Places(name) ON UPDATE CASCADE ON DELETE CASCADE,
+        FOREIGN KEY(owner) REFERENCES Owners(name) ON UPDATE CASCADE ON DELETE CASCADE
     );
 
     CREATE TABLE IF NOT EXISTS PublicPlaces(
-        name    VARCHAR(50) PRIMARY KEY,
+        id      INT PRIMARY KEY,
+        name    VARCHAR(50) UNIQUE,
+        FOREIGN KEY (id) REFERENCES Places(id) ON UPDATE CASCADE ON DELETE CASCADE,
         FOREIGN KEY (name) REFERENCES Places(name) ON UPDATE CASCADE ON DELETE CASCADE
     );

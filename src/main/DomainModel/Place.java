@@ -1,22 +1,23 @@
 package main.DomainModel;
 
 public abstract class Place {
-    String name;
-    String city;
-    String address;
+    private final int id;
+    private final String city;
+    private final String address;
     int capacity;
 
     boolean indoor;
 
-    public Place(String name, String city, String address, int capacity, boolean indoor) {
-        this.name = name;
+    public Place(int placeId, String city, String address, int capacity, boolean indoor) {
+        this.id = placeId;
         this.city = city;
         this.address = address;
         this.capacity = capacity;
         this.indoor = indoor;
     }
 
-    public String getName(){return name;}
+    public int getId() { return id; }
+
     public String getCity() {
         return city;
     }
@@ -28,5 +29,4 @@ public abstract class Place {
     public int getCapacity() {
         return capacity;
     }
-    public Boolean isIndoor(){return indoor;}
 }
