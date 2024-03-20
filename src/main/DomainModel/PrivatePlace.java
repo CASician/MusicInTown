@@ -6,9 +6,9 @@ public class PrivatePlace extends Place {
     protected int ownerId;
     protected String ownerName;
 
-    public PrivatePlace(int id, String city, String name, String address, int placeCapacity,
+    public PrivatePlace(String city, String name, String address, int placeCapacity,
                         boolean indoor, PlaceType type, int ownerId, String ownerName) {
-        super(id, city, address, placeCapacity, indoor);
+        super(city, address, placeCapacity, indoor);
         this.name = name;
         this.type = type;
         this.ownerId = ownerId;

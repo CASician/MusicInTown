@@ -4,9 +4,9 @@ public class User extends BasicUser {
 
     private final String name;
 
-    public User(int id, String name, String username) {
+    public User(String name, String username) {
 
-        super(id, username);
+        super(username);
         this.name = name;
     }
 

@@ -3,9 +3,9 @@ package main.DomainModel;
 public class Planner extends BasicUser {
     protected String name;
 
-    public Planner(int id, String name, String username) {
+    public Planner(String name, String username) {
 
-        super(id, username);
+        super(username);
         this.name = name;
     }
 

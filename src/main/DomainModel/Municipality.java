@@ -6,8 +6,8 @@ public class Municipality extends BasicUser {
     List<PublicPlace> publicPlaces;
     String city;
 
-    public Municipality(int id, String username, String city) {
-        super(id, username);
+    public Municipality(String username, String city) {
+        super(username);
         this.city = city;
     }
 
