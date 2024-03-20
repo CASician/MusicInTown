@@ -77,7 +77,8 @@ public class PrivateEventDAO {
 
     public ArrayList<PrivateEvent> getAll() throws SQLException {
         // Create the array you return
-        ArrayList<PrivateEvent> events = new ArrayList<>();
+        ArrayList<PrivateEvent> eventsByOwner = new ArrayList<>();
+        ArrayList<PrivateEvent> eventsByExternals = new ArrayList<>();
 
         // Connect to DataBase
         Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
@@ -114,25 +115,35 @@ public class PrivateEventDAO {
             String ownerName = resultSet.getString("owner_name");
             String ownerUsername = resultSet.getString("owner_username");
 
-            // from Planners and BasicUsers
-            int planner_id = resultSet.getInt("planner_id");
-            String plannerName = resultSet.getString("planner_name");
-            String plannerUsername = resultSet.getString("planner_username");
-
             // create objects
             Owner owner = new Owner(ownerName, ownerUsername);
             owner.setId(ownerId);
+
             PrivatePlace place = new PrivatePlace(placeCity, placeName, address, capacity, indoor, PlaceType.valueOf(placeType), owner);
             place.setId(placeId);
-            Planner planner = new Planner(plannerName, plannerUsername);
-            planner.setId(planner_id);
 
-            PrivateEvent event = new PrivateEvent(name, open, date, planner, place, duration, city, type);
-            event.setId(privateeventId); // ID is not assigned in the constructor.
-            event.setAccepted(accepted);
+            if (resultSet.getString("planner_name") != null) {
+                // from Planners and BasicUsers
+                int planner_id = resultSet.getInt("planner_id");
+                String plannerName = resultSet.getString("planner_name");
+                String plannerUsername = resultSet.getString("planner_username");
 
-            // Add to the array
-            events.add(event);
+                Planner planner = new Planner(plannerName, plannerUsername);
+                planner.setId(planner_id);
+
+                PrivateEvent event = new PrivateEvent(name, open, date, planner, place, duration, city, type);
+                event.setId(privateeventId); // ID is not assigned in the constructor.
+                event.setAccepted(accepted);
+                // The end
+                eventsByExternals.add(event);
+            } else {
+                PrivateEvent event = new PrivateEvent(name, open, date, owner, place, duration, city, type);
+                event.setId(privateeventId);
+                event.setAccepted(accepted);
+
+                // The end
+                eventsByOwner.add(event);
+            }
         }
 
         // Close connections
@@ -140,8 +151,9 @@ public class PrivateEventDAO {
         getAll.close();
         connection.close();
 
-        // The end
-        return events;
+        // Todo: find a way to return both arrays! an Array of arrays?
 
+        // return eventsByExternals;
+        return eventsByOwner;
     }
 }

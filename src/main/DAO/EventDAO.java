@@ -1,17 +1,12 @@
 package main.DAO;
 
 import java.sql.*;
-
-import main.BusinessLogic.PlacesController;
-import main.DomainModel.Event;
-import main.DomainModel.PrivateEvent;
-import main.DomainModel.PublicEvent;
-
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
-public class EventsDAO {
+import main.DomainModel.Event;
+import main.DomainModel.Owner;
+
+public class EventDAO {
     //DAO
     public static void add(Event event) throws SQLException {
         // This function will be called by my children, no need to log the results.
@@ -52,10 +47,5 @@ public class EventsDAO {
 
         // Show results
         System.out.println(event.getName() + " has been deleted from DataBase");
-
-
-
     }
-
-    // TODO: getAll
 }

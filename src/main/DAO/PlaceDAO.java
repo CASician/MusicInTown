@@ -6,15 +6,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-public class PlacesDAO {
+public class PlaceDAO {
     public static void add(Place place) throws SQLException{
         // This function will be called by my children, no need to log the results.
         // Connect to Database
         Connection conn = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
         // Add Place in its table
-        PreparedStatement insertPlace = conn.prepareStatement("insert into Places(name, city, address, capacity, indoor) values (?, ?, ?, ?, ?)");
+        PreparedStatement insertPlace = conn.prepareStatement("insert into Places(id, name, city, address, capacity, indoor) values (DEFAULT, ?, ?, ?, ?, ?)");
 
         //Add the real values instead of "?"
         insertPlace.setString(1, place.getName());
@@ -28,8 +29,6 @@ public class PlacesDAO {
         insertPlace.close();
         conn.close();
     }
-
-    // TODO: implement all other functions: update, delete, getAll
 
     public static void delete(Place place) throws SQLException{
         // Connection to DataBase
