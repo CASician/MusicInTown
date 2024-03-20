@@ -10,6 +10,11 @@ public class Owner extends BasicUser {
         this.name = name;
     }
 
+    public Owner(String name, String username){
+        super(username);
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
