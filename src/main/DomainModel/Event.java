@@ -56,4 +56,8 @@ public abstract class Event {
     }
     public boolean isOpen() { return open; }
 
+    public void setAccepted(boolean bool){
+        this.accepted = bool;
+    } // DAO needs this
+
 }
