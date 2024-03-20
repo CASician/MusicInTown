@@ -12,6 +12,7 @@ public abstract class Event {
     protected String city;
     protected String type;
     protected String duration;
+    protected Boolean accepted;
     protected HashMap<Integer, String> subscriptions;
 
     public Event(String name, boolean open, LocalDate date, String city, String type, String duration) {
@@ -21,6 +22,7 @@ public abstract class Event {
         this.city = city;
         this.type = type;
         this.duration = duration;
+        this.accepted = Boolean.FALSE; // Should we leave it like this?
         subscriptions = new HashMap<>();
     }
 
