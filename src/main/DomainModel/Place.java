@@ -37,4 +37,8 @@ public abstract class Place {
     public String getName() {
         return name;
     }
+
+    public boolean isIndoor(){
+        return indoor;
+    }
 }

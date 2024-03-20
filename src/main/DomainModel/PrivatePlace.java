@@ -2,19 +2,14 @@ package main.DomainModel;
 
 public class PrivatePlace extends Place {
     PlaceType type;
-    protected int ownerId;
-    protected String ownerName;
+    protected Owner owner;
 
     public PrivatePlace(String city, String name, String address, int capacity,
-                        boolean indoor, PlaceType type, int ownerId, String ownerName) {
+                        boolean indoor, PlaceType type, Owner owner) {
         super(name, city, address, capacity, indoor);
         this.type = type;
-        this.ownerId = ownerId;
-        this.ownerName = ownerName;
+        this.owner = owner;
     }
-
-    public String getOwnerName() { return ownerName; }
-    public int getOwnerId() { return ownerId; }
     public PlaceType getType() {
         return type;
     }
