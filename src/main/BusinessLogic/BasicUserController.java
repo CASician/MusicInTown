@@ -16,11 +16,11 @@ import java.util.Scanner;
 
 public abstract class BasicUserController {
     Scanner scanner;
-    PlacesController placesController;
-    UserChoices.BasicUser basicUserOptions;
+    protected PlacesController placesController;
+    protected UserChoices.BasicUser basicUserOptions;
     int input;
-    BasicUserInterface basicUserInterface;
-    AccessInterface accessInterface;
+    protected BasicUserInterface basicUserInterface;
+    protected AccessInterface accessInterface;
 
     public BasicUserController(PlacesController placesController) {
         this.placesController = placesController;

@@ -7,14 +7,17 @@ import main.Interface.PlannerInterface;
 import java.time.LocalDate;
 import java.util.Objects;
 
+/*
+* Class that controls all the actions of the Planner.
+*/
 public class PlannerController extends BasicUserController {
 
-    private UserChoices.OwnerPlannerActions plannerActions;
-    protected EventController eventController;
+    UserChoices.OwnerPlannerActions plannerActions;
+    private final EventController eventController;
     private final PlannerInterface plannerInterface;
-    protected PlannerDAO plannerDAO;
+    private final PlannerDAO plannerDAO;
     private final Planner planner;
-    protected PlacesController placesController;
+    private final PlacesController placesController;
 
     public PlannerController(String username, EventController eventController, PlacesController placesController) {
         super(placesController);
@@ -26,6 +29,10 @@ public class PlannerController extends BasicUserController {
     }
 
     public void plannerFunctions() {
+        /*
+         * Wrapper that select and call the right function to execute, based on the user input on the first menu.
+         * The first menu is the one about showing user and places info, quitting the app or entering the events menu
+        */
         while (!Objects.equals(basicUserOptions, UserChoices.BasicUser.Exit)) {
             plannerInterface.basicInterface();
             basicUserOptions = firstMenuInput();
@@ -52,6 +59,10 @@ public class PlannerController extends BasicUserController {
     }
 
     public void eventsManagement() {
+        /*
+         * Wrapper that select and call the right function to execute, based on the user input on the second menu.
+         * The second menu is the one about managing and showing all the events.
+        */
         boolean quitMenu = false;
         while (!quitMenu) {
             plannerInterface.eventsInterface();
@@ -82,6 +93,10 @@ public class PlannerController extends BasicUserController {
     }
 
     public void createPrivateEvent() {
+        /*
+         * Uses the interface to obtain all the infos to create the event.
+         * At the end it generates the event withe received info
+        */
         PrivateEvent event;
         String eventName = getEventName();
         plannerInterface.getOpenEvent();
@@ -98,18 +113,11 @@ public class PlannerController extends BasicUserController {
         plannerInterface.privateEventCreated(event);
     }
 
-    private PrivatePlace getPrivatePlace() {
-        plannerInterface.getId();
-        PrivatePlace privatePlace = null;
-        privatePlace = placesController.getPrivatePlace(getId());
-        if(privatePlace == null) {
-            plannerInterface.tryAgain();
-            privatePlace = getPrivatePlace();
-        }
-        return privatePlace;
-    }
-
     public void createPublicEvent() {
+        /*
+         * Uses the interface to obtain all the infos to create the event.
+         * At the end it generates the event withe received info
+        */
         PublicEvent event;
         String eventName = getEventName();
         plannerInterface.getOpenEvent();
@@ -126,6 +134,7 @@ public class PlannerController extends BasicUserController {
     }
 
     private PublicPlace getPublicPlace() {
+        //Returns a private place with the givenID
         plannerInterface.getId();
         PublicPlace publicPlace = null;
         publicPlace = placesController.getPublicPlace(getId());
@@ -136,7 +145,20 @@ public class PlannerController extends BasicUserController {
         return publicPlace;
     }
 
+    private PrivatePlace getPrivatePlace() {
+        //Returns a private place with the givenID
+        plannerInterface.getId();
+        PrivatePlace privatePlace = null;
+        privatePlace = placesController.getPrivatePlace(getId());
+        if(privatePlace == null) {
+            plannerInterface.tryAgain();
+            privatePlace = getPrivatePlace();
+        }
+        return privatePlace;
+    }
+
     public UserChoices.OwnerPlannerActions getPlannerInput() {
+        //Get the inputs from the Owner and returns the specific action set inside the UserChoices Enumeration
         plannerActions = null;
         input = getInteger();
         if (input >= 0 && input < UserChoices.OwnerPlannerActions.values().length) {

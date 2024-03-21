@@ -7,23 +7,30 @@ import main.Interface.MusicianInterface;
 import java.time.LocalDate;
 import java.util.Objects;
 
+/*
+* Class that controls all the actions of the Musician.
+*/
 public class MusicianController extends BasicUserController {
-    MusicianDAO musicianDAO;
-    Musician musician;
-    MusicianInterface musicianInterface;
-    UserChoices.MusicianActions operation;
-    EventController eventController;
+    private final MusicianDAO musicianDAO;
+    private final Musician musician;
+    private final MusicianInterface musicianInterface;
+    UserChoices.MusicianActions musicianActions;
+    private final EventController eventController;
 
     public MusicianController(String musician, EventController eventController, PlacesController placesController) {
         super(placesController);
         musicianDAO = new MusicianDAO(musician);
         this.musician = musicianDAO.getMusician();
         musicianInterface = new MusicianInterface();
-        operation = null;
+        musicianActions = null;
         this.eventController = eventController;
     }
 
     public void musicianFunctions() {
+        /*
+         * Wrapper that select and call the right function to execute, based on the user input on the first menu.
+         * The first menu is the one about showing user and places info, quitting the app or entering the events menu
+        */
         while(!Objects.equals(basicUserOptions, UserChoices.BasicUser.Exit)) {
             musicianInterface.basicInterface();
             basicUserOptions = firstMenuInput();
@@ -48,11 +55,15 @@ public class MusicianController extends BasicUserController {
     }
 
     public void eventsManagement() {
+        /*
+         * Wrapper that select and call the right function to execute, based on the user input on the second menu.
+         * The second menu is the one about managing and showing all the events.
+        */
         boolean quitMenu = false;
         while(!quitMenu) {
             musicianInterface.eventsInterface();
-            operation = getMusicianInput();
-            switch (operation) {
+            musicianActions = getMusicianInput();
+            switch (musicianActions) {
                 case SeeAllEvents:
                     musicianInterface.printPrivateEvents(eventController.getPrivateEvents());
                     musicianInterface.printPublicEvents(eventController.getPublicEvents());
@@ -87,16 +98,16 @@ public class MusicianController extends BasicUserController {
     }
 
     public UserChoices.MusicianActions getMusicianInput() {
-        operation = null;
+        //Get the inputs from the musician and returns the specific action set inside the UserChoices Enumeration
+        musicianActions = null;
         input = getInteger();
         if (input >= 0 && input < UserChoices.MusicianActions.values().length) {
-            operation = UserChoices.MusicianActions.values()[input];
+            musicianActions = UserChoices.MusicianActions.values()[input];
         } else {
             accessInterface.invalidChoice();
-            operation = null;
+            musicianActions = null;
         }
         input = 0;
-        return operation;
+        return musicianActions;
     }
-
 }

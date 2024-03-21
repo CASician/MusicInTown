@@ -2,15 +2,21 @@ package main.BusinessLogic;
 
 import main.DomainModel.UserType;
 
+/*
+* Class that controls the entire flow of the application.
+* The method run() calls the functions to allow the access.
+* After this it generates the correct user and call all the related functions.
+*/
+
 public class ProgramController extends BasicUserController {
-    AccessController accessController;
+    private final AccessController accessController;
     MusicianController musicianController;
     PlannerController plannerController;
     MunicipalityController municipalityController;
     UserController userController;
     OwnerController ownerController;
-    PlacesController placesController;
-    EventController eventController;
+    private final PlacesController placesController;
+    private final EventController eventController;
     UserType userType;
     //String userType = null;
 
@@ -22,6 +28,7 @@ public class ProgramController extends BasicUserController {
     }
 
     public void run() {
+        //Control and execute all the application flow. It's called from the main.
 
         //Ask user to login or to exit the program
         UserChoices input = getFirstInput();
@@ -34,7 +41,7 @@ public class ProgramController extends BasicUserController {
             }
         }
 
-        //continue execution depending on the type of user
+        //Continue execution depending on the type of user
         if(userType != null) {
             switch (userType) {
                 case MUSICIAN:
@@ -60,6 +67,4 @@ public class ProgramController extends BasicUserController {
             }
         }
     }
-
-
 }

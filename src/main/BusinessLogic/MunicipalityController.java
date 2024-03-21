@@ -9,12 +9,15 @@ import main.Interface.MunicipalityInterface;
 import java.time.LocalDate;
 import java.util.Objects;
 
+/*
+* Class that controls all the actions of the Municipality.
+*/
 public class MunicipalityController extends BasicUserController {
-    EventController eventController;
-    MunicipalityDAO municipalityDAO;
-    Municipality municipality;
+    private final EventController eventController;
+    private final MunicipalityDAO municipalityDAO;
+    private final Municipality municipality;
     UserChoices.MunicipalityActions municipalityActions;
-    MunicipalityInterface municipalityInterface;
+    private final MunicipalityInterface municipalityInterface;
 
     public MunicipalityController(String municipality, EventController eventController, PlacesController placesController) {
         super(placesController);
@@ -26,6 +29,10 @@ public class MunicipalityController extends BasicUserController {
     }
 
     public void municipalityFunctions() {
+        /*
+        * Wrapper that select and call the right function to execute, based on the user input on the first menu.
+        * The first menu is the one about showing user and places info, quitting the app or entering the events menu
+        */
         while(!Objects.equals(basicUserOptions, UserChoices.BasicUser.Exit)) {
             municipalityInterface.basicInterface();
             basicUserOptions = firstMenuInput();
@@ -50,6 +57,10 @@ public class MunicipalityController extends BasicUserController {
     }
 
     private void eventsManagement() {
+        /*
+         * Wrapper that select and call the right function to execute, based on the user input on the second menu.
+         * The second menu is the one about managing and showing all the events.
+        */
         boolean quitMenu = false;
         while (!quitMenu) {
             municipalityInterface.eventsInterface();

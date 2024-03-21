@@ -4,11 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fceed6ec-ff53-45d6-83ae-a6a8b46ffd39" name="Changes" comment="style: Interface classes commented and reshaped for a better visibility and comprehension">
+    <list default="true" id="fceed6ec-ff53-45d6-83ae-a6a8b46ffd39" name="Changes" comment="refactor: Removed some unused interfaces attributes&#10;docs: Updated UML for the view classes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UML.mdj" beforeDir="false" afterPath="$PROJECT_DIR$/UML.mdj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Interface/AccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Interface/AccessInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Interface/MunicipalityInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Interface/MunicipalityInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/BasicUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/BasicUserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/EventController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/MunicipalityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/MunicipalityController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/MusicianController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/MusicianController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/OwnerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/OwnerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/PlacesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/PlacesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/PlannerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/PlannerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/ProgramController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/ProgramController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/UserController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +114,7 @@
       <workItem from="1707822107384" duration="57294000" />
       <workItem from="1709031067135" duration="5000" />
       <workItem from="1709031095331" duration="7060000" />
-      <workItem from="1709568527841" duration="75227000" />
+      <workItem from="1709568527841" duration="81315000" />
     </task>
     <task id="LOCAL-00001" summary="fix: UML file updated and fixed">
       <option name="closed" value="true" />
@@ -334,7 +340,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711032495718</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="refactor: Removed some unused interfaces attributes&#10;docs: Updated UML for the view classes">
+      <option name="closed" value="true" />
+      <created>1711034425146</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1711034425146</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -363,7 +377,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Feat: Created and connected Database" />
     <MESSAGE value="Fix: Updated UML with all the required Design Patterns and classes" />
     <MESSAGE value="feat: Added part of the Domain Logic, Business Control and Interface.&#10;fix: Updated UML file" />
     <MESSAGE value="feat: added login method logic for users" />
@@ -388,18 +401,10 @@
     <MESSAGE value="test: setUp database methods created for DomainModelTests (to be implemented)" />
     <MESSAGE value="test: setUp database methods created for BusinessLogicTests (to be implemented)" />
     <MESSAGE value="style: Interface classes commented and reshaped for a better visibility and comprehension" />
-    <option name="LAST_COMMIT_MESSAGE" value="style: Interface classes commented and reshaped for a better visibility and comprehension" />
+    <MESSAGE value="refactor: Removed some unused interfaces attributes&#10;docs: Updated UML for the view classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: Removed some unused interfaces attributes&#10;docs: Updated UML for the view classes" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/BusinessLogic/PlannerController.java</url>
-          <line>139</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="privateEvents" />

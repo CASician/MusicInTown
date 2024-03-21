@@ -6,13 +6,16 @@ import main.Interface.UserInterface;
 import java.time.LocalDate;
 import java.util.Objects;
 
+/*
+* Class that controls all the actions of the basic User.
+*/
 public class UserController extends BasicUserController {
 
     private final User user;
-    UserDAO userDAO;
+    private final UserDAO userDAO;
     private final EventController eventController;
     private final UserInterface userInterface;
-    private UserChoices.UserActions userActions;
+    UserChoices.UserActions userActions;
 
     public UserController(String username, EventController eventController, PlacesController placesController) {
         super(placesController);
@@ -25,6 +28,10 @@ public class UserController extends BasicUserController {
     }
 
     public void userFunctions() {
+        /*
+         * Wrapper that select and call the right function to execute, based on the user input on the first menu.
+         * The first menu is the one about showing user and places info, quitting the app or entering the events menu
+        */
         while(!Objects.equals(basicUserOptions, UserChoices.BasicUser.Exit)) {
             userInterface.basicInterface();
             basicUserOptions = firstMenuInput();
@@ -49,6 +56,10 @@ public class UserController extends BasicUserController {
     }
 
     public void eventsManagement() {
+        /*
+         * Wrapper that select and call the right function to execute, based on the user input on the second menu.
+         * The second menu is the one about managing and showing all the events.
+        */
         boolean quitMenu = false;
         while(!quitMenu) {
             userInterface.basicEventsInterface();
@@ -71,6 +82,7 @@ public class UserController extends BasicUserController {
     }
 
     public UserChoices.UserActions getUserInput() {
+        //Get the inputs from the Owner and returns the specific action set inside the UserChoices Enumeration
         userActions = null;
         input = getInteger();
         if (input >= 0 && input < UserChoices.MusicianActions.values().length) {
@@ -82,6 +94,4 @@ public class UserController extends BasicUserController {
         input = 0;
         return userActions;
     }
-
-
 }

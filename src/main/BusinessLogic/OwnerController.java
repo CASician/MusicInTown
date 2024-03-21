@@ -8,13 +8,16 @@ import main.Interface.OwnerInterface;
 import java.time.LocalDate;
 import java.util.Objects;
 
+/*
+* Class that controls all the actions of the Owner.
+*/
 public class OwnerController extends BasicUserController {
-    private UserChoices.OwnerPlannerActions ownerActions;
-    protected EventController eventController;
+    UserChoices.OwnerPlannerActions ownerActions;
+    private final EventController eventController;
     private final OwnerInterface ownerInterface;
-    protected OwnerDAO ownerDAO;
+    private final OwnerDAO ownerDAO;
     private final Owner owner;
-    protected PlacesController placesController;
+    private final PlacesController placesController;
 
     public OwnerController(String username, EventController eventController, PlacesController placesController) {
         super(placesController);
@@ -26,6 +29,10 @@ public class OwnerController extends BasicUserController {
     }
 
     public void ownerFunctions() {
+        /*
+         * Wrapper that select and call the right function to execute, based on the user input on the first menu.
+         * The first menu is the one about showing user and places info, quitting the app or entering the events menu
+        */
         while (!Objects.equals(basicUserOptions, UserChoices.BasicUser.Exit)) {
             ownerInterface.basicInterface();
             basicUserOptions = firstMenuInput();
@@ -50,6 +57,10 @@ public class OwnerController extends BasicUserController {
     }
 
     public void eventsManagement() {
+        /*
+         * Wrapper that select and call the right function to execute, based on the user input on the second menu.
+         * The second menu is the one about managing and showing all the events.
+        */
         boolean quitMenu = false;
         while (!quitMenu) {
             ownerInterface.eventsInterface();
@@ -74,6 +85,10 @@ public class OwnerController extends BasicUserController {
     }
 
     public void createEvent() {
+        /*
+        * Uses the interface to obtain all the infos to create the event.
+        * At the end it generates the event withe received info
+        */
         PrivateEvent event;
         String eventName = getEventName();
         ownerInterface.getOpenEvent();
@@ -84,12 +99,13 @@ public class OwnerController extends BasicUserController {
         String duration = getInteger() + " giorni";
         String city = owner.getPlace().getCity();
         String eventType = getEventInfo();
-        event = eventController.createPrivateEvent(eventName, open, date, owner, owner.getPlace(), duration, city, eventType);
-        //TODO: set the event ID
+        event = eventController.createPrivateEvent(eventName, open, date, owner, owner.getPlace(),
+                duration, city, eventType);
         ownerInterface.eventCreated(event);
     }
 
     public UserChoices.OwnerPlannerActions getOwnerInput () {
+        //Get the inputs from the Owner and returns the specific action set inside the UserChoices Enumeration
         ownerActions = null;
         input = getInteger();
         if (input >= 0 && input < UserChoices.OwnerPlannerActions.values().length) {
