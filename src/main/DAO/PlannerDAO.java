@@ -14,24 +14,15 @@ public class PlannerDAO {
         // Connect to Database
         Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
-        // TODO: use directly getId
-        // Use a query to find what ID has been automatically assigned.
-        PreparedStatement findId = connection.prepareStatement("SELECT id FROM BasicUsers WHERE username = ?");
-        findId.setString(1, planner.getUsername());
-
-        // Use the result to give the same ID to Planner in its own Table.
-        ResultSet resultSet = findId.executeQuery();
-        resultSet.next();                           // Idk what it does, but it's needed.
-        PreparedStatement insertPlanner = connection.prepareStatement("INSERT INTO Planners(id) VALUES (?)");
-        insertPlanner.setInt(1, resultSet.getInt("id"));
+        // Add Planner to DataBase
+        PreparedStatement insertPlanner = connection.prepareStatement("INSERT INTO Planners(id, name) VALUES (?, ?)");
 
         // Add the real values instead of "?"
-        // There are none.
+        insertPlanner.setInt(1, planner.getId());
+        insertPlanner.setString(2, planner.getName());
         insertPlanner.executeUpdate();
 
         // Close connection
-        resultSet.close();
-        findId.close();
         insertPlanner.close();
         connection.close();
 
@@ -43,24 +34,15 @@ public class PlannerDAO {
         // Connection to DataBase
         Connection conn = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
-        // TODO: use directly getId
-        // Find ID in BasicUsers. It is needed to delete the instance in Planner.
-        PreparedStatement findId = conn.prepareStatement("SELECT id FROM BasicUsers WHERE username = ?");
-        findId.setString(1, planner.getUsername());
-
-        // Delete Planner from its table with the ID found before
-        ResultSet resultSet = findId.executeQuery();
-        resultSet.next();
+        // Delete Planner from its table
         PreparedStatement deletePlanner = conn.prepareStatement("delete from Planners where id = ?");
-        deletePlanner.setInt(1, resultSet.getInt("id"));
+        deletePlanner.setInt(1, planner.getId());
         deletePlanner.executeUpdate();
 
         // Call the BasicUser delete function
         BasicUserDAO.delete(planner);
 
         // Close connections
-        resultSet.close();
-        findId.close();
         deletePlanner.close();
         conn.close();
 

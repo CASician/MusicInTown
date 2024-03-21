@@ -14,24 +14,15 @@ public class UserDAO {
         // Connect to Database
         Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
-        // TODO: use directly getId
-        // Use a query to find what ID has been automatically assigned.
-        PreparedStatement findId = connection.prepareStatement("SELECT id FROM BasicUsers WHERE username = ?");
-        findId.setString(1, user.getUsername());
-
-        // Use the result to give the same ID to User in its own Table.
-        ResultSet resultSet = findId.executeQuery();
-        resultSet.next();                           // Idk what it does, but it's needed.
-        PreparedStatement insertUser = connection.prepareStatement("INSERT INTO \"Users\"(id) VALUES (?)");
-        insertUser.setInt(1, resultSet.getInt("id"));
+        // Add User to DataBase
+        PreparedStatement insertUser = connection.prepareStatement("INSERT INTO \"Users\"(id, name) VALUES (?, ?)");
 
         // Add the real values instead of "?"
-        // There are none
+        insertUser.setInt(1, user.getId());
+        insertUser.setString(2, user.getName());
         insertUser.executeUpdate();
 
         // Close connection
-        resultSet.close();
-        findId.close();
         insertUser.close();
         connection.close();
 
@@ -43,24 +34,15 @@ public class UserDAO {
         // Connection to DataBase
         Connection conn = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
-        // TODO: use directly getId
-        // Find ID in BasicUsers. It is needed to delete the instance in Users.
-        PreparedStatement findId = conn.prepareStatement("SELECT id FROM BasicUsers WHERE username = ?");
-        findId.setString(1, user.getUsername());
-
-        // Delete User from its table with the ID found before
-        ResultSet resultSet = findId.executeQuery();
-        resultSet.next();
+        // Delete User from its table
         PreparedStatement deleteUser = conn.prepareStatement("delete from \"Users\" where id = ?");
-        deleteUser.setInt(1, resultSet.getInt("id"));
+        deleteUser.setInt(1, user.getId());
         deleteUser.executeUpdate();
 
         // Call the BasicUser delete function
         BasicUserDAO.delete(user);
 
         // Close connections
-        resultSet.close();
-        findId.close();
         deleteUser.close();
         conn.close();
 

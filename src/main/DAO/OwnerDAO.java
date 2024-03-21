@@ -15,24 +15,15 @@ public class OwnerDAO {
         // Connect to Database
         Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
-        // TODO: use directly getId
-        // Use a query to find what ID has been automatically assigned.
-        PreparedStatement findId = connection.prepareStatement("SELECT id FROM BasicUsers WHERE username = ?");
-        findId.setString(1, owner.getUsername());
-
         // Use the result to give the same ID to Musician in its own Table.
-        ResultSet resultSet = findId.executeQuery();
-        resultSet.next();                           // Idk what it does, but it's needed.
         PreparedStatement insertOwner = connection.prepareStatement("INSERT INTO Owners(id, name, place) VALUES (?, ?, ?)");
-        insertOwner.setInt(1, resultSet.getInt("id"));
-
         // Add the real values instead of "?"
+        insertOwner.setInt(1, owner.getId());
         insertOwner.setString(2, owner.getName());
         insertOwner.setString(3, owner.getPlace().getName());
         insertOwner.executeUpdate();
 
         // Close connection
-        findId.close();
         insertOwner.close();
         connection.close();
 
@@ -44,23 +35,15 @@ public class OwnerDAO {
         // Connection to DataBase
         Connection conn = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
-        // TODO: use directly getId
-        // Find ID in BasicUsers. It is needed to delete the instance in Owner.
-        PreparedStatement findId = conn.prepareStatement("SELECT id FROM BasicUsers WHERE username = ?");
-        findId.setString(1, owner.getUsername());
-
-        // Delete Owner from its table with the ID found before
-        ResultSet resultSet = findId.executeQuery();
-        resultSet.next();
+        // Delete Owner from its table
         PreparedStatement deleteOwner = conn.prepareStatement("delete from Owners where id = ?");
-        deleteOwner.setInt(1, resultSet.getInt("id"));
+        deleteOwner.setInt(1, owner.getId());
         deleteOwner.executeUpdate();
 
         // Call the BasicUser delete function
         BasicUserDAO.delete(owner);
 
         // Close connections
-        findId.close();
         deleteOwner.close();
         conn.close();
 

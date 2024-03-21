@@ -14,26 +14,16 @@ public class MusicianDAO {
         // Connect to Database
         Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
-        // TODO: use directly getId
-        // Use a query to find what ID has been automatically assigned.
-        PreparedStatement findId = connection.prepareStatement("SELECT id FROM BasicUsers WHERE username = ?");
-        findId.setString(1, musician.getUsername());
-
-        // Use the result to give the same ID to Musician in its own Table.
-        ResultSet resultSet = findId.executeQuery();
-        resultSet.next();                           // Idk what it does, but it's needed.
+        // Add Musician to DataBase
         PreparedStatement insertMusician = connection.prepareStatement("INSERT INTO Musicians(id, name, genre, componentNumb) VALUES (?, ?, ?, ?)");
-        insertMusician.setInt(1, resultSet.getInt("id"));
-
         // Add the real values instead of "?"
+        insertMusician.setInt(1, musician.getId());
         insertMusician.setString(2, musician.getName());
         insertMusician.setString(3, musician.getGenre());
         insertMusician.setInt(4, musician.getComponentNumb());
         insertMusician.executeUpdate();
 
         // Close connection
-        resultSet.close();
-        findId.close();
         insertMusician.close();
         connection.close();
 
@@ -45,24 +35,15 @@ public class MusicianDAO {
         // Connection to DataBase
         Connection conn = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
-        // TODO: use directly getId
-        // Find ID in BasicUsers. It is needed to delete the instance in Musician.
-        PreparedStatement findId = conn.prepareStatement("SELECT id FROM BasicUsers WHERE username = ?");
-        findId.setString(1, musician.getUsername());
-
-        // Delete Musician from its table with the ID found before
-        ResultSet resultSet = findId.executeQuery();
-        resultSet.next();
+        // Delete Musician from its table
         PreparedStatement deleteMusician = conn.prepareStatement("delete from Musicians where id = ?");
-        deleteMusician.setInt(1, resultSet.getInt("id"));
+        deleteMusician.setInt(1, musician.getId());
         deleteMusician.executeUpdate();
 
         // Call the BasicUser delete function
         BasicUserDAO.delete(musician);
 
         // Close connections
-        resultSet.close();
-        findId.close();
         deleteMusician.close();
         conn.close();
 
