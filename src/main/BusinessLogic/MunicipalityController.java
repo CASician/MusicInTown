@@ -2,6 +2,8 @@ package main.BusinessLogic;
 
 import main.DAO.MunicipalityDAO;
 import main.DomainModel.Municipality;
+import main.DomainModel.PublicEvent;
+import main.DomainModel.PublicPlace;
 import main.Interface.MunicipalityInterface;
 
 import java.time.LocalDate;
@@ -23,7 +25,7 @@ public class MunicipalityController extends BasicUserController {
         municipalityActions = null;
     }
 
-    public void musicianFunctions() {
+    public void municipalityFunctions() {
         while(!Objects.equals(basicUserOptions, UserChoices.BasicUser.Exit)) {
             municipalityInterface.basicInterface();
             basicUserOptions = firstMenuInput();
@@ -62,15 +64,8 @@ public class MunicipalityController extends BasicUserController {
                     municipalityInterface.printPrivateEvents(eventController.getPrivateEventsFiltered(date));
                     municipalityInterface.printPublicEvents(eventController.getPublicEventsFiltered(date));
                     break;
-                case CreateEvent:
-                    if(privatePublicEvent() == 0) {
-                        //createPrivateEvent();
-                    }
-                    else {
-                        //createPublicEvent();
-                    }
-                    break;
                 case AcceptEvents:
+                    acceptEvent();
                     break;
                 case Exit:
                     quitMenu = true;
@@ -78,6 +73,10 @@ public class MunicipalityController extends BasicUserController {
             }
         }
     }
+
+    private boolean acceptEvent() {
+        return false;
+    };
 
     private UserChoices.MunicipalityActions getMunicipalityInput() {
         municipalityActions = null;

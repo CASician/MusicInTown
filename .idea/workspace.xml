@@ -4,21 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fceed6ec-ff53-45d6-83ae-a6a8b46ffd39" name="Changes" comment="fix: fixed bugs in the Planner actions">
+    <list default="true" id="fceed6ec-ff53-45d6-83ae-a6a8b46ffd39" name="Changes" comment="feat: Created the basic logic for municipality users">
+      <change afterPath="$PROJECT_DIR$/src/test/businessLogic/EventControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/businessLogic/MusicianControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/businessLogic/PlacesControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/businessLogic/PlannerControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/domainModel/MunicipalityTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/domainModel/OwnerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/AccessController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/AccessController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/InputController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/BasicUserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/MunicipalityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/MunicipalityController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/MusicianController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/MusicianController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/OwnerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/OwnerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/PlacesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/PlacesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/PlannerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/PlannerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/ProgramController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/ProgramController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/UserChoices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/UserChoices.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/BusinessLogic/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/BusinessLogic/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DAO/PlacesDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DAO/PlacesDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/DomainModel/PrivatePlace.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/DomainModel/PrivatePlace.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Interface/BasicUserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Interface/BasicUserInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +109,7 @@
       <workItem from="1707822107384" duration="57294000" />
       <workItem from="1709031067135" duration="5000" />
       <workItem from="1709031095331" duration="7060000" />
-      <workItem from="1709568527841" duration="67389000" />
+      <workItem from="1709568527841" duration="71153000" />
     </task>
     <task id="LOCAL-00001" summary="fix: UML file updated and fixed">
       <option name="closed" value="true" />
@@ -292,7 +287,23 @@
       <option name="project" value="LOCAL" />
       <updated>1710775911634</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="feat: function to see visualize a list of all places implemented">
+      <option name="closed" value="true" />
+      <created>1710780312693</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1710780312693</updated>
+    </task>
+    <task id="LOCAL-00024" summary="feat: Created the basic logic for municipality users">
+      <option name="closed" value="true" />
+      <created>1710783151717</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1710783151717</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -342,7 +353,9 @@
     <MESSAGE value="fix: fixed some bugs inside musician logic" />
     <MESSAGE value="fix: fixed some bugs inside input/output logic" />
     <MESSAGE value="fix: fixed bugs in the Planner actions" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: fixed bugs in the Planner actions" />
+    <MESSAGE value="feat: function to see visualize a list of all places implemented" />
+    <MESSAGE value="feat: Created the basic logic for municipality users" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Created the basic logic for municipality users" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
