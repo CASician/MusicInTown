@@ -5,12 +5,13 @@ import main.DomainModel.PrivateEvent;
 import main.DomainModel.PublicEvent;
 import main.DomainModel.UserType;
 
+/*
+* Class used to display specific views of the planner users
+*/
 public class PlannerInterface extends BasicUserInterface {
-    public PlannerInterface() {
-
-    }
 
     public void printPlannerInfo(Planner planner) {
+        //Prints all the info of the planner user that is taken as a parameter
         System.out.println("--------------------");
         System.out.println("User Type: " + UserType.PLANNER);
         System.out.println("Name: " + planner.getName());
@@ -20,6 +21,7 @@ public class PlannerInterface extends BasicUserInterface {
     }
 
     public void eventsInterface() {
+        //Prints the basic interface of the events menu and it adds the specific planner events view
         basicEventsInterface();
         System.out.println("3 to create a new event, ");
     }
@@ -31,6 +33,7 @@ public class PlannerInterface extends BasicUserInterface {
     public void getId() { System.out.println("Insert the ID of the place: "); }
 
     public void privateEventCreated(PrivateEvent event) {
+        //Prints all the info of the private event created by the planner. The event is taken as a parameter
         if(event != null) {
             System.out.println("The event was created and now is waiting for approval from the owner, event info: ");
             System.out.print("EVENT NAME: " + event.getName());
@@ -47,6 +50,7 @@ public class PlannerInterface extends BasicUserInterface {
     }
 
     public void publicEventCreated(PublicEvent event) {
+        //Prints all the info of the public event created by the owner. The event is taken as a parameter
         if(event != null) {
             System.out.println("The event was created and now is waiting for approval from municipality, event info: ");
             System.out.print("EVENT NAME: " + event.getName());

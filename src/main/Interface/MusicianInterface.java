@@ -7,6 +7,9 @@ import main.DomainModel.UserType;
 
 import java.util.List;
 
+/*
+* Class used to display specific views of the musician users
+*/
 public class MusicianInterface extends BasicUserInterface {
 
     public void eventsInterface() {
@@ -17,6 +20,7 @@ public class MusicianInterface extends BasicUserInterface {
 
     //Function for testing
     public void printMusicianInfo(Musician musician) {
+        //Prints the info of the musician user that is taken as a parameter
         System.out.println("--------------------");
         System.out.println("User Type: " + UserType.MUSICIAN);
         System.out.println("Name: " + musician.getName());
@@ -29,6 +33,7 @@ public class MusicianInterface extends BasicUserInterface {
     }
 
     public void publicSubscriptionDone(PublicEvent event) {
+        //Prints the info of the specific public event that the musician subscribed to
         if(event != null) {
             System.out.println("--------------------");
             System.out.println("Subscription completed, Event info:");
@@ -42,6 +47,7 @@ public class MusicianInterface extends BasicUserInterface {
     }
 
     public void privateSubscriptionDone(PrivateEvent event) {
+        //Prints the info of the specific private event that the musician subscribed to
         if(event != null) {
             System.out.println("--------------------");
             System.out.println("Subscription completed, Event info:");
@@ -55,6 +61,7 @@ public class MusicianInterface extends BasicUserInterface {
     }
 
     public void getSubscriptions(List<PublicEvent> publicEvents, List<PrivateEvent> privateEvents) {
+        ////Prints the info of all the public and private events that the musician subscribed to
         System.out.println("--------------------");
         System.out.println("List of events you're subscribed to: ");
         if(!publicEvents.isEmpty()) {

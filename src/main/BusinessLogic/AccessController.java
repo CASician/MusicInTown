@@ -6,6 +6,11 @@ import main.DomainModel.UserType;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/*
+* Class used to access the application. It controls that username and password are registered inside database.
+* Then it returns the UserType to set up all the project dependencies and usages.
+*/
+
 public class AccessController extends BasicUserController {
     private final AccessDAO accessDAO;
 
@@ -21,11 +26,9 @@ public class AccessController extends BasicUserController {
         userType = null;
     }
 
-
     public UserType login() {
         /*
-        Comunica con il DAO, se password ed username sono presenti allora
-        crea l'oggetto desiderato nel Domain Model e ritorna true
+        Communicates with DAO to check if user is registered and returns the UserType
         */
         input = new HashMap<>();
 

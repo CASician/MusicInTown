@@ -6,9 +6,15 @@ import main.DomainModel.PublicPlace;
 
 import java.util.List;
 
+/*
+* Abstract class that implements all the methods common to all the users interfaces.
+* It's used only to display messages and returns nothing.
+*/
+
 public class BasicUserInterface {
 
     public void basicInterface() {
+        //Implements the view of the first menu, that is the same for all the users
         System.out.println("Press: ");
         System.out.println("0 to exit, ");
         System.out.println("1 to see events menu, ");
@@ -17,6 +23,7 @@ public class BasicUserInterface {
     }
 
     public void basicEventsInterface() {
+        //Implements part of the view of the events menu: the part that is in common between all the users.
         System.out.println("Press: ");
         System.out.println("0 to go back, " );
         System.out.println("1 to filter events, " );
@@ -35,33 +42,23 @@ public class BasicUserInterface {
         System.out.println("Invalid selection try again, ");
         eventType();
     }
-    public void eventNotFound() {
-        System.out.println("Event not found");
-    }
-    public void invalidChoice() {
-        System.out.println("The choice is invalid");
-    }
-    public void filter() {System.out.println("Insert the date to see all previous events");}
-    public void getYear() {
-        System.out.println("Insert year: ");
-    }
+    public void eventNotFound() { System.out.println("Event not found");}
+    public void invalidChoice() { System.out.println("The choice is invalid"); }
+    public void filter() { System.out.println("Insert the date to see all previous events"); }
+    public void getYear() { System.out.println("Insert year: "); }
     public void getMonth() { System.out.println("Insert month: "); }
     public void getDay() { System.out.println("Insert day: "); }
-
-    public void getEventName() {
-        System.out.println("Event name: ");
-    }
+    public void getEventName() { System.out.println("Event name: "); }
 
     public void logOut() {
         System.out.println("Logout done,");
         System.out.println("See you soon.");
     }
 
-    public void tryAgain() {
-        System.out.println("Wrong value inserted, try again");
-    }
+    public void tryAgain() { System.out.println("Wrong value inserted, try again"); }
 
     public void printPublicEvents(List<PublicEvent> events) {
+        //Implements the view that displays all the info of a public event that is taken as a parameter
         if(!events.isEmpty()) {
             for (PublicEvent event : events) {
                 System.out.println("--------------------");
@@ -76,6 +73,7 @@ public class BasicUserInterface {
     }
 
     public void printPrivateEvents(List<PrivateEvent> events) {
+        //Implements the view that displays all the info of a private event that is taken as a parameter
         if(!events.isEmpty()) {
             for (PrivateEvent event : events) {
                 System.out.println("--------------------");
@@ -100,6 +98,7 @@ public class BasicUserInterface {
     }
 
     public void printPrivatePlaces(List<PrivatePlace> privatePlaces) {
+        //Implements the view that displays all the info of all the privates place that are taken as a parameter
         if(!privatePlaces.isEmpty()) {
             for (PrivatePlace privatePlace : privatePlaces) {
                 System.out.println("--------------------");
@@ -113,6 +112,7 @@ public class BasicUserInterface {
     }
 
     public void printPublicPlaces(List<PublicPlace> publicPlaces) {
+        //Implements the view that displays all the info of all the public places that are taken as a parameter
         if(!publicPlaces.isEmpty()) {
             for (PublicPlace publicPlace : publicPlaces) {
                 System.out.println("--------------------");
@@ -123,21 +123,10 @@ public class BasicUserInterface {
         }
     }
 
-    public void getExactDate() {
-        System.out.println("Insert the date of the event: ");
-    }
-
-    public void getDuration() {
-        System.out.println("Insert the duration of the event in days: ");
-    }
-
-    public void getEventType() {
-        System.out.println("Insert the type of event: ");
-    }
-
-    public void getEventInfo() {
-        System.out.println("Insert some short event info: ");
-    }
+    public void getExactDate() { System.out.println("Insert the date of the event: "); }
+    public void getDuration() { System.out.println("Insert the duration of the event in days: "); }
+    public void getEventType() { System.out.println("Insert the type of event: "); }
+    public void getEventInfo() { System.out.println("Insert some short event info: "); }
 
     public void alreadySubscribed() {
         System.out.println("--------------------");
@@ -151,7 +140,5 @@ public class BasicUserInterface {
         System.out.println("--------------------");
     }
 
-    public void newValue() {
-        System.out.println("Insert a new value: ");
-    }
+    public void newValue() { System.out.println("Insert a new value: "); }
 }

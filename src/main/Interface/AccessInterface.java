@@ -1,6 +1,10 @@
 package main.Interface;
 import java.util.Scanner;
 
+/*
+* View of the MVC pattern, it's used to display messages and returns nothing
+*/
+
 public class AccessInterface extends BasicUserInterface {
     Scanner scanner;
     public AccessInterface() {

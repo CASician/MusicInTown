@@ -4,8 +4,12 @@ import main.DomainModel.Owner;
 import main.DomainModel.PrivateEvent;
 import main.DomainModel.UserType;
 
+/*
+* Class used to display specific views of the owner users
+*/
 public class OwnerInterface extends BasicUserInterface {
     public void printOwnerInfo(Owner owner) {
+        //Prints all the info of owner user that is taken as a parameter
         System.out.println("--------------------");
         System.out.println("User Type: " + UserType.OWNER);
         System.out.println("Name: " + owner.getName());
@@ -19,11 +23,13 @@ public class OwnerInterface extends BasicUserInterface {
     }
 
     public void eventsInterface() {
+        //Prints the basic interface of the events menu and it adds the specific owner events view
         basicEventsInterface();
         System.out.println("3 to create a new event, ");
     }
 
     public void eventCreated(PrivateEvent event) {
+        //Prints all the info of the event created by the owner. The event is taken as a parameter
         if(event != null) {
             System.out.println("The event was created with success, event info: ");
             System.out.print("EVENT NAME: " + event.getName());

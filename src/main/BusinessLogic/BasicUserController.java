@@ -10,6 +10,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
+/*
+* Abstract class that implements all the common methods for the controller
+*/
+
 public abstract class BasicUserController {
     Scanner scanner;
     PlacesController placesController;
@@ -26,6 +30,9 @@ public abstract class BasicUserController {
     }
 
     public UserChoices getFirstInput() {
+        /*
+        * Takes the first input, that is the one used to choose between login or exit the app.
+        */
         accessInterface.firstView();
         input = Integer.parseInt(scanner.nextLine());
         UserChoices selectedCategory = null;
@@ -44,24 +51,32 @@ public abstract class BasicUserController {
     }
 
     public String getEmailInput() {
+        //Asks for email.
         accessInterface.askEmail();
         scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
 
     public String getPasswordInput() {
+        //Asks for password
         accessInterface.askPassword();
         scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
 
     public boolean tryAgain() {
+        //Used after a wrong value entered from the user.
+        //It displays the try again message and check if the user wants to try a new insertion or quit the menu.
         accessInterface.tryAgain();
         scanner = new Scanner(System.in);
         return Objects.equals(scanner.nextInt(), 0);
     }
 
     public UserChoices.BasicUser firstMenuInput() {
+        /*
+         * Takes the first input, that is the one common between all the UserTypes.
+         * It returns the value selected from the user input.
+         */
         basicUserOptions = null;
         scanner = new Scanner(System.in);
         input = scanner.nextInt();
@@ -86,12 +101,14 @@ public abstract class BasicUserController {
     }
 
     public int getId() {
+        //Take the input for an ID
         basicUserInterface.eventId();
         scanner = new Scanner(System.in);
         return scanner.nextInt();
     }
 
     public int getEventType() {
+        //Ask the type of event we're looking for (private or public)
         basicUserInterface.eventType();
         int input;
         scanner = new Scanner(System.in);
@@ -104,11 +121,13 @@ public abstract class BasicUserController {
     }
 
     public LocalDate getDateFilter() {
+        //Wrapper of the function to get the date filter
         basicUserInterface.filter();
         return getDate();
     }
 
     public LocalDate getDate() {
+        //Get the input for a specific date and check if it's correct
         scanner = new Scanner(System.in);
         basicUserInterface.getYear();
         int year = Integer.parseInt(scanner.nextLine());
@@ -130,17 +149,20 @@ public abstract class BasicUserController {
     }
 
     public int getInteger() {
+        //Get an integer
         scanner = new Scanner(System.in);
         return Integer.parseInt(scanner.nextLine());
     }
 
     public String getEventName() {
+        //Get an event Name
         basicUserInterface.getEventName();
         scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
 
     public Boolean getBoolean() {
+        //Get a boolean
         Boolean open;
         scanner = new Scanner(System.in);
         int insertion = scanner.nextInt();
@@ -156,12 +178,14 @@ public abstract class BasicUserController {
     }
 
     public String getEventInfo() {
+        //Ask for the info of an event (string)
         basicUserInterface.getEventInfo();
         scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
 
     public int privatePublicEvent() {
+        //Ask if an event that is going to be created is public or private
         int privateEvent;
         basicUserInterface.isPrivatePublicEvent();
         scanner = new Scanner(System.in);
