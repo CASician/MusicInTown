@@ -10,11 +10,6 @@ import java.util.Scanner;
 */
 public class MunicipalityInterface extends BasicUserInterface {
 
-    Scanner scanner;
-    public MunicipalityInterface() {
-        this.scanner = new Scanner(System.in);
-    }
-
     public void printMunicipalityInfo(Municipality municipality) {
         //Prints the info of the municipality user that is taken as a parameter
         System.out.println("--------------------");

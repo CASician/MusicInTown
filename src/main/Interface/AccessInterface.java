@@ -6,10 +6,6 @@ import java.util.Scanner;
 */
 
 public class AccessInterface extends BasicUserInterface {
-    Scanner scanner;
-    public AccessInterface() {
-        this.scanner = new Scanner(System.in);
-    }
 
     public void firstView() {
         System.out.println("Choose an option: ");

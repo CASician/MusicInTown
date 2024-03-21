@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fceed6ec-ff53-45d6-83ae-a6a8b46ffd39" name="Changes" comment="test: created all the logic for the tests">
-      <change beforePath="$PROJECT_DIR$/src/test/domainModel/MunicipalityTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/domainModel/MunicipalityTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/domainModel/OwnerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/domainModel/OwnerTest.java" afterDir="false" />
+    <list default="true" id="fceed6ec-ff53-45d6-83ae-a6a8b46ffd39" name="Changes" comment="style: Interface classes commented and reshaped for a better visibility and comprehension">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UML.mdj" beforeDir="false" afterPath="$PROJECT_DIR$/UML.mdj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Interface/AccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Interface/AccessInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Interface/MunicipalityInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Interface/MunicipalityInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +108,7 @@
       <workItem from="1707822107384" duration="57294000" />
       <workItem from="1709031067135" duration="5000" />
       <workItem from="1709031095331" duration="7060000" />
-      <workItem from="1709568527841" duration="71536000" />
+      <workItem from="1709568527841" duration="75227000" />
     </task>
     <task id="LOCAL-00001" summary="fix: UML file updated and fixed">
       <option name="closed" value="true" />
@@ -308,7 +310,31 @@
       <option name="project" value="LOCAL" />
       <updated>1711030284159</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="test: setUp database methods created for DomainModelTests (to be implemented)">
+      <option name="closed" value="true" />
+      <created>1711030673107</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1711030673107</updated>
+    </task>
+    <task id="LOCAL-00027" summary="test: setUp database methods created for BusinessLogicTests (to be implemented)">
+      <option name="closed" value="true" />
+      <created>1711030779001</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1711030779001</updated>
+    </task>
+    <task id="LOCAL-00028" summary="style: Interface classes commented and reshaped for a better visibility and comprehension">
+      <option name="closed" value="true" />
+      <created>1711032495718</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1711032495718</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -337,8 +363,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix: UML file updated and fixed" />
-    <MESSAGE value="Chore: updated UML dependencies" />
     <MESSAGE value="Feat: Created and connected Database" />
     <MESSAGE value="Fix: Updated UML with all the required Design Patterns and classes" />
     <MESSAGE value="feat: Added part of the Domain Logic, Business Control and Interface.&#10;fix: Updated UML file" />
@@ -361,7 +385,10 @@
     <MESSAGE value="feat: function to see visualize a list of all places implemented" />
     <MESSAGE value="feat: Created the basic logic for municipality users" />
     <MESSAGE value="test: created all the logic for the tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="test: created all the logic for the tests" />
+    <MESSAGE value="test: setUp database methods created for DomainModelTests (to be implemented)" />
+    <MESSAGE value="test: setUp database methods created for BusinessLogicTests (to be implemented)" />
+    <MESSAGE value="style: Interface classes commented and reshaped for a better visibility and comprehension" />
+    <option name="LAST_COMMIT_MESSAGE" value="style: Interface classes commented and reshaped for a better visibility and comprehension" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -370,16 +397,6 @@
           <url>file://$PROJECT_DIR$/src/main/BusinessLogic/PlannerController.java</url>
           <line>139</line>
           <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/BusinessLogic/BasicUserController.java</url>
-          <line>127</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/BusinessLogic/BasicUserController.java</url>
-          <line>66</line>
-          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
