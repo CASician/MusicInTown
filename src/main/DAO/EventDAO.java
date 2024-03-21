@@ -23,12 +23,20 @@ public class EventDAO {
         insertEvent.setString(4, event.getCity());
         insertEvent.setString(5, event.getType());
         insertEvent.setString(6, event.getDuration());
+        insertEvent.executeUpdate();
 
-        // TODO : assign here the ID to event.id
-        // this way in subclasses can be simply used getID
+        // Find ID and assign it to the real instance.
+        PreparedStatement findId = conn.prepareStatement("SELECT id FROM Events WHERE name = ?");
+        findId.setString(1, event.getName());
+
+        // Use the result to give the same ID to PrivateEvent
+        ResultSet resultSet = findId.executeQuery();
+        resultSet.next();
+        event.setId(resultSet.getInt("id"));
 
         // Close connections
-        insertEvent.executeUpdate();
+        findId.close();
+        resultSet.close();
         insertEvent.close();
         conn.close();
     }

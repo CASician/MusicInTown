@@ -9,31 +9,22 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class PublicEventDAO {
-    public static void add(PublicEvent publicEvent) throws SQLException{
+    public static void add(PublicEvent publicEvent) throws SQLException {
         // First, we need to add the PublicEvent in the Events table
         EventDAO.add(publicEvent);
 
         // Connection to Database
         Connection conn = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
-        // TODO: use directly getId
-        // Use a query to find what ID has been automatically assigned.
-        PreparedStatement findId = conn.prepareStatement("SELECT id FROM Events WHERE name = ?");
-        findId.setString(1, publicEvent.getName());
-
-        // Use the result to give the same ID to PrivateEvent in its own Table.
-        ResultSet resultSet = findId.executeQuery();
-        resultSet.next();                           // Idk what it does, but it's needed.
+        // Add PublicEvent to DataBase
         PreparedStatement insertPublicEvent = conn.prepareStatement("insert into PublicEvents(id, place, planner) values (?, ?, ?)");
-        insertPublicEvent.setInt(1, resultSet.getInt("id"));
 
         // Insert real data instead of "?"
+        insertPublicEvent.setInt(1, publicEvent.getId());
         insertPublicEvent.setString(2, publicEvent.getPlace().getName());
         insertPublicEvent.setString(3, publicEvent.getPlanner().getUsername());
 
         // Close connections
-        resultSet.close();
-        findId.close();
         insertPublicEvent.executeUpdate();
         insertPublicEvent.close();
         conn.close();
@@ -46,23 +37,14 @@ public class PublicEventDAO {
         // Connection to database
         Connection conn = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
-        // TODO: use directly getId
-        // Use a query to find what ID has been automatically assigned.
-        PreparedStatement findId = conn.prepareStatement("SELECT id FROM Events WHERE name = ?");
-        findId.setString(1, publicEvent.getName());
-        ResultSet resultSet = findId.executeQuery();
-        resultSet.next();
-
         // Delete PublicEvent from its table
         PreparedStatement deletePublicEvent = conn.prepareStatement("delete from PublicEvents where id = ?");
-        deletePublicEvent.setInt(1, resultSet.getInt("id"));
+        deletePublicEvent.setInt(1, publicEvent.getId());
 
         // Call the Events delete function
         EventDAO.delete(publicEvent);
 
         // Close connections
-        resultSet.close();
-        findId.close();
         deletePublicEvent.executeUpdate();
         deletePublicEvent.close();
         conn.close();

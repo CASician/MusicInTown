@@ -19,6 +19,7 @@ public class BasicUserDAO {
         PreparedStatement insertBasicUser = connection.prepareStatement("INSERT INTO BasicUsers(id, username) VALUES(DEFAULT, ?)");
         // Add the real values instead of "?"
         insertBasicUser.setString(1, basicUser.getUsername());
+        insertBasicUser.executeUpdate();
 
         // Use a query to find what ID has been automatically assigned.
         PreparedStatement findId = connection.prepareStatement("SELECT id FROM BasicUsers WHERE username = ?");
@@ -32,7 +33,6 @@ public class BasicUserDAO {
         //Close connection
         findId.close();
         resultSet.close();
-        insertBasicUser.executeUpdate();
         insertBasicUser.close();
         connection.close();
 

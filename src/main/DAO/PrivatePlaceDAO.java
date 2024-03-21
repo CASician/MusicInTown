@@ -15,19 +15,10 @@ public class PrivatePlaceDAO {
         // Connect to Database
         Connection conn = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
-        // TODO: use directly getId
-        // Use a query to find what ID has been automatically assigned.
-        PreparedStatement findId = conn.prepareStatement("SELECT id FROM Events WHERE name = ?");
-        findId.setString(1, privatePlace.getName());
-
-        // Use the result to give the same ID to PrivatePlace in its own Table.
-        ResultSet resultSet = findId.executeQuery();
-        resultSet.next();                           // Idk what it does, but it's needed.
-
-        // Add the PrivatePlace in its own table
+        // Add PrivatePlace to DataBase
         PreparedStatement insertPrivatePlace = conn.prepareStatement("insert into PrivatePlaces(id, type, owner) values(?, ?, ?)");
         // Add the real values instead of "?"
-        insertPrivatePlace.setInt(1, resultSet.getInt("id"));
+        insertPrivatePlace.setInt(1, privatePlace.getId());
         insertPrivatePlace.setString(2, privatePlace.getName());
         insertPrivatePlace.setString(2, String.valueOf(privatePlace.getType()));
 

@@ -2,10 +2,7 @@ package main.DAO;
 
 import main.DomainModel.*;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class PlaceDAO {
@@ -23,11 +20,20 @@ public class PlaceDAO {
         insertPlace.setString(3, place.getAddress());
         insertPlace.setInt(4, place.getCapacity());
         insertPlace.setBoolean(5, place.isIndoor());
+        insertPlace.executeUpdate();
 
-        //TODO: assign the ID to the object here so you can use getID
+        // Find ID and assign it to the real instance
+        PreparedStatement findId = conn.prepareStatement("SELECT id FROM Events WHERE name = ?");
+        findId.setString(1, place.getName());
+
+        // Use the result to assign the ID to Place
+        ResultSet resultSet = findId.executeQuery();
+        resultSet.next();                           // Idk what it does, but it's needed.
+        place.setId(resultSet.getInt("id"));
 
         // Close connections
-        insertPlace.executeUpdate();
+        findId.close();
+        resultSet.close();
         insertPlace.close();
         conn.close();
     }

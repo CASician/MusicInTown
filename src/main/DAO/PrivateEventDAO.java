@@ -16,19 +16,12 @@ public class PrivateEventDAO {
         // Connection to Database
         Connection conn = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
-        // TODO: use directly getId
-        // Use a query to find what ID has been automatically assigned.
-        PreparedStatement findId = conn.prepareStatement("SELECT id FROM Events WHERE name = ?");
-        findId.setString(1, privateEvent.getName());
-
-        // Use the result to give the same ID to PrivateEvent in its own Table.
-        ResultSet resultSet = findId.executeQuery();
-        resultSet.next();                           // Idk what it does, but it's needed.
+        // Add PrivateEvent to DataBase
         PreparedStatement insertPrivateEvent = conn.prepareStatement("insert into PrivateEvents(id, place, planner, ownerPlanner) values (?, ?, ?, ?)");
-        insertPrivateEvent.setInt(1, resultSet.getInt("id"));
-
         // Insert real data instead of "?"
+        insertPrivateEvent.setInt(1, privateEvent.getId());
         insertPrivateEvent.setString(2, privateEvent.getPlace().getName());
+
         if (privateEvent.getPlanner() != null) // If there's a Planner, there is no OwnerPlanner and vice-versa
         {
             insertPrivateEvent.setString(3, privateEvent.getPlanner().getUsername());
@@ -40,8 +33,6 @@ public class PrivateEventDAO {
 
         // Close connections
         insertPrivateEvent.executeUpdate();
-        resultSet.close();
-        findId.close();
         insertPrivateEvent.close();
         conn.close();
 
@@ -53,23 +44,14 @@ public class PrivateEventDAO {
         // Connection to database
         Connection conn = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
-        // TODO: use directly getId
-        // Use a query to find what ID has been automatically assigned.
-        PreparedStatement findId = conn.prepareStatement("SELECT id FROM Events WHERE name = ?");
-        findId.setString(1, privateEvent.getName());
-        ResultSet resultSet = findId.executeQuery();
-        resultSet.next();
-
         // Delete PrivateEvent from its table
         PreparedStatement deletePrivateEvent = conn.prepareStatement("delete from PrivateEvents where id = ?");
-        deletePrivateEvent.setInt(1, resultSet.getInt("id"));
+        deletePrivateEvent.setInt(1, privateEvent.getId());
 
         // Call the Events delete function
         EventDAO.delete(privateEvent);
 
         // Close connections
-        findId.close();
-        resultSet.close();
         deletePrivateEvent.executeUpdate();
         deletePrivateEvent.close();
         conn.close();
