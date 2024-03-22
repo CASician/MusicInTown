@@ -1,5 +1,9 @@
 package main.DomainModel;
 
+/*
+* Class that represent the concrete object of the Private Places.
+* It keeps all the infos (attributes) and actions (methods) related with the object and modifications that can be made on it.
+*/
 public class PrivatePlace extends Place {
     private final String name;
     PlaceType type;

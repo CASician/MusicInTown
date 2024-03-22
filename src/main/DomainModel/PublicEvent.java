@@ -2,6 +2,10 @@ package main.DomainModel;
 
 import java.time.LocalDate;
 
+/*
+* Class that represent the concrete object of the Public Events.
+* It keeps all the infos (attributes) and actions (methods) related with the object and modifications that can be made on it.
+*/
 public class PublicEvent extends Event {
     Planner planner;
     PublicPlace place;

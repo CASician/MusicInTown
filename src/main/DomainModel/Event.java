@@ -3,6 +3,9 @@ package main.DomainModel;
 import java.time.LocalDate;
 import java.util.HashMap;
 
+/*
+* Abstract class that has all the common attributes and methods for all the event objects
+*/
 public abstract class Event {
 
     protected int id;
@@ -25,7 +28,7 @@ public abstract class Event {
     }
 
     public void addSubscription(String musicianName, int musicianId) {
-        //Aggiungere un elemento all'array
+        //Add the musician ID and band name to the list of event subscription
         subscriptions.put(musicianId, musicianName);
     }
 
