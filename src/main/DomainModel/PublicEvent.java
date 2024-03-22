@@ -7,8 +7,8 @@ import java.time.LocalDate;
 * It keeps all the infos (attributes) and actions (methods) related with the object and modifications that can be made on it.
 */
 public class PublicEvent extends Event {
-    Planner planner;
-    PublicPlace place;
+    private final Planner planner;
+    private final PublicPlace place;
 
     public PublicEvent(String name, boolean open, LocalDate date, Planner planner, PublicPlace place,
                        String duration, String city, String type) {
@@ -20,4 +20,5 @@ public class PublicEvent extends Event {
         return place;
     }
 
+    public Planner getPlanner() { return planner; }
 }

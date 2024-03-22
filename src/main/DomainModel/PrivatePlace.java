@@ -6,7 +6,7 @@ package main.DomainModel;
 */
 public class PrivatePlace extends Place {
     private final String name;
-    PlaceType type;
+    private final PlaceType type;
     protected int ownerId;
     protected String ownerName;
 
