@@ -1,9 +1,6 @@
 package main.DAO;
 
-import main.DomainModel.Owner;
-import main.DomainModel.PlaceType;
-import main.DomainModel.PrivatePlace;
-import main.DomainModel.PublicPlace;
+import main.DomainModel.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -84,5 +81,34 @@ public class PublicPlaceDAO {
 
         // The end
         return places;
+    }
+
+    public PublicPlace getPublicPlace(String name) throws SQLException{
+        // Connect to DataBase
+        Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
+
+        // Retrieve the data from DataBase
+        PreparedStatement getPublicPlace = connection.prepareStatement("select * from publicplace_intero where publicplace_name = ?");
+        getPublicPlace.setString(1, name);
+        ResultSet resultSet = getPublicPlace.executeQuery();
+
+        // Create the object with the retrieved data
+        resultSet.next();
+        int id = resultSet.getInt("publicplace_id");
+        String city = resultSet.getString("publicplace_city");
+        String address = resultSet.getString("publicplace_address");
+        int capacity = resultSet.getInt("publicplace_capacity");
+        boolean indoor = resultSet.getBoolean("publicplace_indoor");
+
+        PublicPlace publicPlace = new PublicPlace(name, city, address, capacity, indoor);
+        publicPlace.setId(id);
+
+        // Close connections
+        resultSet.close();
+        getPublicPlace.close();
+        connection.close();
+
+        // The end
+        return publicPlace;
     }
 }

@@ -1,8 +1,13 @@
 package main.BusinessLogic;
 
+import main.DAO.PlaceDAO;
+import main.DAO.PrivatePlaceDAO;
+import main.DAO.PublicPlaceDAO;
 import main.DomainModel.PrivatePlace;
 import main.DomainModel.PublicPlace;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -10,48 +15,33 @@ import java.util.List;
 * Class that communicates with the DAO to obtain info about the places
 */
 public class PlacesController {
-    private final PlacesDAO placesDAO;
+    private final PublicPlaceDAO publicPlaceDAO;
+    private final PrivatePlaceDAO privatePlaceDAO;
     public PlacesController() {
         //Call the DAO to generate all the places
-        placesDAO = new PlacesDAO();
+        publicPlaceDAO = new PublicPlaceDAO();
+        privatePlaceDAO = new PrivatePlaceDAO();
     }
 
-    public PlacesDAO getPlacesDAO() { return placesDAO; }
+    // Todo credo? Ci serve questa funzione unita?
+    //public PlaceDAO getPlacesDAO() { return placesDAO; }
 
-    /*
-    public PublicPlace getPublicPlace(int id) {
-        return placesDAO.getPublicPlaces().get(id);
+    public ArrayList<PublicPlace> getPublicPlaces() throws SQLException {
+        //return an array with the public place object
+        return publicPlaceDAO.getAll();
     }
-    public PrivatePlace getPrivatePlace(int id) {
-        return placesDAO.getPrivatePlaces().get(id);
-    }
-    */
-
-    public HashMap<Integer, PublicPlace> getPublicPlaces() {
-        //return an hashmap with the ID and the public place object
-        return placesDAO.getPublicPlaces();
-    }
-    public HashMap<Integer, PrivatePlace> getPrivatePlaces() {
-        //return an hashmap with the ID and the private place object
-        return placesDAO.getPrivatePlaces();
+    public ArrayList<PrivatePlace> getPrivatePlaces() throws SQLException {
+        //return an array with the private place object
+        return privatePlaceDAO.getAll();
     }
 
-    public PrivatePlace getPrivatePlace(int id) {
+    public PrivatePlace getPrivatePlace(String name) throws SQLException {
         //Returns a specific private place associated with the id taken as a parameter
-        return placesDAO.getPrivatePlace(id);
+        return PrivatePlaceDAO.getPrivatePlace(name);
     }
 
-    public PublicPlace getPublicPlace(int id) {
+    public PublicPlace getPublicPlace(String name) throws SQLException {
         //Returns a specific public place associated with the id taken as a parameter
-        return placesDAO.getPublicPlace(id);
-    }
-
-    public List<PrivatePlace> getPrivatePlacesList() {
-        //Returns a list with all the private place objects
-        return placesDAO.getPrivatePlacesList();
-    }
-    public List<PublicPlace> getPublicPlacesList() {
-        //Returns a list with all the public place objects
-        return placesDAO.getPublicPlacesList();
+        return publicPlaceDAO.getPublicPlace(name);
     }
 }

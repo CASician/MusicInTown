@@ -1,8 +1,6 @@
 package main.DAO;
 
-import main.DomainModel.Owner;
-import main.DomainModel.PlaceType;
-import main.DomainModel.PrivatePlace;
+import main.DomainModel.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -91,5 +89,43 @@ public class PrivatePlaceDAO {
 
         // The end
         return places;
+    }
+
+    public static PrivatePlace getPrivatePlace(String name) throws SQLException{
+        // Connect to DataBase
+        Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
+
+        // Retrieve the data from DataBase
+        PreparedStatement getPrivatePlace = connection.prepareStatement("select * from privateplace_esteso_intero where privateplace_name = ?");
+        getPrivatePlace.setString(1, name);
+        ResultSet resultSet = getPrivatePlace.executeQuery();
+
+        // Create the object with the retrieved data
+        resultSet.next();
+        int id = resultSet.getInt("privateplace_id");
+        String city = resultSet.getString("privateplace_city");
+        String address = resultSet.getString("privateplace_address");
+        int capacity = resultSet.getInt("privateplace_capacity");
+        boolean indoor = resultSet.getBoolean("privateplace_indoor");
+        String type = resultSet.getString("privateplace_type");
+
+        int owner_id = resultSet.getInt("owner_id");
+        String owner_name = resultSet.getString("owner_name");
+        String owner_username = resultSet.getString("owner_username");
+        Owner owner = new Owner(owner_username, owner_name);
+        owner.setId(owner_id);
+
+        PrivatePlace privatePlace = new PrivatePlace(city, name, address, capacity, indoor, PlaceType.valueOf(type), owner);
+        privatePlace.setId(id);
+
+        owner.setPrivatePlace(privatePlace);
+
+        // Close connections
+        resultSet.close();
+        getPrivatePlace.close();
+        connection.close();
+
+        // The end
+        return privatePlace;
     }
 }
