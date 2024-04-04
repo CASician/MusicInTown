@@ -1,5 +1,7 @@
 package main.DomainModel;
 
+import main.DAO.PrivatePlaceDAO;
+
 /*
 * Class that represent the concrete object of the Owner User.
 * It keeps all the infos (attributes) and actions (methods) related with the object and modifications that can be made on it.
@@ -24,5 +26,9 @@ public class Owner extends BasicUser {
     }
     public PrivatePlace getPlace() {
         return privatePlace;
+    }
+
+    public void setPrivatePlace(PrivatePlace privatePlace) {
+        this.privatePlace = privatePlace;
     }
 }

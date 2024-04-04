@@ -1,5 +1,6 @@
 package main.DAO;
 
+import main.DomainModel.Musician;
 import main.DomainModel.Owner;
 import main.DomainModel.Planner;
 
@@ -80,5 +81,31 @@ public class PlannerDAO {
 
         // The end
         return users;
+    }
+
+    public Planner getPlanner(String username) throws SQLException{
+        // Connect to DataBase
+        Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
+
+        // Retrieve the data from DataBase
+        PreparedStatement getPlanner = connection.prepareStatement("select p.id, p.name, BU.username from Planners p join BasicUsers BU on p.id = BU.id where BU.username = ?");
+        getPlanner.setString(1, username);
+        ResultSet resultSet = getPlanner.executeQuery();
+
+        // Create the object with the retrieved data
+        resultSet.next();
+        int id = resultSet.getInt("id");
+        String name = resultSet.getString("name");
+
+        Planner planner = new Planner(name, username);
+        planner.setId(id);
+
+        // Close connections
+        resultSet.close();
+        getPlanner.close();
+        connection.close();
+
+        // The end
+        return planner;
     }
 }

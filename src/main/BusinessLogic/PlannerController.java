@@ -4,6 +4,7 @@ import main.DAO.PlannerDAO;
 import main.DomainModel.*;
 import main.Interface.PlannerInterface;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -19,7 +20,7 @@ public class PlannerController extends BasicUserController {
     private final Planner planner;
     private final PlacesController placesController;
 
-    public PlannerController(String username, EventController eventController, PlacesController placesController) {
+    public PlannerController(String username, EventController eventController, PlacesController placesController) throws SQLException {
         super(placesController);
         this.eventController = eventController;
         plannerDAO = new PlannerDAO();

@@ -1,6 +1,7 @@
 package main.DAO;
 
 import main.DomainModel.Owner;
+import main.DomainModel.Planner;
 import main.DomainModel.User;
 
 import java.sql.*;
@@ -80,5 +81,31 @@ public class UserDAO {
 
         // The end
         return users;
+    }
+
+    public User getUser(String username) throws SQLException{
+        // Connect to DataBase
+        Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
+
+        // Retrieve the data from DataBase
+        PreparedStatement getUser = connection.prepareStatement("select u.id, u.name, BU.username from \"Users\" u join BasicUsers BU on u.id = BU.id where BU.username = ?");
+        getUser.setString(1, username);
+        ResultSet resultSet = getUser.executeQuery();
+
+        // Create the object with the retrieved data
+        resultSet.next();
+        int id = resultSet.getInt("id");
+        String name = resultSet.getString("name");
+
+        User user = new User(name, username);
+        user.setId(id);
+
+        // Close connections
+        resultSet.close();
+        getUser.close();
+        connection.close();
+
+        // The end
+        return user;
     }
 }

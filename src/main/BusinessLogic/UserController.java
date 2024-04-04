@@ -3,6 +3,7 @@ import main.DAO.UserDAO;
 import main.DomainModel.User;
 import main.Interface.UserInterface;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -17,11 +18,11 @@ public class UserController extends BasicUserController {
     private final UserInterface userInterface;
     UserChoices.UserActions userActions;
 
-    public UserController(String username, EventController eventController, PlacesController placesController) {
+    public UserController(String username, EventController eventController, PlacesController placesController) throws SQLException {
         super(placesController);
         this.eventController = eventController;
-        userDAO = new UserDAO(username);
-        this.user = userDAO.getUser();
+        userDAO = new UserDAO();
+        this.user = userDAO.getUser(username);
         userInterface = new UserInterface();
         userActions = null;
 

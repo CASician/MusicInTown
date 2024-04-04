@@ -6,6 +6,7 @@ import main.DomainModel.PublicEvent;
 import main.DomainModel.PublicPlace;
 import main.Interface.MunicipalityInterface;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -19,10 +20,10 @@ public class MunicipalityController extends BasicUserController {
     UserChoices.MunicipalityActions municipalityActions;
     private final MunicipalityInterface municipalityInterface;
 
-    public MunicipalityController(String municipality, EventController eventController, PlacesController placesController) {
+    public MunicipalityController(String username, EventController eventController, PlacesController placesController) throws SQLException {
         super(placesController);
         municipalityDAO = new MunicipalityDAO();
-        this.municipality = municipalityDAO.getMunicipality(municipality);
+        this.municipality = municipalityDAO.getMunicipality(username);
         this.eventController = eventController;
         municipalityInterface = new MunicipalityInterface();
         municipalityActions = null;

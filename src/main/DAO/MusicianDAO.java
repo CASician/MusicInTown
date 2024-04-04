@@ -84,4 +84,32 @@ public class MusicianDAO {
         // The end
         return users;
     }
+
+    public Musician getMusician(String username) throws SQLException{
+        // Connect to DataBase
+        Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
+
+        // Retrieve the data from DataBase
+        PreparedStatement getMusician = connection.prepareStatement("select m.id, m.name, m.genre, m.componentNumb, BU.username from Musicians M join BasicUsers BU on M.id = BU.id where BU.username = ?");
+        getMusician.setString(1, username);
+        ResultSet resultSet = getMusician.executeQuery();
+
+        // Create the object with the retrieved data
+        resultSet.next();
+        int id = resultSet.getInt("id");
+        String name = resultSet.getString("name");
+        String genre = resultSet.getString("genre");
+        int numb = resultSet.getInt("componentNumb");
+
+        Musician musician = new Musician(username, name, genre, numb);
+        musician.setId(id);
+
+        // Close connections
+        resultSet.close();
+        getMusician.close();
+        connection.close();
+
+        // The end
+        return musician;
+    }
 }

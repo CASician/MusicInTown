@@ -2,6 +2,8 @@ package main.BusinessLogic;
 
 import main.DomainModel.UserType;
 
+import java.sql.SQLException;
+
 /*
 * Class that controls the entire flow of the application.
 * The method run() calls the functions to allow the access.
@@ -27,7 +29,7 @@ public class ProgramController extends BasicUserController {
         this.accessController = new AccessController();
     }
 
-    public void run() {
+    public void run() throws SQLException {
         //Control and execute all the application flow. It's called from the main.
 
         //Ask user to login or to exit the program

@@ -1,6 +1,7 @@
 package main.DAO;
 
 import main.DomainModel.Municipality;
+import main.DomainModel.Musician;
 import main.DomainModel.Owner;
 import main.DomainModel.PrivatePlace;
 
@@ -81,5 +82,37 @@ public class OwnerDAO {
 
         // The end
         return users;
+    }
+
+    public Owner getOwner(String username) throws SQLException{
+        // Connect to DataBase
+        Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
+
+        // Retrieve the data from DataBase
+        PreparedStatement getOwner = connection.prepareStatement("select o.id, o.name, o.place, BU.username from Owners O join BasicUsers BU on O.id = BU.id where BU.username = ?");
+        getOwner.setString(1, username);
+        ResultSet resultSet = getOwner.executeQuery();
+
+        // Create the object with the retrieved data
+        resultSet.next();
+        int id = resultSet.getInt("id");
+        String name = resultSet.getString("name");
+
+        Owner owner = new Owner(username, name);
+
+        if (resultSet.getString("place") != null) {
+            String privatePlaceName = resultSet.getString("place");
+            PrivatePlace privatePlace = PrivatePlaceDAO.getPrivatePlace(privatePlaceName);
+            owner.setPrivatePlace(privatePlace);
+        }
+        owner.setId(id);
+
+        // Close connections
+        resultSet.close();
+        getOwner.close();
+        connection.close();
+
+        // The end
+        return owner;
     }
 }

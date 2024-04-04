@@ -2,6 +2,7 @@ package main.DAO;
 
 import main.DomainModel.BasicUser;
 import main.DomainModel.Municipality;
+import main.DomainModel.Musician;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -76,5 +77,31 @@ public class MunicipalityDAO {
 
         // The end
         return users;
+    }
+
+    public Municipality getMunicipality(String username) throws SQLException{
+        // Connect to DataBase
+        Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
+
+        // Retrieve the data from DataBase
+        PreparedStatement getMunicipality = connection.prepareStatement("select m.id, m.city, BU.username from Municipalities M join BasicUsers BU on M.id = BU.id where BU.username = ?");
+        getMunicipality.setString(1, username);
+        ResultSet resultSet = getMunicipality.executeQuery();
+
+        // Create the object with the retrieved data
+        resultSet.next();
+        int id = resultSet.getInt("id");
+        String city = resultSet.getString("city");
+
+        Municipality municipality = new Municipality(username, city);
+        municipality.setId(id);
+
+        // Close connections
+        resultSet.close();
+        getMunicipality.close();
+        connection.close();
+
+        // The end
+        return municipality;
     }
 }

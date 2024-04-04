@@ -5,6 +5,7 @@ import main.DomainModel.Owner;
 import main.DomainModel.PrivateEvent;
 import main.Interface.OwnerInterface;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -19,11 +20,11 @@ public class OwnerController extends BasicUserController {
     private final Owner owner;
     private final PlacesController placesController;
 
-    public OwnerController(String username, EventController eventController, PlacesController placesController) {
+    public OwnerController(String username, EventController eventController, PlacesController placesController) throws SQLException {
         super(placesController);
         ownerInterface = new OwnerInterface();
-        ownerDAO = new OwnerDAO(username, placesController);
-        this.owner = ownerDAO.getOwner();
+        ownerDAO = new OwnerDAO();
+        this.owner = ownerDAO.getOwner(username);
         this.placesController = placesController;
         this.eventController = eventController;
     }

@@ -4,6 +4,7 @@ import main.DAO.MusicianDAO;
 import main.DomainModel.Musician;
 import main.Interface.MusicianInterface;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -17,10 +18,10 @@ public class MusicianController extends BasicUserController {
     UserChoices.MusicianActions musicianActions;
     private final EventController eventController;
 
-    public MusicianController(String musician, EventController eventController, PlacesController placesController) {
+    public MusicianController(String username, EventController eventController, PlacesController placesController) throws SQLException {
         super(placesController);
-        musicianDAO = new MusicianDAO(musician);
-        this.musician = musicianDAO.getMusician();
+        musicianDAO = new MusicianDAO();
+        this.musician = musicianDAO.getMusician(username);
         musicianInterface = new MusicianInterface();
         musicianActions = null;
         this.eventController = eventController;
