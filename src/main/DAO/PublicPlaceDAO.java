@@ -83,7 +83,7 @@ public class PublicPlaceDAO {
         return places;
     }
 
-    public PublicPlace getPublicPlace(String name) throws SQLException{
+    public static PublicPlace getPublicPlace(String name) throws SQLException{
         // Connect to DataBase
         Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
