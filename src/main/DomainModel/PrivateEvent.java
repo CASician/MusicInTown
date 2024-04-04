@@ -30,8 +30,10 @@ public class PrivateEvent extends Event {
     public PrivatePlace getPlace() {
         return place;
     }
-
-    public Owner getOwnerPlanner() { return ownerPlanner; }
-
-    public Planner getPlanner() { return planner; }
+    public Planner getPlanner(){
+        return planner;
+    }
+    public Owner getOwnerPlanner(){
+        return ownerPlanner;
+    }
 }

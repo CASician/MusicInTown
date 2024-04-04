@@ -5,24 +5,14 @@ package main.DomainModel;
 * It keeps all the infos (attributes) and actions (methods) related with the object and modifications that can be made on it.
 */
 public class PrivatePlace extends Place {
-    private final String name;
-    private final PlaceType type;
-    protected int ownerId;
-    protected String ownerName;
+    PlaceType type;
+    protected Owner owner;
 
-    public PrivatePlace(int id, String city, String name, String address, int placeCapacity,
-                        boolean indoor, PlaceType type, int ownerId, String ownerName) {
-        super(id, city, address, placeCapacity, indoor);
-        this.name = name;
+    public PrivatePlace(String city, String name, String address, int capacity,
+                        boolean indoor, PlaceType type, Owner owner) {
+        super(name, city, address, capacity, indoor);
         this.type = type;
-        this.ownerId = ownerId;
-        this.ownerName = ownerName;
-    }
-
-    public String getOwnerName() { return ownerName; }
-    public int getOwnerId() { return ownerId; }
-    public String getName() {
-        return name;
+        this.owner = owner;
     }
     public PlaceType getType() {
         return type;

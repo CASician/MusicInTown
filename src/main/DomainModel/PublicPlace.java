@@ -5,11 +5,8 @@ package main.DomainModel;
 * It keeps all the infos (attributes) and actions (methods) related with the object and modifications that can be made on it.
 */
 public class PublicPlace extends Place {
-
-
-    public PublicPlace(int id, String city, String address, int placeCapacity,
+    public PublicPlace(String name, String city, String address, int capacity,
                        boolean indoor) {
-        super(id, city, address, placeCapacity, indoor);
+        super(name, city, address, capacity, indoor);
     }
-
 }

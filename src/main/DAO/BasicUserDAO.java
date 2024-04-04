@@ -12,27 +12,45 @@ public class BasicUserDAO {
         // Connect to Database
         Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
-        PreparedStatement insertBasicUser = connection.prepareStatement("INSERT INTO BasicUsers(id, email, city, username) VALUES(DEFAULT, ?, ?, ?)");
-
+        // Insert the BasicUser
+        PreparedStatement insertBasicUser = connection.prepareStatement("INSERT INTO BasicUsers(id, username) VALUES(DEFAULT, ?)");
         // Add the real values instead of "?"
-        insertBasicUser.setString(3, basicUser.getUsername());
+        insertBasicUser.setString(1, basicUser.getUsername());
+        insertBasicUser.executeUpdate();
+
+        // Use a query to find what ID has been automatically assigned.
+        PreparedStatement findId = connection.prepareStatement("SELECT id FROM BasicUsers WHERE username = ?");
+        findId.setString(1, basicUser.getUsername());
+
+        // Use the result to assign the ID
+        ResultSet resultSet = findId.executeQuery();
+        resultSet.next();                           // Idk what it does, but it's needed.
+        basicUser.setId(resultSet.getInt("id"));
 
         //Close connection
-        insertBasicUser.executeUpdate();
+        findId.close();
+        resultSet.close();
         insertBasicUser.close();
         connection.close();
 
-        //Show result
-        System.out.println("New BASIC USER added successfully!");
     }
 
-    //TODO: create ADD function on all basicUsers: municipality, musician, owner, planner, user
-    //TODO: create ADD function on all places and events: places, privatePlaces, publicPlaces, events, publicEvents, privateEvents.
+    public static void delete(BasicUser basicUser) throws SQLException{
+        // Connection to Database
+        Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
-    //TODO: Implementare tutte le altre funzioni
-    public void update (BasicUser basicUser){}
-    public void delete(BasicUser basicUser){}
-    //public BasicUser get(int i){}
+        // Use query to delete the instance
+        PreparedStatement deleteBasicUser = connection.prepareStatement("delete from BasicUsers where username = ?");
 
-    //public getAll{};
+        // Add the real value instead of "?"
+        deleteBasicUser.setString(1, basicUser.getUsername());
+
+        // Close connections
+        deleteBasicUser.executeUpdate();
+        deleteBasicUser.close();
+        connection.close();
+
+        // Show results
+        System.out.println(basicUser.getUsername() + " has been deleted from DataBase");
+    }
 }

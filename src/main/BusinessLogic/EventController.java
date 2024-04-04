@@ -1,12 +1,10 @@
 package main.BusinessLogic;
 
-import main.DAO.EventsDAO;
 import main.DomainModel.*;
 import main.Interface.BasicUserInterface;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /*

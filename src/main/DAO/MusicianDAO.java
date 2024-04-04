@@ -1,16 +1,87 @@
 package main.DAO;
 
+import main.DomainModel.Municipality;
 import main.DomainModel.Musician;
 
-public class MusicianDAO {
-    Musician musician;
+import java.sql.*;
+import java.util.ArrayList;
 
-    public MusicianDAO(String username) {
-        //Access the database to retrieve the info of the musician and generate a new instance
-        musician = new Musician("CoolBeans", "Pop", username, 1, 2);
+public class MusicianDAO {
+    public static void add (Musician musician) throws SQLException {
+        // First, we need to add our Musician as a BasicUser
+        BasicUserDAO.add(musician);
+
+        // Connect to Database
+        Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
+
+        // Add Musician to DataBase
+        PreparedStatement insertMusician = connection.prepareStatement("INSERT INTO Musicians(id, name, genre, componentNumb) VALUES (?, ?, ?, ?)");
+        // Add the real values instead of "?"
+        insertMusician.setInt(1, musician.getId());
+        insertMusician.setString(2, musician.getName());
+        insertMusician.setString(3, musician.getGenre());
+        insertMusician.setInt(4, musician.getComponentNumb());
+        insertMusician.executeUpdate();
+
+        // Close connection
+        insertMusician.close();
+        connection.close();
+
+        // Show result
+        System.out.println("New MUSICIAN added successfully!");
     }
 
-    public Musician getMusician() {
-        return musician;
+    public static void delete(Musician musician) throws SQLException {
+        // Connection to DataBase
+        Connection conn = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
+
+        // Delete Musician from its table
+        PreparedStatement deleteMusician = conn.prepareStatement("delete from Musicians where id = ?");
+        deleteMusician.setInt(1, musician.getId());
+        deleteMusician.executeUpdate();
+
+        // Call the BasicUser delete function
+        BasicUserDAO.delete(musician);
+
+        // Close connections
+        deleteMusician.close();
+        conn.close();
+
+        // The result is logged in the BasicUserDAO.delete
+    }
+
+    public ArrayList<Musician> getAll() throws SQLException {
+        // Create the array you return
+        ArrayList<Musician> users = new ArrayList<>();
+
+        // Connect to DataBase
+        Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
+
+        // Retrieve the data from DataBase
+        PreparedStatement getAll = connection.prepareStatement("select m.id, m.name, m.genre, m.componentNumb, BU.username from Musicians M join BasicUsers BU on M.id = BU.id");
+        ResultSet resultSet = getAll.executeQuery();
+
+        // Add data in the array
+        while(resultSet.next()) {
+            // Add data
+            int id = resultSet.getInt("id");
+            String name = resultSet.getString("name");
+            String genre = resultSet.getString("genre");
+            int compNr = resultSet.getInt("componentnumb");
+            String username = resultSet.getString("username");
+
+            // in the array
+            Musician user = new Musician(name, genre, username, compNr);
+            user.setId(id); // ID is not assigned in the constructor.
+            users.add(user);
+        }
+
+        // Close connections
+        resultSet.close();
+        getAll.close();
+        connection.close();
+
+        // The end
+        return users;
     }
 }

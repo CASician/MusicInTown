@@ -7,6 +7,7 @@ public abstract class BasicUser {
     protected int id;
     protected String username;
 
+
     public BasicUser(int id, String username) {
         this.id = id;
         this.username = username;
@@ -15,6 +16,9 @@ public abstract class BasicUser {
     public int getId() {
         //Getter of the ID
         return id;
+    }
+    public void setId(int id){
+        this.id = id;
     }
 
     public String getUsername() {

@@ -1,51 +1,80 @@
 package main.DAO;
 
+import main.DomainModel.BasicUser;
 import main.DomainModel.Municipality;
 
 import java.sql.*;
+import java.util.ArrayList;
+
 public class MunicipalityDAO {
 
-    Municipality municipality;
-
     public static void add (Municipality municipality)  throws SQLException {
+        // First, we need to add our Municipality as a BasicUser
+        BasicUserDAO.add(municipality);
+
         // Connect to Database
         Connection conn = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
-        // First, we need to add our Municipality as a BasicUser
-        PreparedStatement insertBasicUser = conn.prepareStatement("INSERT INTO BasicUsers(id, email, city, username) VALUES(DEFAULT, ?, ?, ?)");
-        // Add the real values instead of "?"
-        insertBasicUser.setString(2, municipality.getCity()); 
-        insertBasicUser.setString(3, municipality.getUsername());
-        insertBasicUser.executeUpdate();
-
-        // Use a query to find what ID has been automatically assigned.
-        PreparedStatement findId = conn.prepareStatement("SELECT id FROM BasicUsers WHERE email = ? AND city = ? AND username = ?");
-        findId.setString(2, municipality.getCity());
-        findId.setString(3, municipality.getUsername());
-
-        // Use the result to give the same ID to Municipality in its own Table.
-        ResultSet resultSet = findId.executeQuery();
-        resultSet.next();                           // Idk what it does, but it's needed.
-        PreparedStatement insertMunicipality = conn.prepareStatement("INSERT INTO Municipalities(id) VALUES(?)");
-        insertMunicipality.setInt(1, resultSet.getInt("id"));
+        // Add Municipality to DataBase
+        PreparedStatement insertMunicipality = conn.prepareStatement("INSERT INTO Municipalities(id, city) VALUES(?, ?)");
+        insertMunicipality.setInt(1, municipality.getId());
+        insertMunicipality.setString(2, municipality.getCity());
         insertMunicipality.executeUpdate();
 
         //Close connections
-        findId.close();
         insertMunicipality.close();
-        insertBasicUser.close();
         conn.close();
 
         // Show results
         System.out.println("New MUNICIPALITY added successfully!");
     }
 
-    public Municipality getMunicipality(String municipality) {
-        //Get the municipality from the Database
-        this.municipality = new Municipality(1, municipality, "Florence");
-        return this.municipality;
+    public static void delete(Municipality municipality) throws  SQLException {
+        // Connection to DataBase
+        Connection conn = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
+
+        // Delete Municipality from its table
+        PreparedStatement deleteMunicipality = conn.prepareStatement("delete from Municipalities where id = ?");
+        deleteMunicipality.setInt(1, municipality.getId());
+        deleteMunicipality.executeUpdate();
+
+        // Call the BasicUser delete function
+        BasicUserDAO.delete(municipality);
+
+        // Close connections
+        deleteMunicipality.close();
+        conn.close();
+
+        // The result is logged in the BasicUserDAO.delete
     }
 
-    //TODO: implement other functions: update, delete, get(id), getAll
+    public static ArrayList<Municipality> getAll() throws SQLException{
+        // Create the array you return
+        ArrayList<Municipality> users = new ArrayList<>();
 
+        // Connect to DataBase
+        Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
+
+        // Retrieve the data from DataBase
+        PreparedStatement getAll = connection.prepareStatement("select m.id, m.city, BU.username from Municipalities M join BasicUsers BU on M.id = BU.id");
+        ResultSet resultSet = getAll.executeQuery();
+
+        // Add data in the array
+        while(resultSet.next()) {
+            int id = resultSet.getInt("id");
+            String city = resultSet.getString("city");
+            String username = resultSet.getString("username");
+            Municipality user = new Municipality(username, city);
+            user.setId(id); // ID is not assigned in the constructor.
+            users.add(user);
+        }
+
+        // Close connections
+        resultSet.close();
+        getAll.close();
+        connection.close();
+
+        // The end
+        return users;
+    }
 }

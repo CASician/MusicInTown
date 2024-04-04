@@ -9,12 +9,13 @@ import java.util.HashMap;
 public abstract class Event {
 
     protected int id;
+    protected String name;
     protected boolean open;
     protected LocalDate date;
     protected String city;
     protected String type;
     protected String duration;
-    protected String name;
+    protected Boolean accepted;
     protected HashMap<Integer, String> subscriptions;
 
     public Event(String name, boolean open, LocalDate date, String city, String type, String duration) {
@@ -24,6 +25,7 @@ public abstract class Event {
         this.city = city;
         this.type = type;
         this.duration = duration;
+        this.accepted = Boolean.FALSE; // Should we leave it like this?
         subscriptions = new HashMap<>();
     }
 
@@ -57,4 +59,7 @@ public abstract class Event {
     }
     public boolean isOpen() { return open; }
 
+    public void setAccepted(boolean bool){
+        this.accepted = bool;
+    } // DAO needs this
 }
