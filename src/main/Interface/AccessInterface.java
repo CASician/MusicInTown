@@ -13,7 +13,7 @@ public class AccessInterface extends BasicUserInterface {
         System.out.println("1. exit");
     }
 
-    public void askEmail() {
+    public void askUsername() {
         System.out.println("Username: ");
     }
 
