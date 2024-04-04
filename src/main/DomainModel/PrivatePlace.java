@@ -17,4 +17,8 @@ public class PrivatePlace extends Place {
     public PlaceType getType() {
         return type;
     }
+
+    public String getOwnerName(){
+        return owner.getName();
+    }
 }

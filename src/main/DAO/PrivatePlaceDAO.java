@@ -19,8 +19,8 @@ public class PrivatePlaceDAO {
         PreparedStatement insertPrivatePlace = conn.prepareStatement("insert into PrivatePlaces(id, type, owner) values(?, ?, ?)");
         // Add the real values instead of "?"
         insertPrivatePlace.setInt(1, privatePlace.getId());
-        insertPrivatePlace.setString(2, privatePlace.getName());
         insertPrivatePlace.setString(2, String.valueOf(privatePlace.getType()));
+        insertPrivatePlace.setString(3, privatePlace.getOwnerName());
 
         // Close connections
         insertPrivatePlace.executeUpdate();
