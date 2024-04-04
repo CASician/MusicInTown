@@ -32,7 +32,7 @@ public class AccessController extends BasicUserController {
         */
         input = new HashMap<>();
 
-        input.put("username" , getEmailInput());
+        input.put("username" , getUsernameInput());
         username = input.get("username");
         input.put("password", getPasswordInput());
         userType = accessDAO.login(input);

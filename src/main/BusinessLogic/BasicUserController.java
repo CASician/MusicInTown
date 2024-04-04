@@ -50,9 +50,9 @@ public abstract class BasicUserController {
         return selectedCategory;
     }
 
-    public String getEmailInput() {
+    public String getUsernameInput() {
         //Asks for email.
-        accessInterface.askEmail();
+        accessInterface.askUsername();
         scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
