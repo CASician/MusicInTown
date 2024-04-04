@@ -1,6 +1,5 @@
 package main.BusinessLogic;
 
-import main.DAO.PlacesDAO;
 import main.DomainModel.PrivatePlace;
 import main.DomainModel.PublicPlace;
 
