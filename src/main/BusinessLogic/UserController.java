@@ -6,17 +6,21 @@ import main.Interface.UserInterface;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class UserController extends InputController {
+/*
+* Class that controls all the actions of the basic User.
+*/
+public class UserController extends BasicUserController {
 
     private final User user;
     private final UserDAO userDAO;
     private final EventController eventController;
     private final UserInterface userInterface;
-    private UserChoices.UserActions userActions;
+    UserChoices.UserActions userActions;
 
-    public UserController(String user, EventController eventController) {
+    public UserController(String username, EventController eventController, PlacesController placesController) {
+        super(placesController);
         this.eventController = eventController;
-        userDAO = new UserDAO(user);
+        userDAO = new UserDAO(username);
         this.user = userDAO.getUser();
         userInterface = new UserInterface();
         userActions = null;
@@ -24,6 +28,10 @@ public class UserController extends InputController {
     }
 
     public void userFunctions() {
+        /*
+         * Wrapper that select and call the right function to execute, based on the user input on the first menu.
+         * The first menu is the one about showing user and places info, quitting the app or entering the events menu
+        */
         while(!Objects.equals(basicUserOptions, UserChoices.BasicUser.Exit)) {
             userInterface.basicInterface();
             basicUserOptions = firstMenuInput();
@@ -37,6 +45,10 @@ public class UserController extends InputController {
                 case Exit:
                     userInterface.logOut();
                     break;
+                case SeeAllPlaces:
+                    userInterface.printPrivatePlaces(placesController.getPrivatePlacesList());
+                    userInterface.printPublicPlaces(placesController.getPublicPlacesList());
+                    break;
                 default:
                     break;
             }
@@ -44,6 +56,10 @@ public class UserController extends InputController {
     }
 
     public void eventsManagement() {
+        /*
+         * Wrapper that select and call the right function to execute, based on the user input on the second menu.
+         * The second menu is the one about managing and showing all the events.
+        */
         boolean quitMenu = false;
         while(!quitMenu) {
             userInterface.basicEventsInterface();
@@ -66,6 +82,7 @@ public class UserController extends InputController {
     }
 
     public UserChoices.UserActions getUserInput() {
+        //Get the inputs from the Owner and returns the specific action set inside the UserChoices Enumeration
         userActions = null;
         input = getInteger();
         if (input >= 0 && input < UserChoices.MusicianActions.values().length) {
@@ -77,6 +94,4 @@ public class UserController extends InputController {
         input = 0;
         return userActions;
     }
-
-
 }

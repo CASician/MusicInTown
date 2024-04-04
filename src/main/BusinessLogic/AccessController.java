@@ -2,53 +2,48 @@ package main.BusinessLogic;
 
 import main.DAO.AccessDAO;
 import main.DomainModel.UserType;
-import main.Interface.AccessInterface;
 
 import java.util.HashMap;
-import java.util.Objects;
 import java.util.Scanner;
 
-public class AccessController extends InputController {
+/*
+* Class used to access the application. It controls that username and password are registered inside database.
+* Then it returns the UserType to set up all the project dependencies and usages.
+*/
+
+public class AccessController extends BasicUserController {
     private final AccessDAO accessDAO;
 
-    public String email;
+    public String username;
     UserType userType;
+    HashMap<String, String> input;
 
     public AccessController() {
+        super(new PlacesController());
         accessDAO = new AccessDAO();
         scanner = new Scanner(System.in);
-        email = null;
+        username = null;
         userType = null;
     }
 
-
     public UserType login() {
         /*
-        Comunica con il DAO, se password ed username sono presenti allora
-        crea l'oggetto desiderato nel Domain Model e ritorna true
+        Communicates with DAO to check if user is registered and returns the UserType
         */
+        input = new HashMap<>();
 
-        HashMap<String, String> input = new HashMap<>();
-
-        input.put("email" , getEmailInput());
-        email = input.get("email");
+        input.put("username" , getEmailInput());
+        username = input.get("username");
         input.put("password", getPasswordInput());
         userType = accessDAO.login(input);
-        boolean loop = true;
-
-        while(loop) {
-
-            if (userType != null) {
-                accessInterface.success(email);
-                loop = false;
-            } else {
-                accessInterface.loginFailure();
-                if(!tryAgain()) {
-                    loop = false;
-                }
+        if (userType != null) {
+            accessInterface.success(username);
+        } else {
+            accessInterface.loginFailure();
+            if(tryAgain()) {
+                userType = login();
             }
         }
-
         return userType;
     }
 

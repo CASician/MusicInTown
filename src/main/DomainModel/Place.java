@@ -1,5 +1,8 @@
 package main.DomainModel;
 
+/*
+* Abstract class that has all the common attributes and methods for all the place objects
+*/
 public abstract class Place {
     private int id;
     private final String name;
@@ -7,7 +10,7 @@ public abstract class Place {
     private final String address;
     int capacity;
 
-    boolean indoor;
+    protected final boolean indoor;
 
     public Place(String name, String city, String address, int capacity, boolean indoor) {
         this.name = name;
@@ -41,4 +44,5 @@ public abstract class Place {
     public boolean isIndoor(){
         return indoor;
     }
+
 }

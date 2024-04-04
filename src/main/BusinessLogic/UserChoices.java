@@ -7,7 +7,8 @@ public enum UserChoices {
     public enum BasicUser {
         Exit,
         SeeEventsMenu,
-        SeeInfo
+        SeeInfo,
+        SeeAllPlaces,
     }
 
     public enum MusicianActions {
@@ -17,19 +18,27 @@ public enum UserChoices {
         SeeEventsSubscriptions,
         SubscribeEvent,
 
-    };
+    }
 
     public enum UserActions {
         Exit,
         FilterEvents,
         SeeAllEvents,
-    };
+    }
 
-    public enum OwnerActions {
+    public enum OwnerPlannerActions {
         Exit,
         FilterEvents,
         SeeAllEvents,
         CreateEvent,
+    }
+
+    public enum MunicipalityActions {
+        Exit,
+        FilterEvents,
+        SeeAllEvents,
+        CreateEvent,
+        AcceptEvents,
     }
 
 }
