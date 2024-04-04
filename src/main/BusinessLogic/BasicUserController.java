@@ -4,6 +4,7 @@ import main.DomainModel.PrivatePlace;
 import main.Interface.AccessInterface;
 import main.Interface.BasicUserInterface;
 
+import java.sql.SQLException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.List;
@@ -96,8 +97,8 @@ public abstract class BasicUserController {
         return basicUserOptions;
     }
 
-    public List<PrivatePlace> getPrivatePlaces() {
-        return placesController.getPrivatePlacesList();
+    public List<PrivatePlace> getPrivatePlaces() throws SQLException {
+        return placesController.getPrivatePlaces();
     }
 
     public int getId() {
@@ -152,6 +153,11 @@ public abstract class BasicUserController {
         //Get an integer
         scanner = new Scanner(System.in);
         return Integer.parseInt(scanner.nextLine());
+    }
+
+    public String getString(){
+        scanner = new Scanner(System.in);
+        return scanner.nextLine();
     }
 
     public String getEventName() {

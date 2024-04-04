@@ -29,7 +29,7 @@ public class PlannerController extends BasicUserController {
         this.placesController = placesController;
     }
 
-    public void plannerFunctions() {
+    public void plannerFunctions() throws SQLException {
         /*
          * Wrapper that select and call the right function to execute, based on the user input on the first menu.
          * The first menu is the one about showing user and places info, quitting the app or entering the events menu
@@ -52,14 +52,14 @@ public class PlannerController extends BasicUserController {
                     plannerInterface.printPlannerInfo(planner);
                     break;
                 case SeeAllPlaces:
-                    plannerInterface.printPrivatePlaces(placesController.getPrivatePlacesList());
-                    plannerInterface.printPublicPlaces(placesController.getPublicPlacesList());
+                    plannerInterface.printPrivatePlaces(placesController.getPrivatePlaces());
+                    plannerInterface.printPublicPlaces(placesController.getPublicPlaces());
                     break;
             }
         }
     }
 
-    public void eventsManagement() {
+    public void eventsManagement() throws SQLException {
         /*
          * Wrapper that select and call the right function to execute, based on the user input on the second menu.
          * The second menu is the one about managing and showing all the events.
@@ -93,7 +93,7 @@ public class PlannerController extends BasicUserController {
         }
     }
 
-    public void createPrivateEvent() {
+    public void createPrivateEvent() throws SQLException {
         /*
          * Uses the interface to obtain all the infos to create the event.
          * At the end it generates the event withe received info
@@ -114,7 +114,7 @@ public class PlannerController extends BasicUserController {
         plannerInterface.privateEventCreated(event);
     }
 
-    public void createPublicEvent() {
+    public void createPublicEvent() throws SQLException {
         /*
          * Uses the interface to obtain all the infos to create the event.
          * At the end it generates the event withe received info
@@ -134,11 +134,10 @@ public class PlannerController extends BasicUserController {
         plannerInterface.publicEventCreated(event);
     }
 
-    private PublicPlace getPublicPlace() {
+    private PublicPlace getPublicPlace() throws SQLException {
         //Returns a private place with the givenID
-        plannerInterface.getId();
-        PublicPlace publicPlace = null;
-        publicPlace = placesController.getPublicPlace(getId());
+        plannerInterface.getName();
+        PublicPlace publicPlace = placesController.getPublicPlace(getString());
         if(publicPlace == null) {
             plannerInterface.tryAgain();
             getPrivatePlace();
@@ -146,11 +145,10 @@ public class PlannerController extends BasicUserController {
         return publicPlace;
     }
 
-    private PrivatePlace getPrivatePlace() {
+    private PrivatePlace getPrivatePlace() throws SQLException {
         //Returns a private place with the givenID
-        plannerInterface.getId();
-        PrivatePlace privatePlace = null;
-        privatePlace = placesController.getPrivatePlace(getId());
+        plannerInterface.getName();
+        PrivatePlace privatePlace = placesController.getPrivatePlace(getString());
         if(privatePlace == null) {
             plannerInterface.tryAgain();
             privatePlace = getPrivatePlace();

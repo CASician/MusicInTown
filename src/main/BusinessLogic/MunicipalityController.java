@@ -29,7 +29,7 @@ public class MunicipalityController extends BasicUserController {
         municipalityActions = null;
     }
 
-    public void municipalityFunctions() {
+    public void municipalityFunctions() throws SQLException{
         /*
         * Wrapper that select and call the right function to execute, based on the user input on the first menu.
         * The first menu is the one about showing user and places info, quitting the app or entering the events menu
@@ -48,8 +48,8 @@ public class MunicipalityController extends BasicUserController {
                     municipalityInterface.logOut();
                     break;
                 case SeeAllPlaces:
-                    municipalityInterface.printPrivatePlaces(placesController.getPrivatePlacesList());
-                    municipalityInterface.printPublicPlaces(placesController.getPublicPlacesList());
+                    municipalityInterface.printPrivatePlaces(placesController.getPrivatePlaces());
+                    municipalityInterface.printPublicPlaces(placesController.getPublicPlaces());
                     break;
                 default:
                     break;
@@ -57,7 +57,7 @@ public class MunicipalityController extends BasicUserController {
         }
     }
 
-    private void eventsManagement() {
+    private void eventsManagement() throws SQLException {
         /*
          * Wrapper that select and call the right function to execute, based on the user input on the second menu.
          * The second menu is the one about managing and showing all the events.

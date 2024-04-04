@@ -29,7 +29,7 @@ public class OwnerController extends BasicUserController {
         this.eventController = eventController;
     }
 
-    public void ownerFunctions() {
+    public void ownerFunctions() throws SQLException {
         /*
          * Wrapper that select and call the right function to execute, based on the user input on the first menu.
          * The first menu is the one about showing user and places info, quitting the app or entering the events menu
@@ -48,8 +48,8 @@ public class OwnerController extends BasicUserController {
                     ownerInterface.logOut();
                     break;
                 case SeeAllPlaces:
-                    ownerInterface.printPrivatePlaces(placesController.getPrivatePlacesList());
-                    ownerInterface.printPublicPlaces(placesController.getPublicPlacesList());
+                    ownerInterface.printPrivatePlaces(placesController.getPrivatePlaces());
+                    ownerInterface.printPublicPlaces(placesController.getPublicPlaces());
                     break;
                 default:
                     break;
@@ -57,7 +57,7 @@ public class OwnerController extends BasicUserController {
         }
     }
 
-    public void eventsManagement() {
+    public void eventsManagement() throws SQLException {
         /*
          * Wrapper that select and call the right function to execute, based on the user input on the second menu.
          * The second menu is the one about managing and showing all the events.
@@ -85,7 +85,7 @@ public class OwnerController extends BasicUserController {
         }
     }
 
-    public void createEvent() {
+    public void createEvent() throws SQLException {
         /*
         * Uses the interface to obtain all the infos to create the event.
         * At the end it generates the event withe received info

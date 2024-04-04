@@ -30,7 +30,7 @@ public class PlannerInterface extends BasicUserInterface {
         System.out.println("Press 0 for a private event, 1 for a public event: ");
     }
 
-    public void getId() { System.out.println("Insert the ID of the place: "); }
+    public void getName() { System.out.println("Insert the Name of the place: "); }
 
     public void privateEventCreated(PrivateEvent event) {
         //Prints all the info of the private event created by the planner. The event is taken as a parameter

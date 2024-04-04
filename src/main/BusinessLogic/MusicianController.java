@@ -27,7 +27,7 @@ public class MusicianController extends BasicUserController {
         this.eventController = eventController;
     }
 
-    public void musicianFunctions() {
+    public void musicianFunctions() throws SQLException {
         /*
          * Wrapper that select and call the right function to execute, based on the user input on the first menu.
          * The first menu is the one about showing user and places info, quitting the app or entering the events menu
@@ -46,8 +46,8 @@ public class MusicianController extends BasicUserController {
                     musicianInterface.logOut();
                     break;
                 case SeeAllPlaces:
-                    musicianInterface.printPrivatePlaces(placesController.getPrivatePlacesList());
-                    musicianInterface.printPublicPlaces(placesController.getPublicPlacesList());
+                    musicianInterface.printPrivatePlaces(placesController.getPrivatePlaces());
+                    musicianInterface.printPublicPlaces(placesController.getPublicPlaces());
                     break;
                 default:
                     break;
@@ -55,7 +55,7 @@ public class MusicianController extends BasicUserController {
         }
     }
 
-    public void eventsManagement() {
+    public void eventsManagement() throws SQLException {
         /*
          * Wrapper that select and call the right function to execute, based on the user input on the second menu.
          * The second menu is the one about managing and showing all the events.

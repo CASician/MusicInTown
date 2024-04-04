@@ -59,7 +59,7 @@ public class PrivateEventDAO {
         // The results are logged in the EventsDAO.delete
     }
 
-    public ArrayList<PrivateEvent> getAll() throws SQLException {
+    public static ArrayList<PrivateEvent> getAll() throws SQLException {
         // Create the array you return
         ArrayList<PrivateEvent> eventsByOwner = new ArrayList<>();
         ArrayList<PrivateEvent> eventsByExternals = new ArrayList<>();

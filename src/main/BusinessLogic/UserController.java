@@ -28,7 +28,7 @@ public class UserController extends BasicUserController {
 
     }
 
-    public void userFunctions() {
+    public void userFunctions() throws SQLException {
         /*
          * Wrapper that select and call the right function to execute, based on the user input on the first menu.
          * The first menu is the one about showing user and places info, quitting the app or entering the events menu
@@ -47,8 +47,8 @@ public class UserController extends BasicUserController {
                     userInterface.logOut();
                     break;
                 case SeeAllPlaces:
-                    userInterface.printPrivatePlaces(placesController.getPrivatePlacesList());
-                    userInterface.printPublicPlaces(placesController.getPublicPlacesList());
+                    userInterface.printPrivatePlaces(placesController.getPrivatePlaces());
+                    userInterface.printPublicPlaces(placesController.getPublicPlaces());
                     break;
                 default:
                     break;
@@ -56,7 +56,7 @@ public class UserController extends BasicUserController {
         }
     }
 
-    public void eventsManagement() {
+    public void eventsManagement() throws SQLException {
         /*
          * Wrapper that select and call the right function to execute, based on the user input on the second menu.
          * The second menu is the one about managing and showing all the events.

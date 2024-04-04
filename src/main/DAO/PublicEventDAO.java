@@ -52,7 +52,7 @@ public class PublicEventDAO {
         // The results are logged in the EventsDAO.delete
     }
 
-    public ArrayList<PublicEvent> getAll() throws SQLException {
+    public static ArrayList<PublicEvent> getAll() throws SQLException {
         // Create the array you return
         ArrayList<PublicEvent> events = new ArrayList<>();
 

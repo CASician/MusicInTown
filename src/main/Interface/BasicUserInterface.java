@@ -4,6 +4,8 @@ import main.DomainModel.PrivatePlace;
 import main.DomainModel.PublicEvent;
 import main.DomainModel.PublicPlace;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -97,7 +99,7 @@ public class BasicUserInterface {
         System.out.println("insert 0 for true, 1 for false");
     }
 
-    public void printPrivatePlaces(List<PrivatePlace> privatePlaces) {
+    public void printPrivatePlaces(ArrayList<PrivatePlace> privatePlaces) {
         //Implements the view that displays all the info of all the privates place that are taken as a parameter
         if(!privatePlaces.isEmpty()) {
             for (PrivatePlace privatePlace : privatePlaces) {
@@ -111,7 +113,7 @@ public class BasicUserInterface {
         }
     }
 
-    public void printPublicPlaces(List<PublicPlace> publicPlaces) {
+    public void printPublicPlaces(ArrayList<PublicPlace> publicPlaces) {
         //Implements the view that displays all the info of all the public places that are taken as a parameter
         if(!publicPlaces.isEmpty()) {
             for (PublicPlace publicPlace : publicPlaces) {

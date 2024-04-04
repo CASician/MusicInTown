@@ -1,8 +1,12 @@
 package main.BusinessLogic;
 
+import main.DAO.EventDAO;
+import main.DAO.PrivateEventDAO;
+import main.DAO.PublicEventDAO;
 import main.DomainModel.*;
 import main.Interface.BasicUserInterface;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,17 +18,17 @@ import java.util.List;
 public class EventController implements Subject {
     PublicEvent publicEvent;
     PrivateEvent privateEvent;
-    private final EventsDAO eventsDAO;
-    List<PublicEvent> publicEvents;
-    List<PrivateEvent> privateEvents;
+    //private final EventDAO eventsDAO;
+    ArrayList<PublicEvent> publicEvents;
+    ArrayList<PrivateEvent> privateEvents;
     private final BasicUserInterface basicUserInterface;
 
     public EventController(PlacesController placesController) {
-        eventsDAO = new EventsDAO(placesController);
+        //eventsDAO = new EventDAO();
         basicUserInterface = new BasicUserInterface();
     }
 
-    public PublicEvent subscribePublicEvent(String musicianName, int musicianId, int eventId) {
+    public PublicEvent subscribePublicEvent(String musicianName, int musicianId, int eventId) throws SQLException {
         /*
         * Method used from the musician to subscribe itself to a specific public event between musician ID and event ID.
         * It checks if the event exists and if the musician is already subscribed.
@@ -32,7 +36,7 @@ public class EventController implements Subject {
         boolean found = false;
         boolean alreadySubscribed = false;
         publicEvent = null;
-        publicEvents = eventsDAO.getPublicEvents();
+        publicEvents = PublicEventDAO.getAll();
         for (PublicEvent event : publicEvents) {
             if (event.getId() == eventId) {
                 found = true;
@@ -57,7 +61,7 @@ public class EventController implements Subject {
         return publicEvent;
     }
 
-    public PrivateEvent subscribePrivateEvent(String musicianName, int musicianId, int eventId) {
+    public PrivateEvent subscribePrivateEvent(String musicianName, int musicianId, int eventId) throws SQLException {
         /*
          * Method used from the musician to subscribe itself to a specific private event between musician ID and event ID.
          * It checks if the event exists and if the musician is already subscribed.
@@ -65,7 +69,7 @@ public class EventController implements Subject {
         boolean found = false;
         boolean alreadySubscribed = false;
         privateEvent = null;
-        privateEvents = eventsDAO.getPrivateEvents();
+        privateEvents = PrivateEventDAO.getAll();
         for (PrivateEvent event : privateEvents) {
             if (event.getId() == eventId) {
                 found = true;
@@ -89,27 +93,27 @@ public class EventController implements Subject {
         return privateEvent;
     }
 
-    public List<PublicEvent> getPublicEvents() {
+    public ArrayList<PublicEvent> getPublicEvents() throws SQLException {
         //Returns a list of all the public events
         if(publicEvents == null) {
-            publicEvents = eventsDAO.getPublicEvents();
+            publicEvents = PublicEventDAO.getAll();
         }
         return publicEvents;
     }
 
-    public List<PrivateEvent> getPrivateEvents() {
+    public ArrayList<PrivateEvent> getPrivateEvents() throws SQLException {
         //Returns a list of all the private events
         if(privateEvents == null) {
-            privateEvents = eventsDAO.getPrivateEvents();
+            privateEvents = PrivateEventDAO.getAll();
         }
         return privateEvents;
     }
 
-    public List<PrivateEvent> getPrivateEventsFiltered(LocalDate date) {
+    public ArrayList<PrivateEvent> getPrivateEventsFiltered(LocalDate date) throws SQLException {
         //Returns a list of all the private events filtered until a specific date
-        List<PrivateEvent> filteredEvents = new ArrayList<>();
+        ArrayList<PrivateEvent> filteredEvents = new ArrayList<>();
         if(privateEvents == null) {
-            privateEvents = eventsDAO.getPrivateEvents();
+            privateEvents = PrivateEventDAO.getAll();
         }
         for (PrivateEvent event : privateEvents) {
             if (!date.isBefore(event.getDate())) {
@@ -118,11 +122,11 @@ public class EventController implements Subject {
         }
         return filteredEvents;
     }
-    public List<PublicEvent> getPublicEventsFiltered(LocalDate date) {
+    public ArrayList<PublicEvent> getPublicEventsFiltered(LocalDate date) throws SQLException {
         //Returns a list of all the public events filtered until a specific date
-        List<PublicEvent> filteredEvents = new ArrayList<>();
+        ArrayList<PublicEvent> filteredEvents = new ArrayList<>();
         if(publicEvents == null) {
-            publicEvents = eventsDAO.getPublicEvents();
+            publicEvents = PublicEventDAO.getAll();
         }
         for (PublicEvent event : publicEvents) {
             if (!date.isBefore(event.getDate())) {
@@ -150,29 +154,29 @@ public class EventController implements Subject {
     }
 
     public PrivateEvent createPrivateEvent(String name, Boolean open, LocalDate date, Owner owner,
-                            PrivatePlace privatePlace, String duration, String city, String type) {
+                            PrivatePlace privatePlace, String duration, String city, String type) throws SQLException {
         //Creates a new private event and it saves it inside the database using the EventDAO
         PrivateEvent event = new PrivateEvent(
                 name, open, date, owner, privatePlace, duration, city, type);
-        eventsDAO.getPrivateEvents().add(event);
+        PrivateEventDAO.add(event);
         return event;
     }
 
     public PrivateEvent createPrivateEvent(String name, Boolean open, LocalDate date, Planner planner,
-                                           PrivatePlace privatePlace, String duration, String city, String type) {
+                                           PrivatePlace privatePlace, String duration, String city, String type) throws SQLException {
         //Same as before but instead of owner this one is organized by the planner
         PrivateEvent event = new PrivateEvent(
                 name, open, date, planner, privatePlace, duration, city, type);
-        eventsDAO.getPrivateEvents().add(event);
+        PrivateEventDAO.add(event);
         return event;
     }
 
     public PublicEvent createPublicEvent(String eventName, Boolean open, LocalDate date, Planner planner,
-                                         PublicPlace publicPlace, String duration, String city, String eventType) {
+                                         PublicPlace publicPlace, String duration, String city, String eventType) throws SQLException {
         //Creates a new public event and it saves it inside the database using the EventDAO
         PublicEvent event = new PublicEvent(
                 eventName, open, date, planner, publicPlace, duration, city, eventType);
-        eventsDAO.getPublicEvents().add(event);
+        PublicEventDAO.add(event);
         return event;
     }
 }
