@@ -8,13 +8,13 @@ public class Owner extends BasicUser {
     public PrivatePlace privatePlace;
     private final String name;
 
-    public Owner(String name, String username, int id, PrivatePlace privatePlace) {
-        super(id, username);
+    public Owner(String username, String name, PrivatePlace privatePlace) {
+        super(username);
         this.privatePlace = privatePlace;
         this.name = name;
     }
 
-    public Owner(String name, String username){
+    public Owner(String username, String name){
         super(username);
         this.name = name;
     }
