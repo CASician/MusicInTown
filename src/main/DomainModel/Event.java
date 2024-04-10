@@ -17,7 +17,6 @@ public abstract class Event {
     protected String duration;
     protected Boolean accepted;
     protected HashMap<Integer, String> subscriptions;
-
     public Event(String name, boolean open, LocalDate date, String city, String type, String duration) {
         this.name = name;
         this.open = open;
@@ -58,8 +57,10 @@ public abstract class Event {
         this.id = lastId;
     }
     public boolean isOpen() { return open; }
-
     public void setAccepted(boolean bool){
         this.accepted = bool;
-    } // DAO needs this
+    }
+    public Boolean isAccepted() {
+        return accepted;
+    }
 }
