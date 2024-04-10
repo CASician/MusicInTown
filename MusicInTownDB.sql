@@ -91,14 +91,12 @@
         city     VARCHAR(50),
         type     VARCHAR(50),
         duration VARCHAR(50),
-        accepted BOOLEAN    -- TODO: add this in the DAO
+        accepted BOOLEAN
     );
 
     CREATE TABLE IF NOT EXISTS PrivateEvents(
         id              INT PRIMARY KEY,
         place           VARCHAR(50) NOT NULL,
-        -- TODO: make sure that planner and OwnerPlanner actually refer to a valid ID. They are FK from planners and owners.
-        -- or maybe it's not necessary: if you do it, you need to pass the ID and not the username.
         planner         VARCHAR(50),
         ownerPlanner    VARCHAR(50),
         FOREIGN KEY(id) REFERENCES Events(id) ON UPDATE CASCADE ON DELETE CASCADE
@@ -224,11 +222,17 @@
     create view privateevents_esteso_intero as
     select *
     from privateevents_intero pei
-             join planner_intero pli on (pei.privateevent_plannername = pli.planner_name)
-             join owner_intero oi on (pei.privateevent_ownerplannername = oi.owner_name)
-             join privateplace_intero ppi on (pei.privateevent_place = ppi.privateplace_name);
+             left join planner_intero pli on (pei.privateevent_plannername = pli.planner_name)
+             left join owner_intero oi on (pei.privateevent_ownerplannername = oi.owner_name)
+             left join privateplace_intero ppi on (pei.privateevent_place = ppi.privateplace_name);
 
     create view privateplace_esteso_intero as
     select *
     from privateplace_intero ppi
              join owner_intero oi on (ppi.privateplace_ownername = oi.owner_name);
+
+create view publicevents_esteso_intero as
+    select *
+    from publicEvents_intero pEi
+        left join planner_intero pi on (pi.planner_username = pEi.publicevent_planner)
+        left join publicplace_intero ppi on (ppi.publicplace_name = pEi.publicevent_place);

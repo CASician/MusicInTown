@@ -110,7 +110,7 @@ public class PlannerController extends BasicUserController {
         String city = privatePlace.getCity();
         String eventType = getEventInfo();
         event = eventController.createPrivateEvent(eventName, open, date, planner, privatePlace, duration, city, eventType);
-        //TODO: set the event ID
+        // The ID is automatically assigned by the DAO
         plannerInterface.privateEventCreated(event);
     }
 
@@ -130,7 +130,7 @@ public class PlannerController extends BasicUserController {
         PublicPlace publicPlace = getPublicPlace();
         String eventType = getEventInfo();
         event = eventController.createPublicEvent(eventName, open, date, planner, publicPlace, duration, publicPlace.getCity(), eventType);
-        //TODO: set the event ID
+        // The ID is automatically assigned by the DAO
         plannerInterface.publicEventCreated(event);
     }
 

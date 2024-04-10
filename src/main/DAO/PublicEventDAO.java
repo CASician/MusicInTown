@@ -60,41 +60,30 @@ public class PublicEventDAO {
         Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
         // Retrieve the data from DataBase
-        PreparedStatement getAll = connection.prepareStatement(
-                "select \n" +
-                        "pe.id as event_id, e.name as event_name, e.open, e.date, e.city as city_of_event, e.type, e.duration, e.accepted,\n" +
-                        "pe.place as place_name, pp.id as place_id, pp.city as city_of_place, pp.address, pp.capacity, pp.indoor,\n" +
-                        "pe.planner as planner_name, pl.id as planner_id,\n" +
-                        "bu.username as planner_username\n" +
-                        "from publicevents pe \n" +
-                        "join events e on (pe.id = e.id)\n" +
-                        "join places pp on (pp.name = pe.place)\n" +
-                        "join planners pl on (pl.name = pe.planner)\n" +
-                        "join basicusers bu on (pl.id = bu.id)"
-        );
+        PreparedStatement getAll = connection.prepareStatement("select * from publicevents_esteso_intero");
         ResultSet resultSet = getAll.executeQuery();
 
         // Add data in the array
         while(resultSet.next()) {
             // Add data
             // retrieve data from Events
-            int id = resultSet.getInt("event_id");
-            String name = resultSet.getString("event_name");
-            boolean open = resultSet.getBoolean("open");
-            Date date_to_convert = resultSet.getDate("date");
-            LocalDate date = date_to_convert.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            String city = resultSet.getString("city_of_event");
-            String type = resultSet.getString("type");
-            String duration = resultSet.getString("duration");
-            boolean accepted = resultSet.getBoolean("accepted");
+            int id = resultSet.getInt("publicevent_id");
+            String name = resultSet.getString("publicevent_name");
+            boolean open = resultSet.getBoolean("publicevent_open");
+            java.sql.Date date_to_convert = resultSet.getDate("publicevent_date");
+            LocalDate date = date_to_convert.toLocalDate();
+            String city = resultSet.getString("publicevent_city");
+            String type = resultSet.getString("publicevent_type");
+            String duration = resultSet.getString("publicevent_duration");
+            boolean accepted = resultSet.getBoolean("publicevent_accepted");
 
             // from Places
-            String placeName = resultSet.getString("place_name");
-            int placeId = resultSet.getInt("place_id");
-            String placeCity = resultSet.getString("city_of_place");
-            String address = resultSet.getString("address");
-            int capacity = resultSet.getInt("capacity");
-            boolean indoor = resultSet.getBoolean("indoor");
+            String placeName = resultSet.getString("publicplace_name");
+            int placeId = resultSet.getInt("publicplace_id");
+            String placeCity = resultSet.getString("publicplace_city");
+            String address = resultSet.getString("publicplace_address");
+            int capacity = resultSet.getInt("publicplace_capacity");
+            boolean indoor = resultSet.getBoolean("publicplace_indoor");
 
             // from Planners and BasicUsers
             int planner_id = resultSet.getInt("planner_id");
