@@ -23,9 +23,6 @@ public class PlacesController {
         privatePlaceDAO = new PrivatePlaceDAO();
     }
 
-    // Todo credo? Ci serve questa funzione unita?
-    //public PlaceDAO getPlacesDAO() { return placesDAO; }
-
     public ArrayList<PublicPlace> getPublicPlaces() throws SQLException {
         //return an array with the public place object
         return publicPlaceDAO.getAll();

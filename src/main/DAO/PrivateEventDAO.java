@@ -24,11 +24,11 @@ public class PrivateEventDAO {
 
         if (privateEvent.getPlanner() != null) // If there's a Planner, there is no OwnerPlanner and vice-versa
         {
-            insertPrivateEvent.setString(3, privateEvent.getPlanner().getUsername());
+            insertPrivateEvent.setString(3, privateEvent.getPlanner().getName());
             insertPrivateEvent.setString(4, null);
         } else {
             insertPrivateEvent.setString(3, null);
-            insertPrivateEvent.setString(4, privateEvent.getOwnerPlanner().getUsername());
+            insertPrivateEvent.setString(4, privateEvent.getOwnerPlanner().getName());
         }
 
         // Close connections
@@ -61,8 +61,8 @@ public class PrivateEventDAO {
 
     public static ArrayList<PrivateEvent> getAll() throws SQLException {
         // Create the array you return
-        ArrayList<PrivateEvent> eventsByOwner = new ArrayList<>();
-        ArrayList<PrivateEvent> eventsByExternals = new ArrayList<>();
+        // PrivateEventsList eventsList = new PrivateEventsList();
+        ArrayList<PrivateEvent> privateEvents = new ArrayList<PrivateEvent>();
 
         // Connect to DataBase
         Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
@@ -78,8 +78,8 @@ public class PrivateEventDAO {
             int privateeventId = resultSet.getInt("privateevent_id");
             String name = resultSet.getString("privateevent_name");
             boolean open = resultSet.getBoolean("privateevent_open");
-            Date date_to_convert = resultSet.getDate("privateevent_date");
-            LocalDate date = date_to_convert.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            java.sql.Date date_to_convert = resultSet.getDate("privateevent_date");
+            LocalDate date = date_to_convert.toLocalDate();
             String city = resultSet.getString("privateevent_city");
             String type = resultSet.getString("privateevent_type");
             String duration = resultSet.getString("privateevent_duration");
@@ -119,14 +119,14 @@ public class PrivateEventDAO {
                 event.setId(privateeventId); // ID is not assigned in the constructor.
                 event.setAccepted(accepted);
                 // The end
-                eventsByExternals.add(event);
+                privateEvents.add(event);
             } else {
                 PrivateEvent event = new PrivateEvent(name, open, date, owner, place, duration, city, type);
                 event.setId(privateeventId);
                 event.setAccepted(accepted);
 
                 // The end
-                eventsByOwner.add(event);
+                privateEvents.add(event);
             }
         }
 
@@ -135,9 +135,7 @@ public class PrivateEventDAO {
         getAll.close();
         connection.close();
 
-        // Todo: find a way to return both arrays! an Array of arrays?
-
         // return eventsByExternals;
-        return eventsByOwner;
+        return privateEvents;
     }
 }

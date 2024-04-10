@@ -8,8 +8,8 @@ import java.util.List;
 * It keeps all the infos (attributes) and actions (methods) related with the object and modifications that can be made on it.
 */
 public class Musician extends BasicUser {
-    private final List<PrivateEvent> privateEvents;
-    private final List<PublicEvent> publicEvents;
+    private final ArrayList<PrivateEvent> privateEvents;
+    private final ArrayList<PublicEvent> publicEvents;
     private final String name;
     private final String genre;
     private final int componentNumb;
@@ -28,7 +28,7 @@ public class Musician extends BasicUser {
     public void addPrivateSubscription(PrivateEvent event) {
         privateEvents.add(event);
     }
-    public List<PrivateEvent> getPrivateEvents() {
+    public ArrayList<PrivateEvent> getPrivateEvents() {
         //Returns the list of private events
         if(privateEvents.isEmpty()) {
             return new ArrayList<>();
@@ -37,7 +37,7 @@ public class Musician extends BasicUser {
             return privateEvents;
         }
     }
-    public List<PublicEvent> getPublicEvents() {
+    public ArrayList<PublicEvent> getPublicEvents() {
         //Returns the list of public events
         if(publicEvents.isEmpty()) {
             return new ArrayList<>();

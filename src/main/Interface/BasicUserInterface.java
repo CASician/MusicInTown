@@ -59,7 +59,7 @@ public class BasicUserInterface {
 
     public void tryAgain() { System.out.println("Wrong value inserted, try again"); }
 
-    public void printPublicEvents(List<PublicEvent> events) {
+    public void printPublicEvents(ArrayList<PublicEvent> events) {
         //Implements the view that displays all the info of a public event that is taken as a parameter
         if(!events.isEmpty()) {
             for (PublicEvent event : events) {
@@ -74,7 +74,7 @@ public class BasicUserInterface {
         }
     }
 
-    public void printPrivateEvents(List<PrivateEvent> events) {
+    public void printPrivateEvents(ArrayList<PrivateEvent> events) {
         //Implements the view that displays all the info of a private event that is taken as a parameter
         if(!events.isEmpty()) {
             for (PrivateEvent event : events) {

@@ -5,6 +5,7 @@ import main.DomainModel.PrivateEvent;
 import main.DomainModel.PublicEvent;
 import main.DomainModel.UserType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -60,7 +61,7 @@ public class MusicianInterface extends BasicUserInterface {
         }
     }
 
-    public void getSubscriptions(List<PublicEvent> publicEvents, List<PrivateEvent> privateEvents) {
+    public void getSubscriptions(ArrayList<PublicEvent> publicEvents, ArrayList<PrivateEvent> privateEvents) {
         ////Prints the info of all the public and private events that the musician subscribed to
         System.out.println("--------------------");
         System.out.println("List of events you're subscribed to: ");

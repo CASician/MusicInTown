@@ -6,6 +6,7 @@ import main.DAO.PublicEventDAO;
 import main.DomainModel.*;
 import main.Interface.BasicUserInterface;
 
+import java.sql.Array;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class EventController implements Subject {
     PrivateEvent privateEvent;
     //private final EventDAO eventsDAO;
     ArrayList<PublicEvent> publicEvents;
-    ArrayList<PrivateEvent> privateEvents;
+    ArrayList<PrivateEvent> privateEventsList;
     private final BasicUserInterface basicUserInterface;
 
     public EventController(PlacesController placesController) {
@@ -69,16 +70,33 @@ public class EventController implements Subject {
         boolean found = false;
         boolean alreadySubscribed = false;
         privateEvent = null;
-        privateEvents = PrivateEventDAO.getAll();
-        for (PrivateEvent event : privateEvents) {
+        privateEventsList = PrivateEventDAO.getAll();
+        // Double for cycle because private Events have two different signatures.
+        for (PrivateEvent event : privateEventsList) {
             if (event.getId() == eventId) {
                 found = true;
-                if(!event.getSubscriptions().containsKey(musicianId)) {
+                if (!event.getSubscriptions().containsKey(musicianId)) {
                     privateEvent = event;
-                } else { alreadySubscribed = true; }
+                } else {
+                    alreadySubscribed = true;
+                }
                 break;
             }
         }
+        /*
+        for (PrivateEvent event : privateEventsList.getByPlanner()) {
+            if (event.getId() == eventId) {
+                found = true;
+                if (!event.getSubscriptions().containsKey(musicianId)) {
+                    privateEvent = event;
+                } else {
+                    alreadySubscribed = true;
+                }
+                break;
+            }
+        }
+
+         */
         if(!found) {
             basicUserInterface.eventNotFound();
         }
@@ -103,19 +121,19 @@ public class EventController implements Subject {
 
     public ArrayList<PrivateEvent> getPrivateEvents() throws SQLException {
         //Returns a list of all the private events
-        if(privateEvents == null) {
-            privateEvents = PrivateEventDAO.getAll();
+        if(privateEventsList == null) {
+            privateEventsList = PrivateEventDAO.getAll();
         }
-        return privateEvents;
+        return privateEventsList;
     }
 
     public ArrayList<PrivateEvent> getPrivateEventsFiltered(LocalDate date) throws SQLException {
         //Returns a list of all the private events filtered until a specific date
         ArrayList<PrivateEvent> filteredEvents = new ArrayList<>();
-        if(privateEvents == null) {
-            privateEvents = PrivateEventDAO.getAll();
+        if(privateEventsList == null) {
+            privateEventsList = PrivateEventDAO.getAll();
         }
-        for (PrivateEvent event : privateEvents) {
+        for (PrivateEvent event : privateEventsList) {
             if (!date.isBefore(event.getDate())) {
                 filteredEvents.add(event);
             }
