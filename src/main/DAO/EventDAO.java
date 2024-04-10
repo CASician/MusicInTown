@@ -14,7 +14,7 @@ public class EventDAO {
         Connection conn = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
         // Add the Event in Database
-        PreparedStatement insertEvent = conn.prepareStatement("INSERT INTO Events(id, name, open, date, city, type, duration) VALUES (DEFAULT, ?, ?, ?, ?, ?, ?)");
+        PreparedStatement insertEvent = conn.prepareStatement("INSERT INTO Events(id, name, open, date, city, type, duration, accepted) VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?)");
 
         // Insert real data instead of the "?"
         insertEvent.setString(1, event.getName());
@@ -23,6 +23,7 @@ public class EventDAO {
         insertEvent.setString(4, event.getCity());
         insertEvent.setString(5, event.getType());
         insertEvent.setString(6, event.getDuration());
+        insertEvent.setBoolean(7, event.isAccepted());
         insertEvent.executeUpdate();
 
         // Find ID and assign it to the real instance.
