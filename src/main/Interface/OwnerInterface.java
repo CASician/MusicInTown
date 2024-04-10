@@ -15,9 +15,13 @@ public class OwnerInterface extends BasicUserInterface {
         System.out.println("Name: " + owner.getName());
         System.out.println("Username: " + owner.getUsername());
         System.out.println("PLACE OWNED");
-        System.out.println("Name: " + owner.getPlace().getName());
-        System.out.println("City: " + owner.getPlace().getCity());
-        System.out.println("Address: " + owner.getPlace().getAddress());
+        if(owner.getPlace() != null) {
+            System.out.println("Name: " + owner.getPlace().getName());
+            System.out.println("City: " + owner.getPlace().getCity());
+            System.out.println("Address: " + owner.getPlace().getAddress());
+        } else {
+            System.out.println("No places linked to this owner");
+        }
         System.out.println("--------------------");
 
     }
