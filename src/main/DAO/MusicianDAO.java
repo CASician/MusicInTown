@@ -88,25 +88,33 @@ public class MusicianDAO {
     public Musician getMusician(String username) throws SQLException{
         // Connect to DataBase
         Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
+        Musician musician = null;
 
-        // Retrieve the data from DataBase
-        PreparedStatement getMusician = connection.prepareStatement("select m.id, m.name, m.genre, m.componentNumb, BU.username from Musicians M join BasicUsers BU on M.id = BU.id where BU.username = ?");
-        getMusician.setString(1, username);
-        ResultSet resultSet = getMusician.executeQuery();
+        try {
+            // Retrieve the data from DataBase
+            PreparedStatement getMusician = connection.prepareStatement("select m.id, m.name, m.genre, m.componentNumb, BU.username from Musicians M join BasicUsers BU on M.id = BU.id where BU.username = ?");
+            getMusician.setString(1, username);
+            ResultSet resultSet = getMusician.executeQuery();
 
-        // Create the object with the retrieved data
-        resultSet.next();
-        int id = resultSet.getInt("id");
-        String name = resultSet.getString("name");
-        String genre = resultSet.getString("genre");
-        int numb = resultSet.getInt("componentNumb");
+            // Create the object with the retrieved data
+            if (!resultSet.next()) {
+                throw new Exception("Utente non trovato");
+            }
+            int id = resultSet.getInt("id");
+            String name = resultSet.getString("name");
+            String genre = resultSet.getString("genre");
+            int numb = resultSet.getInt("componentNumb");
 
-        Musician musician = new Musician(username, name, genre, numb);
-        musician.setId(id);
+            musician = new Musician(username, name, genre, numb);
+            musician.setId(id);
 
-        // Close connections
-        resultSet.close();
-        getMusician.close();
+            // Close connections
+            resultSet.close();
+            getMusician.close();
+        } catch (Exception e) {
+            connection.close();
+            System.out.println(e.getMessage());
+        }
         connection.close();
 
         // The end
