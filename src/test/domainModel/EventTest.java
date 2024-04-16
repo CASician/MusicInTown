@@ -22,6 +22,7 @@ public class EventTest {
         Assertions.assertEquals( "Santa Croce", e.getPlace().getName());
     }
 
+    @Test
     public void privateEvent_test() throws Exception {
         Owner o = new Owner("user", "owner");
         PrivatePlace pp = new PrivatePlace("Firenze",  "Hard Rock", "Piazza Della Repubblica",
