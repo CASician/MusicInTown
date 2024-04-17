@@ -15,17 +15,16 @@ import static java.lang.Boolean.TRUE;
 /*
 * Class that controls all the actions of the Municipality.
 */
-public class MunicipalityController extends BasicUserController implements Observer{
+public class MunicipalityController extends BasicUserController{
     private final EventController eventController;
-    private final MunicipalityDAO municipalityDAO;
+    //private final MunicipalityDAO municipalityDAO;
     private final Municipality municipality;
     UserChoices.MunicipalityActions municipalityActions;
     private final MunicipalityInterface municipalityInterface;
 
     public MunicipalityController(String username, EventController eventController, PlacesController placesController) throws SQLException {
         super(placesController);
-        municipalityDAO = new MunicipalityDAO();
-        this.municipality = municipalityDAO.getMunicipality(username);
+        this.municipality = MunicipalityDAO.getMunicipality(username);
         this.eventController = eventController;
         municipalityInterface = new MunicipalityInterface();
         municipalityActions = null;
@@ -136,18 +135,6 @@ public class MunicipalityController extends BasicUserController implements Obser
             }
         } else { // Here the array is empty
             System.out.print("No Events to be accepted. ");
-        }
-    }
-
-    @Override
-    public void update(Event event) throws SQLException {
-        if (event instanceof PublicEvent) {
-            // Downcast?
-            PublicEvent publicEvent = (PublicEvent) event;
-            // Add the event to municipality's array
-            municipality.propose_event(publicEvent);
-            // Add the request in the database
-            EventsToBeAcceptedDAO.add(municipality, publicEvent);
         }
     }
 }
