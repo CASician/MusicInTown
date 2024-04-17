@@ -1,19 +1,21 @@
 package main.BusinessLogic;
 
+import main.DAO.EventsToBeAcceptedDAO;
 import main.DAO.MunicipalityDAO;
-import main.DomainModel.Municipality;
-import main.DomainModel.PublicEvent;
-import main.DomainModel.PublicPlace;
+import main.DomainModel.*;
 import main.Interface.MunicipalityInterface;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Objects;
+
+import static java.lang.Boolean.TRUE;
 
 /*
 * Class that controls all the actions of the Municipality.
 */
-public class MunicipalityController extends BasicUserController {
+public class MunicipalityController extends BasicUserController implements Observer{
     private final EventController eventController;
     private final MunicipalityDAO municipalityDAO;
     private final Municipality municipality;
@@ -86,10 +88,6 @@ public class MunicipalityController extends BasicUserController {
         }
     }
 
-    private boolean acceptEvent() {
-        return false;
-    };
-
     private UserChoices.MunicipalityActions getMunicipalityInput() {
         municipalityActions = null;
         input = getInteger();
@@ -101,5 +99,38 @@ public class MunicipalityController extends BasicUserController {
         }
         input = 0;
         return municipalityActions;
+    }
+
+    private void acceptEvent() throws SQLException {
+        // print events to be accepted
+        ArrayList<PublicEvent> events = municipality.getEventsToBeAccepted();
+        municipalityInterface.printPublicEvents(events);
+
+        // take input as id of the event
+        input = getInteger();
+
+        // search for the requested event
+        if (input >= 0) {
+            for (PublicEvent event: events){
+                if (event.getId() == input){
+                    // set the accepted field to true
+                    event.setAccepted(TRUE);
+                    // remove event from array
+                    municipality.getEventsToBeAccepted().remove(event);
+                    // remove event from table in database
+                    EventsToBeAcceptedDAO.delete(event.getId());
+                }
+            }
+        } else {
+            accessInterface.invalidChoice();
+        }
+    }
+
+    @Override
+    public void update(Event event) {
+        if (event instanceof PublicEvent) {
+            PublicEvent publicEvent = (PublicEvent) event;
+            municipality.propose_event(publicEvent);
+        }
     }
 }

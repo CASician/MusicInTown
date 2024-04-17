@@ -1,18 +1,23 @@
 package main.BusinessLogic;
 
+import main.DAO.EventsToBeAcceptedDAO;
 import main.DAO.OwnerDAO;
+import main.DomainModel.Event;
 import main.DomainModel.Owner;
 import main.DomainModel.PrivateEvent;
 import main.Interface.OwnerInterface;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Objects;
+
+import static java.lang.Boolean.TRUE;
 
 /*
 * Class that controls all the actions of the Owner.
 */
-public class OwnerController extends BasicUserController {
+public class OwnerController extends BasicUserController implements Observer{
     UserChoices.OwnerPlannerActions ownerActions;
     private final EventController eventController;
     private final OwnerInterface ownerInterface;
@@ -81,6 +86,9 @@ public class OwnerController extends BasicUserController {
                     break;
                 case CreateEvent:
                     createEvent();
+                case AcceptEvents:
+                    acceptEvent();
+                    break;
             }
         }
     }
@@ -117,5 +125,37 @@ public class OwnerController extends BasicUserController {
         }
         input = 0;
         return ownerActions;
+    }
+
+    private void acceptEvent() throws SQLException {
+        // print events to be accepted
+        ArrayList<PrivateEvent> events = owner.getEventsToBeAccepted();
+        ownerInterface.printPrivateEvents(events);
+
+        // take input as id of the event
+        input = getInteger();
+
+        // search for the requested event
+        if (input >= 0) {
+            for (PrivateEvent event: events){
+                if (event.getId() == input){
+                    // set the accepted field to true
+                    event.setAccepted(TRUE);
+                    // remove event from array
+                    owner.getEventsToBeAccepted().remove(event);
+                    // remove event from table in database
+                    EventsToBeAcceptedDAO.delete(event.getId());
+                }
+            }
+        } else {
+            accessInterface.invalidChoice();
+        }
+    }
+    @Override
+    public void update(Event event) {
+        if (event instanceof PrivateEvent) {
+            PrivateEvent privateEvent = (PrivateEvent) event;
+            owner.propose_event(privateEvent);
+        }
     }
 }
