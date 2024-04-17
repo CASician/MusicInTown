@@ -106,6 +106,7 @@ public class OwnerDAO {
             owner.setPrivatePlace(privatePlace);
         }
         owner.setId(id);
+        owner.setEventsToBeAccepted(EventsToBeAcceptedDAO.getAll_owner(owner));
 
         // Close connections
         resultSet.close();

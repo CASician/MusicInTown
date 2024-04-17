@@ -30,6 +30,7 @@ public class OwnerInterface extends BasicUserInterface {
         //Prints the basic interface of the events menu and it adds the specific owner events view
         basicEventsInterface();
         System.out.println("3 to create a new event, ");
+        System.out.println("4 to accept proposed events, ");
     }
 
     public void eventCreated(PrivateEvent event) {

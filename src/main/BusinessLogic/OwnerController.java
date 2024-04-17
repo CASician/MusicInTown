@@ -128,27 +128,39 @@ public class OwnerController extends BasicUserController implements Observer{
     }
 
     private void acceptEvent() throws SQLException {
-        // print events to be accepted
+        // Create object to be removed and the list that will be used
+        PrivateEvent toBeRemoved = null;
         ArrayList<PrivateEvent> events = owner.getEventsToBeAccepted();
-        ownerInterface.printPrivateEvents(events);
 
-        // take input as id of the event
-        input = getInteger();
+        if (!events.isEmpty()) {
+            // print events to be accepted
+            ownerInterface.printPrivateEvents(events);
 
-        // search for the requested event
-        if (input >= 0) {
-            for (PrivateEvent event: events){
-                if (event.getId() == input){
-                    // set the accepted field to true
-                    event.setAccepted(TRUE);
-                    // remove event from array
-                    owner.getEventsToBeAccepted().remove(event);
-                    // remove event from table in database
-                    EventsToBeAcceptedDAO.delete(event.getId());
+            // take input as id of the event
+            System.out.println("---------------");
+            System.out.println("Select the ID of the event you want to accept: ");
+            input = getInteger();
+
+            // search for the requested event
+            if (input >= 0) {
+                for (PrivateEvent event: events){
+                    if (event.getId() == input){
+                        toBeRemoved = event;
+                        // set the accepted field to true
+                        event.setAccepted(TRUE);
+                        // remove event from table in database
+                        EventsToBeAcceptedDAO.delete(event.getId());
+                        // Show results
+                        System.out.println("Event ACCEPTED!");
+                    }
                 }
+                // remove event from array
+                owner.remove_event(toBeRemoved);
+            } else {
+                accessInterface.invalidChoice();
             }
-        } else {
-            accessInterface.invalidChoice();
+        } else { // The array is empty
+            System.out.println("No Events to be accepted. ");
         }
     }
     @Override
