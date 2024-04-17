@@ -140,10 +140,14 @@ public class MunicipalityController extends BasicUserController implements Obser
     }
 
     @Override
-    public void update(Event event) {
+    public void update(Event event) throws SQLException {
         if (event instanceof PublicEvent) {
+            // Downcast?
             PublicEvent publicEvent = (PublicEvent) event;
+            // Add the event to municipality's array
             municipality.propose_event(publicEvent);
+            // Add the request in the database
+            EventsToBeAcceptedDAO.add(municipality, publicEvent);
         }
     }
 }

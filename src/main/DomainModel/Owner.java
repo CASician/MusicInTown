@@ -14,7 +14,7 @@ public class Owner extends BasicUser {
     public PrivatePlace privatePlace;
     private final String name;
 
-    ArrayList<PrivateEvent> eventsToBeAccepted;
+    ArrayList<PrivateEvent> eventsToBeAccepted = new ArrayList<>();
 
     public Owner(String username, String name, PrivatePlace privatePlace) throws SQLException {
         super(username);

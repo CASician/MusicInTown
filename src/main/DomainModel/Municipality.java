@@ -19,8 +19,6 @@ public class Municipality extends BasicUser {
     public Municipality(String username, String city) throws SQLException {
         super(username);
         this.city = city;
-        //eventsToBeAccepted = EventsToBeAcceptedDAO.getAll_municipality(this);
-        // TODO add this to DAO instead. lol. this was for owner
     }
 
     public void setPublicPlaces(List<PublicPlace> publicPlaces) {

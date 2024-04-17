@@ -23,6 +23,7 @@ public class EventController implements Subject {
     ArrayList<PublicEvent> publicEvents;
     ArrayList<PrivateEvent> privateEventsList;
     private final BasicUserInterface basicUserInterface;
+    ArrayList<Observer> observers = new ArrayList<>();
 
     public EventController(PlacesController placesController) {
         //eventsDAO = new EventDAO();
@@ -162,8 +163,10 @@ public class EventController implements Subject {
     */
 
     @Override
-    public void notifyEventObservers(int eventId) {
-
+    public void notifyEventObservers(Event event) throws SQLException {
+        for(Observer o: observers){
+            o.update(event);
+        }
     }
 
     @Override
@@ -172,10 +175,10 @@ public class EventController implements Subject {
     }
 
     @Override
-    public void attach(Observer o){}
+    public void attach(Observer o){observers.add(o);}
 
     @Override
-    public void detach(Observer o){}
+    public void detach(Observer o){observers.remove(o);}
 
     public PrivateEvent createPrivateEvent(String name, Boolean open, LocalDate date, Owner owner,
                             PrivatePlace privatePlace, String duration, String city, String type) throws SQLException {
@@ -183,6 +186,8 @@ public class EventController implements Subject {
         PrivateEvent event = new PrivateEvent(
                 name, open, date, owner, privatePlace, duration, city, type);
         PrivateEventDAO.add(event);
+        // Add the event to the owner's list of proposed events by notifying the addition.
+        notifyEventObservers(event);
         return event;
     }
 
@@ -192,6 +197,8 @@ public class EventController implements Subject {
         PrivateEvent event = new PrivateEvent(
                 name, open, date, planner, privatePlace, duration, city, type);
         PrivateEventDAO.add(event);
+        // Add the event to the owner's list of proposed events by notifying the addition
+        notifyEventObservers(event);
         return event;
     }
 
@@ -201,6 +208,7 @@ public class EventController implements Subject {
         PublicEvent event = new PublicEvent(
                 eventName, open, date, planner, publicPlace, duration, city, eventType);
         PublicEventDAO.add(event);
+        notifyEventObservers(event);
         return event;
     }
 }

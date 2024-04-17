@@ -21,4 +21,5 @@ public class PrivatePlace extends Place {
     public String getOwnerName(){
         return owner.getName();
     }
+    public Owner getOwner(){return owner;}
 }

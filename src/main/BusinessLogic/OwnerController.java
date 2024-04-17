@@ -164,10 +164,16 @@ public class OwnerController extends BasicUserController implements Observer{
         }
     }
     @Override
-    public void update(Event event) {
+    public void update(Event event) throws SQLException {
         if (event instanceof PrivateEvent) {
+            // Downcast?
             PrivateEvent privateEvent = (PrivateEvent) event;
+            // Add the event to owner's array
             owner.propose_event(privateEvent);
+            // Add the request in the database
+            EventsToBeAcceptedDAO.add(owner, privateEvent);
+        } else {
+            System.out.println("Kidding! you won't find this error");
         }
     }
 }
