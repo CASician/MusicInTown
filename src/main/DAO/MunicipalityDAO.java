@@ -95,6 +95,7 @@ public class MunicipalityDAO {
 
         Municipality municipality = new Municipality(username, city);
         municipality.setId(id);
+        municipality.setEventsToBeAccepted(EventsToBeAcceptedDAO.getAll_municipality(municipality));
 
         // Close connections
         resultSet.close();
