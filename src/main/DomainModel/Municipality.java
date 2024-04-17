@@ -1,5 +1,6 @@
 package main.DomainModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -10,10 +11,12 @@ import java.util.List;
 public class Municipality extends BasicUser {
     List<PublicPlace> publicPlaces;
     String city;
+    ArrayList<PublicEvent> eventsToBeAccepted;
 
     public Municipality(String username, String city) {
         super(username);
         this.city = city;
+        eventsToBeAccepted = new ArrayList<PublicEvent>();
     }
 
     public void setPublicPlaces(List<PublicPlace> publicPlaces) {
@@ -22,5 +25,13 @@ public class Municipality extends BasicUser {
 
     public String getCity() {
         return city;
+    }
+
+    public void propose_event(PublicEvent event){
+        eventsToBeAccepted.add(event);
+    }
+
+    public ArrayList<PublicEvent> getEventsToBeAccepted() {
+        return eventsToBeAccepted;
     }
 }
