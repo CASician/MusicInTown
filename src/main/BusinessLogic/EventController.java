@@ -1,8 +1,6 @@
 package main.BusinessLogic;
 
-import main.DAO.EventDAO;
-import main.DAO.PrivateEventDAO;
-import main.DAO.PublicEventDAO;
+import main.DAO.*;
 import main.DomainModel.*;
 import main.Interface.BasicUserInterface;
 
@@ -23,7 +21,7 @@ public class EventController implements Subject {
     ArrayList<PublicEvent> publicEvents;
     ArrayList<PrivateEvent> privateEventsList;
     private final BasicUserInterface basicUserInterface;
-    ArrayList<Observer> observers = new ArrayList<>();
+    //ArrayList<Observer> observers = new ArrayList<>();
 
     public EventController(PlacesController placesController) {
         //eventsDAO = new EventDAO();
@@ -84,20 +82,7 @@ public class EventController implements Subject {
                 break;
             }
         }
-        /*
-        for (PrivateEvent event : privateEventsList.getByPlanner()) {
-            if (event.getId() == eventId) {
-                found = true;
-                if (!event.getSubscriptions().containsKey(musicianId)) {
-                    privateEvent = event;
-                } else {
-                    alreadySubscribed = true;
-                }
-                break;
-            }
-        }
 
-         */
         if(!found) {
             basicUserInterface.eventNotFound();
         }
@@ -164,21 +149,35 @@ public class EventController implements Subject {
 
     @Override
     public void notifyEventObservers(Event event) throws SQLException {
-        for(Observer o: observers){
-            o.update(event);
+        if(event instanceof PublicEvent){
+            // call proper municipality and its update method
+            // Downcast?
+            PublicEvent publicEvent = (PublicEvent) event;
+            // Add the event to municipality's array
+            Municipality m = MunicipalityDAO.getMunicipality("florence");
+            m.propose_event(publicEvent);
+            // Add the request in the database
+            EventsToBeAcceptedDAO.add(m, publicEvent);
+            // Show Results
+            System.out.println("Municipality notified successfully! ");
+        } else if(event instanceof PrivateEvent){
+            // call proper owner and its update method
+            // Downcast?
+            PrivateEvent privateEvent = (PrivateEvent) event;
+            // Add the event to owner's array
+            privateEvent.getPlace().getOwner().propose_event(privateEvent);
+            // Add the request in the database
+            EventsToBeAcceptedDAO.add(privateEvent.getPlace().getOwner(), privateEvent);
+            // Show Results
+            System.out.println("Owner notified successfully! ");
         }
+        //o.update(event);
     }
 
     @Override
     public void notifyPlaceObservers(int placeId) {
 
     }
-
-    @Override
-    public void attach(Observer o){observers.add(o);}
-
-    @Override
-    public void detach(Observer o){observers.remove(o);}
 
     public PrivateEvent createPrivateEvent(String name, Boolean open, LocalDate date, Owner owner,
                             PrivatePlace privatePlace, String duration, String city, String type) throws SQLException {

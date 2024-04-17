@@ -17,7 +17,7 @@ import static java.lang.Boolean.TRUE;
 /*
 * Class that controls all the actions of the Owner.
 */
-public class OwnerController extends BasicUserController implements Observer{
+public class OwnerController extends BasicUserController{
     UserChoices.OwnerPlannerActions ownerActions;
     private final EventController eventController;
     private final OwnerInterface ownerInterface;
@@ -161,19 +161,6 @@ public class OwnerController extends BasicUserController implements Observer{
             }
         } else { // The array is empty
             System.out.println("No Events to be accepted. ");
-        }
-    }
-    @Override
-    public void update(Event event) throws SQLException {
-        if (event instanceof PrivateEvent) {
-            // Downcast?
-            PrivateEvent privateEvent = (PrivateEvent) event;
-            // Add the event to owner's array
-            owner.propose_event(privateEvent);
-            // Add the request in the database
-            EventsToBeAcceptedDAO.add(owner, privateEvent);
-        } else {
-            System.out.println("Kidding! you won't find this error");
         }
     }
 }
