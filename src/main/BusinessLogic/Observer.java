@@ -1,5 +1,7 @@
 package main.BusinessLogic;
 
+import main.DomainModel.Event;
+
 public interface Observer {
-    //void update();
+    void update(Event event);
 }

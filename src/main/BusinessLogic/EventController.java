@@ -171,6 +171,12 @@ public class EventController implements Subject {
 
     }
 
+    @Override
+    public void attach(Observer o){}
+
+    @Override
+    public void detach(Observer o){}
+
     public PrivateEvent createPrivateEvent(String name, Boolean open, LocalDate date, Owner owner,
                             PrivatePlace privatePlace, String duration, String city, String type) throws SQLException {
         //Creates a new private event and it saves it inside the database using the EventDAO
