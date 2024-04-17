@@ -107,6 +107,7 @@ public class MunicipalityController extends BasicUserController implements Obser
         municipalityInterface.printPublicEvents(events);
 
         // take input as id of the event
+        System.out.println("Select the ID of the event you want to accept: ");
         input = getInteger();
 
         // search for the requested event
