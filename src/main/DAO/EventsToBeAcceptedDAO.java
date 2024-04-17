@@ -2,6 +2,7 @@ package main.DAO;
 
 import main.DomainModel.*;
 
+import javax.swing.text.html.HTMLDocument;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -89,8 +90,14 @@ public class EventsToBeAcceptedDAO {
         deleteEvent.setInt(1, id);
         deleteEvent.executeUpdate();
 
+        // Modify the attribute Accepted to TRUE
+        PreparedStatement modify = conn.prepareStatement("update events set accepted = true where id = ?");
+        modify.setInt(1, id);
+        modify.executeUpdate();
+
         // Close connections
         deleteEvent.close();
+        modify.close();
         conn.close();
     }
     public static void add(BasicUser basicUser, Event event) throws SQLException{
