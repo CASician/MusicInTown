@@ -16,7 +16,7 @@ public class Municipality extends BasicUser {
     String city;
     ArrayList<PublicEvent> eventsToBeAccepted;
 
-    public Municipality(String username, String city) throws SQLException {
+    public Municipality(String username, String city){
         super(username);
         this.city = city;
     }
@@ -33,6 +33,8 @@ public class Municipality extends BasicUser {
         eventsToBeAccepted.add(event);
     }
 
+    public void delete_event(PublicEvent event) { eventsToBeAccepted.remove(event); }
+
     public ArrayList<PublicEvent> getEventsToBeAccepted() {
         return eventsToBeAccepted;
     }
@@ -40,6 +42,4 @@ public class Municipality extends BasicUser {
     public void setEventsToBeAccepted(ArrayList<PublicEvent> eventsToBeAccepted) {
         this.eventsToBeAccepted = eventsToBeAccepted;
     }
-
-    public void delete_event(PublicEvent event) { eventsToBeAccepted.remove(event); }
 }
