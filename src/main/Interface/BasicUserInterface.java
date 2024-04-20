@@ -64,6 +64,7 @@ public class BasicUserInterface {
         if(!events.isEmpty()) {
             for (PublicEvent event : events) {
                 System.out.println("--------------------");
+                System.out.println("ID: " + event.getId());
                 System.out.print("EVENT NAME: " + event.getName());
                 System.out.print(", DATE: " + event.getDate());
                 System.out.print(", CITY: " + event.getPlace().getCity());
@@ -79,6 +80,7 @@ public class BasicUserInterface {
         if(!events.isEmpty()) {
             for (PrivateEvent event : events) {
                 System.out.println("--------------------");
+                System.out.println("ID: " + event.getId());
                 System.out.print("EVENT NAME: " + event.getName());
                 System.out.print(", DATE: " + event.getDate());
                 System.out.print(", CLUB NAME: " + event.getPlace().getName());

@@ -27,7 +27,6 @@ public abstract class Event {
         this.accepted = Boolean.FALSE; // Should we leave it like this?
         subscriptions = new HashMap<>();
     }
-
     public void addSubscription(String musicianName, int musicianId) {
         //Add the musician ID and band name to the list of event subscription
         subscriptions.put(musicianId, musicianName);

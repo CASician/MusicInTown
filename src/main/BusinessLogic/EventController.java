@@ -1,8 +1,6 @@
 package main.BusinessLogic;
 
-import main.DAO.EventDAO;
-import main.DAO.PrivateEventDAO;
-import main.DAO.PublicEventDAO;
+import main.DAO.*;
 import main.DomainModel.*;
 import main.Interface.BasicUserInterface;
 
@@ -16,16 +14,14 @@ import java.util.List;
 * Class that implements all the methods to manage the events.
 * It communicates with the EventDAO and generates/modify public and private events
 */
-public class EventController implements Subject {
+public class EventController {
     PublicEvent publicEvent;
     PrivateEvent privateEvent;
-    //private final EventDAO eventsDAO;
     ArrayList<PublicEvent> publicEvents;
     ArrayList<PrivateEvent> privateEventsList;
     private final BasicUserInterface basicUserInterface;
 
     public EventController(PlacesController placesController) {
-        //eventsDAO = new EventDAO();
         basicUserInterface = new BasicUserInterface();
     }
 
@@ -83,20 +79,7 @@ public class EventController implements Subject {
                 break;
             }
         }
-        /*
-        for (PrivateEvent event : privateEventsList.getByPlanner()) {
-            if (event.getId() == eventId) {
-                found = true;
-                if (!event.getSubscriptions().containsKey(musicianId)) {
-                    privateEvent = event;
-                } else {
-                    alreadySubscribed = true;
-                }
-                break;
-            }
-        }
 
-         */
         if(!found) {
             basicUserInterface.eventNotFound();
         }
@@ -161,14 +144,29 @@ public class EventController implements Subject {
     }
     */
 
-    @Override
-    public void notifyEventObservers(int eventId) {
-
-    }
-
-    @Override
-    public void notifyPlaceObservers(int placeId) {
-
+    public void notifyEventObservers(Event event) throws SQLException {
+        if(event instanceof PublicEvent){
+            // call proper municipality and add the event to its list
+            // Downcast?
+            PublicEvent publicEvent = (PublicEvent) event;
+            // Add the event to municipality's array
+            Municipality m = MunicipalityDAO.getMunicipality("florence");
+            m.propose_event(publicEvent);
+            // Add the request in the database
+            EventsToBeAcceptedDAO.add(m, publicEvent);
+            // Show Results
+            System.out.println("Municipality notified successfully! ");
+        } else if(event instanceof PrivateEvent){
+            // call proper owner and add the event to its list
+            // Downcast?
+            PrivateEvent privateEvent = (PrivateEvent) event;
+            // Add the event to owner's array
+            privateEvent.getPlace().getOwner().propose_event(privateEvent);
+            // Add the request in the database
+            EventsToBeAcceptedDAO.add(privateEvent.getPlace().getOwner(), privateEvent);
+            // Show Results
+            System.out.println("Owner notified successfully! ");
+        }
     }
 
     public PrivateEvent createPrivateEvent(String name, Boolean open, LocalDate date, Owner owner,
@@ -177,6 +175,8 @@ public class EventController implements Subject {
         PrivateEvent event = new PrivateEvent(
                 name, open, date, owner, privatePlace, duration, city, type);
         PrivateEventDAO.add(event);
+        // Add the event to the owner's list of proposed events by notifying the addition.
+        notifyEventObservers(event);
         return event;
     }
 
@@ -186,6 +186,8 @@ public class EventController implements Subject {
         PrivateEvent event = new PrivateEvent(
                 name, open, date, planner, privatePlace, duration, city, type);
         PrivateEventDAO.add(event);
+        // Add the event to the owner's list of proposed events by notifying the addition
+        notifyEventObservers(event);
         return event;
     }
 
@@ -195,6 +197,7 @@ public class EventController implements Subject {
         PublicEvent event = new PublicEvent(
                 eventName, open, date, planner, publicPlace, duration, city, eventType);
         PublicEventDAO.add(event);
+        notifyEventObservers(event);
         return event;
     }
 }

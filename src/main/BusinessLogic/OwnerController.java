@@ -1,30 +1,33 @@
 package main.BusinessLogic;
 
+import main.DAO.EventsToBeAcceptedDAO;
 import main.DAO.OwnerDAO;
+import main.DomainModel.Event;
 import main.DomainModel.Owner;
 import main.DomainModel.PrivateEvent;
 import main.Interface.OwnerInterface;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Objects;
+
+import static java.lang.Boolean.TRUE;
 
 /*
 * Class that controls all the actions of the Owner.
 */
-public class OwnerController extends BasicUserController {
+public class OwnerController extends BasicUserController{
     UserChoices.OwnerPlannerActions ownerActions;
     private final EventController eventController;
     private final OwnerInterface ownerInterface;
-    private final OwnerDAO ownerDAO;
     private final Owner owner;
     private final PlacesController placesController;
 
     public OwnerController(String username, EventController eventController, PlacesController placesController) throws SQLException {
         super(placesController);
         ownerInterface = new OwnerInterface();
-        ownerDAO = new OwnerDAO();
-        this.owner = ownerDAO.getOwner(username);
+        this.owner = OwnerDAO.getOwner(username);
         this.placesController = placesController;
         this.eventController = eventController;
     }
@@ -81,6 +84,9 @@ public class OwnerController extends BasicUserController {
                     break;
                 case CreateEvent:
                     createEvent();
+                case AcceptEvents:
+                    acceptEvent();
+                    break;
             }
         }
     }
@@ -117,5 +123,42 @@ public class OwnerController extends BasicUserController {
         }
         input = 0;
         return ownerActions;
+    }
+
+    private void acceptEvent() throws SQLException {
+        // Create object to be removed and the list that will be used
+        PrivateEvent toBeRemoved = null;
+        ArrayList<PrivateEvent> events = owner.getEventsToBeAccepted();
+
+        if (!events.isEmpty()) {
+            // print events to be accepted
+            ownerInterface.printPrivateEvents(events);
+
+            // take input as id of the event
+            System.out.println("---------------");
+            System.out.println("Select the ID of the event you want to accept: ");
+            input = getInteger();
+
+            // search for the requested event
+            if (input >= 0) {
+                for (PrivateEvent event: events){
+                    if (event.getId() == input){
+                        toBeRemoved = event;
+                        // set the accepted field to true
+                        event.setAccepted(TRUE);
+                        // remove event from table in database
+                        EventsToBeAcceptedDAO.delete(event.getId());
+                        // Show results
+                        System.out.println("Event ACCEPTED!");
+                    }
+                }
+                // remove event from array
+                owner.remove_event(toBeRemoved);
+            } else {
+                accessInterface.invalidChoice();
+            }
+        } else { // The array is empty
+            System.out.println("No Events to be accepted. ");
+        }
     }
 }

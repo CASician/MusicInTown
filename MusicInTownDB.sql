@@ -38,6 +38,8 @@
     DROP TABLE IF EXISTS PrivatePlaces CASCADE;
     DROP TABLE IF EXISTS PublicPlaces CASCADE;
 
+    DROP TABLE IF EXISTS EventsToBeAccepted CASCADE;
+
     /*
      ---------------------USERS------------------------
      */
@@ -139,6 +141,15 @@
         id      INT PRIMARY KEY,
         FOREIGN KEY (id) REFERENCES Places(id) ON UPDATE CASCADE ON DELETE CASCADE
     );
+
+------------------------------- WAITING LIST FOR EVENTS -------------------------
+
+    CREATE TABLE IF NOT EXISTS EventsToBeAccepted (
+        id_controller       INT,
+        id_event            INT,
+        FOREIGN KEY(id_controller) REFERENCES BasicUsers(id),
+        FOREIGN KEY(id_event) REFERENCES Events(id)
+    )
 ---------------------------------- VIEWS ----------------------------------------
 
     DROP VIEW IF EXISTS planner_intero;
@@ -149,6 +160,7 @@
     DROP VIEW IF EXISTS owner_intero;
     DROP VIEW IF EXISTS privateevents_esteso_intero;
     DROP VIEW IF EXISTS privateplace_esteso_intero;
+    DROP VIEW IF EXISTS municipality_intero;
 
     create view planner_intero as
     select p.id         as planner_id,
@@ -218,6 +230,14 @@
            bu.username  as owner_username
     from owners o
              join basicusers bu on (o.id=bu.id);
+
+    create view municipality_intero as
+        select
+            bu.id       as municipality_id,
+            bu.username as municipality_username,
+            m.city      as municipality_city
+        from Municipalities m
+        natural join BasicUsers bu
 
     create view privateevents_esteso_intero as
     select *

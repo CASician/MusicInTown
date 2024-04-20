@@ -1,5 +1,9 @@
 package main.DomainModel;
 
+import main.DAO.EventsToBeAcceptedDAO;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -10,8 +14,9 @@ import java.util.List;
 public class Municipality extends BasicUser {
     List<PublicPlace> publicPlaces;
     String city;
+    ArrayList<PublicEvent> eventsToBeAccepted;
 
-    public Municipality(String username, String city) {
+    public Municipality(String username, String city){
         super(username);
         this.city = city;
     }
@@ -22,5 +27,19 @@ public class Municipality extends BasicUser {
 
     public String getCity() {
         return city;
+    }
+
+    public void propose_event(PublicEvent event){
+        eventsToBeAccepted.add(event);
+    }
+
+    public void delete_event(PublicEvent event) { eventsToBeAccepted.remove(event); }
+
+    public ArrayList<PublicEvent> getEventsToBeAccepted() {
+        return eventsToBeAccepted;
+    }
+
+    public void setEventsToBeAccepted(ArrayList<PublicEvent> eventsToBeAccepted) {
+        this.eventsToBeAccepted = eventsToBeAccepted;
     }
 }

@@ -83,7 +83,7 @@ public class UserDAO {
         return users;
     }
 
-    public User getUser(String username) throws SQLException{
+    public static User getUser(String username) throws SQLException{
         // Connect to DataBase
         Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 

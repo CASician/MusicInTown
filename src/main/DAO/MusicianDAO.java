@@ -50,7 +50,7 @@ public class MusicianDAO {
         // The result is logged in the BasicUserDAO.delete
     }
 
-    public ArrayList<Musician> getAll() throws SQLException {
+    public static ArrayList<Musician> getAll() throws SQLException {
         // Create the array you return
         ArrayList<Musician> users = new ArrayList<>();
 
@@ -85,7 +85,7 @@ public class MusicianDAO {
         return users;
     }
 
-    public Musician getMusician(String username) throws SQLException{
+    public static Musician getMusician(String username) throws SQLException{
         // Connect to DataBase
         Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
         Musician musician = null;

@@ -83,7 +83,7 @@ public class PlannerDAO {
         return users;
     }
 
-    public Planner getPlanner(String username) throws SQLException{
+    public static Planner getPlanner(String username) throws SQLException{
         // Connect to DataBase
         Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 

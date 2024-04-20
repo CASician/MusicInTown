@@ -79,7 +79,7 @@ public class MunicipalityDAO {
         return users;
     }
 
-    public Municipality getMunicipality(String username) throws SQLException{
+    public static Municipality getMunicipality(String username) throws SQLException{
         // Connect to DataBase
         Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 
@@ -95,6 +95,7 @@ public class MunicipalityDAO {
 
         Municipality municipality = new Municipality(username, city);
         municipality.setId(id);
+        municipality.setEventsToBeAccepted(EventsToBeAcceptedDAO.getAll_municipality(municipality));
 
         // Close connections
         resultSet.close();

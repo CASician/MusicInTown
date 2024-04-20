@@ -48,7 +48,7 @@ public class PrivatePlaceDAO {
         // The result is logged in the PlaceDAO.delete
     }
 
-    public ArrayList<PrivatePlace> getAll() throws SQLException {
+    public static ArrayList<PrivatePlace> getAll() throws SQLException {
         ArrayList<PrivatePlace> places = new ArrayList<PrivatePlace>();
 
         // Connect to DataBase

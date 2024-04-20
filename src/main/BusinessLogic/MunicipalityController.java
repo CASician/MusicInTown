@@ -1,29 +1,29 @@
 package main.BusinessLogic;
 
+import main.DAO.EventsToBeAcceptedDAO;
 import main.DAO.MunicipalityDAO;
-import main.DomainModel.Municipality;
-import main.DomainModel.PublicEvent;
-import main.DomainModel.PublicPlace;
+import main.DomainModel.*;
 import main.Interface.MunicipalityInterface;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Objects;
+
+import static java.lang.Boolean.TRUE;
 
 /*
 * Class that controls all the actions of the Municipality.
 */
-public class MunicipalityController extends BasicUserController {
+public class MunicipalityController extends BasicUserController{
     private final EventController eventController;
-    private final MunicipalityDAO municipalityDAO;
     private final Municipality municipality;
     UserChoices.MunicipalityActions municipalityActions;
     private final MunicipalityInterface municipalityInterface;
 
     public MunicipalityController(String username, EventController eventController, PlacesController placesController) throws SQLException {
         super(placesController);
-        municipalityDAO = new MunicipalityDAO();
-        this.municipality = municipalityDAO.getMunicipality(username);
+        this.municipality = MunicipalityDAO.getMunicipality(username);
         this.eventController = eventController;
         municipalityInterface = new MunicipalityInterface();
         municipalityActions = null;
@@ -86,10 +86,6 @@ public class MunicipalityController extends BasicUserController {
         }
     }
 
-    private boolean acceptEvent() {
-        return false;
-    };
-
     private UserChoices.MunicipalityActions getMunicipalityInput() {
         municipalityActions = null;
         input = getInteger();
@@ -101,5 +97,43 @@ public class MunicipalityController extends BasicUserController {
         }
         input = 0;
         return municipalityActions;
+    }
+
+    private void acceptEvent() throws SQLException {
+        // Create object to be removed and the list that will be used
+        PublicEvent toBeRemoved = null;
+        ArrayList<PublicEvent> events = municipality.getEventsToBeAccepted();
+
+        // Checks if the array is not empty
+        if (!events.isEmpty()) {
+            // print events to be accepted
+            municipalityInterface.printPublicEvents(events);
+
+            // take input as id of the event
+            System.out.println("---------------");
+            System.out.println("Select the ID of the event you want to accept: ");
+            input = getInteger();
+
+            // search for the requested event
+            if (input >= 0) {
+                for (PublicEvent event: events){
+                    if (event.getId() == input){
+                        toBeRemoved = event;
+                        // set the accepted field to true
+                        event.setAccepted(TRUE);
+                        // remove event from table in database
+                        EventsToBeAcceptedDAO.delete(event.getId());
+                        // Show results
+                        System.out.println("Event ACCEPTED!");
+                    }
+                }
+                // remove event from array
+                municipality.delete_event(toBeRemoved);
+            } else { // Error message if the ID is not valid
+                accessInterface.invalidChoice();
+            }
+        } else { // Here the array is empty
+            System.out.print("No Events to be accepted. ");
+        }
     }
 }

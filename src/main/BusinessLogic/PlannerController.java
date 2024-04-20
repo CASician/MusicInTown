@@ -16,15 +16,13 @@ public class PlannerController extends BasicUserController {
     UserChoices.OwnerPlannerActions plannerActions;
     private final EventController eventController;
     private final PlannerInterface plannerInterface;
-    private final PlannerDAO plannerDAO;
     private final Planner planner;
     private final PlacesController placesController;
 
     public PlannerController(String username, EventController eventController, PlacesController placesController) throws SQLException {
         super(placesController);
         this.eventController = eventController;
-        plannerDAO = new PlannerDAO();
-        this.planner = plannerDAO.getPlanner(username);
+        this.planner = PlannerDAO.getPlanner(username);
         plannerInterface = new PlannerInterface();
         this.placesController = placesController;
     }

@@ -5,7 +5,6 @@ package main.DomainModel;
 * It keeps all the infos (attributes) and actions (methods) related with the object and modifications that can be made on it.
 */
 public class Planner extends BasicUser {
-    protected int id;
     protected String name;
 
 
