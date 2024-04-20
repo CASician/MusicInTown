@@ -159,6 +159,7 @@
     DROP VIEW IF EXISTS privateEvents_intero;
     DROP VIEW IF EXISTS owner_intero;
     DROP VIEW IF EXISTS privateevents_esteso_intero;
+    DROP VIEW IF EXISTS publicevents_esteso_intero;
     DROP VIEW IF EXISTS privateplace_esteso_intero;
     DROP VIEW IF EXISTS municipality_intero;
 
@@ -256,3 +257,125 @@ create view publicevents_esteso_intero as
     from publicEvents_intero pEi
         left join planner_intero pi on (pi.planner_username = pEi.publicevent_planner)
         left join publicplace_intero ppi on (ppi.publicplace_name = pEi.publicevent_place);
+
+--------------------------------- DATA ----------------------------------------
+
+    INSERT INTO basicusers (id, username) VALUES (1, 'paba');
+    INSERT INTO basicusers (id, username) VALUES (2, 'imaginedragons');
+    INSERT INTO basicusers (id, username) VALUES (3, 'beatles');
+    INSERT INTO basicusers (id, username) VALUES (4, 'annalisa');
+    INSERT INTO basicusers (id, username) VALUES (5, 'maneskin');
+    INSERT INTO basicusers (id, username) VALUES (6, 'florence');
+    INSERT INTO basicusers (id, username) VALUES (8, 'dante');
+    INSERT INTO basicusers (id, username) VALUES (9, 'oderisi');
+    INSERT INTO basicusers (id, username) VALUES (10, 'provenzano');
+    INSERT INTO basicusers (id, username) VALUES (11, 'jacopo');
+    INSERT INTO basicusers (id, username) VALUES (12, 'virgilio');
+    INSERT INTO basicusers (id, username) VALUES (13, 'cris');
+    INSERT INTO basicusers (id, username) VALUES (14, 'pia');
+    INSERT INTO basicusers (id, username) VALUES (15, 'guido');
+    INSERT INTO basicusers (id, username) VALUES (16, 'giorgione');
+    INSERT INTO basicusers (id, username) VALUES (17, 'franceschino');
+    INSERT INTO basicusers (id, username) VALUES (30, 'tizio');
+    INSERT INTO basicusers (id, username) VALUES (31, 'caio');
+    INSERT INTO basicusers (id, username) VALUES (32, 'sempronio');
+
+    INSERT INTO public.musicians (id, name, genre, componentnumb) VALUES (1, 'Paolo', 'Classic', 1);
+    INSERT INTO public.musicians (id, name, genre, componentnumb) VALUES (2, 'Imagine Dragons', 'pop rock', 4);
+    INSERT INTO public.musicians (id, name, genre, componentnumb) VALUES (3, 'Beatles', 'pop rock', 4);
+    INSERT INTO public.musicians (id, name, genre, componentnumb) VALUES (4, 'Annalisa', 'pop', 1);
+    INSERT INTO public.musicians (id, name, genre, componentnumb) VALUES (5, 'Maneskin', 'rock', 4);
+
+    INSERT INTO public.municipalities (id, city) VALUES (6, 'Firenze');
+
+    INSERT INTO public.owners (id, name, place) VALUES (8, 'Dante Alighieri', 'Eden');
+    INSERT INTO public.owners (id, name, place) VALUES (9, 'Oderisi da Gubbio', 'Purgatorio');
+    INSERT INTO public.owners (id, name, place) VALUES (10, 'Provenzano Salvani', 'Teatro Paradiso');
+    INSERT INTO public.owners (id, name, place) VALUES (11, 'Jacopo del Cassero', 'Bottega di Pasticceria');
+    INSERT INTO public.owners (id, name, place) VALUES (12, 'Virgilio', 'Inferno');
+
+    INSERT INTO public.planners (id, name) VALUES (13, 'Cristian');
+    INSERT INTO public.planners (id, name) VALUES (14, 'Pia de Tolomei');
+    INSERT INTO public.planners (id, name) VALUES (15, 'Guido Guinizzelli');
+    INSERT INTO public.planners (id, name) VALUES (16, 'Giorgio Petrocchi');
+    INSERT INTO public.planners (id, name) VALUES (17, 'Francesco Bausi');
+
+    INSERT INTO public."Users" (id, name) VALUES (30, 'Tizio');
+    INSERT INTO public."Users" (id, name) VALUES (31, 'Caio');
+    INSERT INTO public."Users" (id, name) VALUES (32, 'Sempronio');
+
+    INSERT INTO public.events (id, name, open, date, city, type, duration, accepted) VALUES (1, 'Giornata della Musica', true, '2021-01-01', 'Firenze', 'Culturale', 'Un giorno', true);
+    INSERT INTO public.events (id, name, open, date, city, type, duration, accepted) VALUES (2, 'Festival - il Viaggio di Dante', true, '2022-02-02', 'Firenze', 'Culturale', 'Una settimana', true);
+    INSERT INTO public.events (id, name, open, date, city, type, duration, accepted) VALUES (3, 'Sagra di Settignano', true, '2023-03-03', 'Firenze', 'Culturale', 'Tre giorni', true);
+    INSERT INTO public.events (id, name, open, date, city, type, duration, accepted) VALUES (4, 'Serata Rock', false, '2024-04-04', 'Firenze', 'Culturale', 'serata', true);
+    INSERT INTO public.events (id, name, open, date, city, type, duration, accepted) VALUES (5, 'Serata Indie', false, '2025-05-05', 'Firenze', 'Culturale', 'serata', true);
+    INSERT INTO public.events (id, name, open, date, city, type, duration, accepted) VALUES (6, 'Mostra Fotografica - Alluminar', true, '2021-06-06', 'Firenze', 'Culturale', 'serata', false);
+    INSERT INTO public.events (id, name, open, date, city, type, duration, accepted) VALUES (7, 'Matrimonio Infernale', false, '2022-07-07', 'Firenze', 'Culturale', 'serata', false);
+    INSERT INTO public.events (id, name, open, date, city, type, duration, accepted) VALUES (8, 'Aperitivo per Società Dantesca', false, '2023-08-08', 'Firenze', 'Culturale', 'serata', true);
+    INSERT INTO public.events (id, name, open, date, city, type, duration, accepted) VALUES (9, 'Torneo di Zara', true, '2024-09-09', 'Firenze', 'Culturale', 'serata', false);
+    INSERT INTO public.events (id, name, open, date, city, type, duration, accepted) VALUES (10, 'Concerto - Passione secondo Matteo', false, '2025-10-10', 'Firenze', 'Culturale', 'serata', false);
+    INSERT INTO public.events (id, name, open, date, city, type, duration, accepted) VALUES (11, 'Raperino', true, '2024-04-10', 'Firenze', 'L''ha proposto qualcuno', '4 giorni', null);
+    INSERT INTO public.events (id, name, open, date, city, type, duration, accepted) VALUES (12, 'Raperino 2', true, '2024-04-10', 'Firenze', 'Poco culturale', '4 giorni', null);
+    INSERT INTO public.events (id, name, open, date, city, type, duration, accepted) VALUES (13, 'Private Night', false, '2024-04-11', 'Firenze', 'Infernale', '1 giorni', null);
+    INSERT INTO public.events (id, name, open, date, city, type, duration, accepted) VALUES (14, 'All you can eat - Pizza', true, '2024-05-15', 'Firenze', 'Culinario', '1 giorni', true);
+    INSERT INTO public.events (id, name, open, date, city, type, duration, accepted) VALUES (15, 'Il boscaiuolo felice', true, '2024-04-17', 'Firenze', 'Not so cultural', '2 giorni', false);
+    INSERT INTO public.events (id, name, open, date, city, type, duration, accepted) VALUES (16, 'Il nido del magimbu', true, '2024-04-17', 'Firenze', 'Niente', '2 giorni', false);
+    INSERT INTO public.events (id, name, open, date, city, type, duration, accepted) VALUES (17, 'Boh', true, '2024-05-15', 'Firenze', 'Ih', '1 giorni', false);
+    INSERT INTO public.events (id, name, open, date, city, type, duration, accepted) VALUES (18, 'Finale?', true, '2025-05-25', 'Firenze', 'EHEhe', '2 giorni', false);
+    INSERT INTO public.events (id, name, open, date, city, type, duration, accepted) VALUES (19, 'Finalissimo?', true, '2024-06-12', 'Firenze', 'No.', '1 giorni', false);
+    INSERT INTO public.events (id, name, open, date, city, type, duration, accepted) VALUES (20, 'No.', true, '2026-12-31', 'Firenze', 'NO.', '1 giorni', false);
+    INSERT INTO public.events (id, name, open, date, city, type, duration, accepted) VALUES (21, 'Vabbe', true, '2025-12-31', 'Firenze', 'ool', '1 giorni', false);
+    INSERT INTO public.events (id, name, open, date, city, type, duration, accepted) VALUES (22, 'Uno dei tanti', true, '2029-12-30', 'Firenze', 'Ma', '1 giorni', true);
+
+    INSERT INTO public.publicevents (id, place, planner) VALUES (1, 'Teatro Fiesole', 'pia');
+    INSERT INTO public.publicevents (id, place, planner) VALUES (2, 'Piazzale Michelangiolo', 'cris');
+    INSERT INTO public.publicevents (id, place, planner) VALUES (3, 'Lungarno', 'franceschino');
+    INSERT INTO public.publicevents (id, place, planner) VALUES (4, 'Piazza Repubblica', 'giorgione');
+    INSERT INTO public.publicevents (id, place, planner) VALUES (5, 'Circolo Arci', 'guido');
+
+    INSERT INTO public.privateevents (id, place, planner, ownerplanner) VALUES (6, 'Purgatorio', null, 'Oderisi da Gubbio');
+    INSERT INTO public.privateevents (id, place, planner, ownerplanner) VALUES (7, 'Inferno', 'Pia de Tolomei', null);
+    INSERT INTO public.privateevents (id, place, planner, ownerplanner) VALUES (8, 'Eden', null, 'Dante Alighieri');
+    INSERT INTO public.privateevents (id, place, planner, ownerplanner) VALUES (9, 'Purgatorio', 'Cristian', null);
+    INSERT INTO public.privateevents (id, place, planner, ownerplanner) VALUES (10, 'Teatro Paradiso', 'Francesco Bausi', null);
+    INSERT INTO public.privateevents (id, place, planner, ownerplanner) VALUES (11, 'Eden', null, 'dante');
+    INSERT INTO public.privateevents (id, place, planner, ownerplanner) VALUES (12, 'Eden', null, 'Dante Alighieri');
+    INSERT INTO public.privateevents (id, place, planner, ownerplanner) VALUES (13, 'Inferno', 'Cristian', null);
+    INSERT INTO public.privateevents (id, place, planner, ownerplanner) VALUES (14, 'Eden', 'Cristian', null);
+    INSERT INTO public.privateevents (id, place, planner, ownerplanner) VALUES (15, 'Eden', 'Cristian', null);
+    INSERT INTO public.privateevents (id, place, planner, ownerplanner) VALUES (16, 'Eden', 'Cristian', null);
+    INSERT INTO public.privateevents (id, place, planner, ownerplanner) VALUES (17, 'Eden', 'Cristian', null);
+    INSERT INTO public.privateevents (id, place, planner, ownerplanner) VALUES (18, 'Eden', 'Cristian', null);
+    INSERT INTO public.privateevents (id, place, planner, ownerplanner) VALUES (19, 'Eden', 'Cristian', null);
+    INSERT INTO public.privateevents (id, place, planner, ownerplanner) VALUES (20, 'Eden', 'Cristian', null);
+    INSERT INTO public.privateevents (id, place, planner, ownerplanner) VALUES (21, 'Eden', 'Cristian', null);
+    INSERT INTO public.privateevents (id, place, planner, ownerplanner) VALUES (22, 'Eden', 'Cristian', null);
+
+    INSERT INTO public.places (id, name, city, address, capacity, indoor) VALUES (1, 'Piazza Repubblica', 'Firenze', 'piazza Repubblica ', 70, false);
+    INSERT INTO public.places (id, name, city, address, capacity, indoor) VALUES (2, 'Lungarno', 'Firenze', 'via Lungarno', 40, false);
+    INSERT INTO public.places (id, name, city, address, capacity, indoor) VALUES (3, 'Circolo Arci', 'Fiesole', 'via Nazionale', 40, true);
+    INSERT INTO public.places (id, name, city, address, capacity, indoor) VALUES (4, 'Teatro Fiesole', 'Fiesole', 'via Etrusca', 700, false);
+    INSERT INTO public.places (id, name, city, address, capacity, indoor) VALUES (5, 'Piazzale Michelangiolo', 'Firenze', 'viale Michelangelo', 200, false);
+    INSERT INTO public.places (id, name, city, address, capacity, indoor) VALUES (6, 'Inferno', 'Firenze', 'via del Girone', 100, true);
+    INSERT INTO public.places (id, name, city, address, capacity, indoor) VALUES (7, 'Purgatorio', 'Fiesole', 'via della Balza', 40, true);
+    INSERT INTO public.places (id, name, city, address, capacity, indoor) VALUES (8, 'Teatro Paradiso', 'Fiesole', 'via delle Cento Stelle', 700, true);
+    INSERT INTO public.places (id, name, city, address, capacity, indoor) VALUES (9, 'Bottega di Pasticceria', 'Firenze', 'via Forese Donati', 20, true);
+    INSERT INTO public.places (id, name, city, address, capacity, indoor) VALUES (10, 'Eden', 'Firenze', 'Piazzale delle Cascine', 60, true);
+
+    INSERT INTO public.publicplaces (id) VALUES (1);
+    INSERT INTO public.publicplaces (id) VALUES (2);
+    INSERT INTO public.publicplaces (id) VALUES (3);
+    INSERT INTO public.publicplaces (id) VALUES (4);
+    INSERT INTO public.publicplaces (id) VALUES (5);
+
+    INSERT INTO public.privateplaces (id, type, owner) VALUES (6, 'Restaurant', 'Virgilio');
+    INSERT INTO public.privateplaces (id, type, owner) VALUES (7, 'Pub', 'Oderisi da Gubbio');
+    INSERT INTO public.privateplaces (id, type, owner) VALUES (8, 'ConcertHall', 'Provenzano Salvani');
+    INSERT INTO public.privateplaces (id, type, owner) VALUES (9, 'Cafe', 'Jacopo del Cassero');
+    INSERT INTO public.privateplaces (id, type, owner) VALUES (10, 'LoungeBar', 'Dante Alighieri');
+
+    INSERT INTO public.eventstobeaccepted (id_controller, id_event) VALUES (9, 6);
+    INSERT INTO public.eventstobeaccepted (id_controller, id_event) VALUES (12, 7);
+    INSERT INTO public.eventstobeaccepted (id_controller, id_event) VALUES (9, 9);
+    INSERT INTO public.eventstobeaccepted (id_controller, id_event) VALUES (10, 10);
+    INSERT INTO public.eventstobeaccepted (id_controller, id_event) VALUES (9, 6);
