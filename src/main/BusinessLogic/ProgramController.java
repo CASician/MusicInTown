@@ -20,7 +20,6 @@ public class ProgramController extends BasicUserController {
     private final PlacesController placesController;
     private final EventController eventController;
     UserType userType;
-    //String userType = null;
 
     public ProgramController() {
         super(new PlacesController());

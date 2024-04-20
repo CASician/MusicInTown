@@ -51,7 +51,7 @@ public class OwnerDAO {
         // The result is logged in the BasicUserDAO.delete
     }
 
-    public ArrayList<Owner> getAll() throws SQLException {
+    public static ArrayList<Owner> getAll() throws SQLException {
         // Create the array you return
         ArrayList<Owner> users = new ArrayList<>();
 
@@ -84,7 +84,7 @@ public class OwnerDAO {
         return users;
     }
 
-    public Owner getOwner(String username) throws SQLException{
+    public static Owner getOwner(String username) throws SQLException{
         // Connect to DataBase
         Connection connection = DriverManager.getConnection(DBconnection.jdbcUrl, DBconnection.username, DBconnection.password);
 

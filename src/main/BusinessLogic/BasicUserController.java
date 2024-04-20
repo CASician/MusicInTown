@@ -97,9 +97,10 @@ public abstract class BasicUserController {
         return basicUserOptions;
     }
 
-    public List<PrivatePlace> getPrivatePlaces() throws SQLException {
+    /* public List<PrivatePlace> getPrivatePlaces() throws SQLException {
         return placesController.getPrivatePlaces();
     }
+     */
 
     public int getId() {
         //Take the input for an ID

@@ -13,7 +13,6 @@ import java.util.Objects;
 public class UserController extends BasicUserController {
 
     private final User user;
-    private final UserDAO userDAO;
     private final EventController eventController;
     private final UserInterface userInterface;
     UserChoices.UserActions userActions;
@@ -21,8 +20,7 @@ public class UserController extends BasicUserController {
     public UserController(String username, EventController eventController, PlacesController placesController) throws SQLException {
         super(placesController);
         this.eventController = eventController;
-        userDAO = new UserDAO();
-        this.user = userDAO.getUser(username);
+        this.user = UserDAO.getUser(username);
         userInterface = new UserInterface();
         userActions = null;
 

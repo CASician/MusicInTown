@@ -21,15 +21,13 @@ public class OwnerController extends BasicUserController{
     UserChoices.OwnerPlannerActions ownerActions;
     private final EventController eventController;
     private final OwnerInterface ownerInterface;
-    private final OwnerDAO ownerDAO;
     private final Owner owner;
     private final PlacesController placesController;
 
     public OwnerController(String username, EventController eventController, PlacesController placesController) throws SQLException {
         super(placesController);
         ownerInterface = new OwnerInterface();
-        ownerDAO = new OwnerDAO();
-        this.owner = ownerDAO.getOwner(username);
+        this.owner = OwnerDAO.getOwner(username);
         this.placesController = placesController;
         this.eventController = eventController;
     }

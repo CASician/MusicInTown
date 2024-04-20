@@ -17,7 +17,6 @@ import static java.lang.Boolean.TRUE;
 */
 public class MunicipalityController extends BasicUserController{
     private final EventController eventController;
-    //private final MunicipalityDAO municipalityDAO;
     private final Municipality municipality;
     UserChoices.MunicipalityActions municipalityActions;
     private final MunicipalityInterface municipalityInterface;

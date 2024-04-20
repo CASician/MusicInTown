@@ -19,7 +19,6 @@ public class MusicianInterface extends BasicUserInterface {
         System.out.println("4 to do an event subscription. ");
     }
 
-    //Function for testing
     public void printMusicianInfo(Musician musician) {
         //Prints the info of the musician user that is taken as a parameter
         System.out.println("--------------------");

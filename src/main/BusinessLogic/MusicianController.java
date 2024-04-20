@@ -12,7 +12,6 @@ import java.util.Objects;
 * Class that controls all the actions of the Musician.
 */
 public class MusicianController extends BasicUserController {
-    private final MusicianDAO musicianDAO;
     private final Musician musician;
     private final MusicianInterface musicianInterface;
     UserChoices.MusicianActions musicianActions;
@@ -20,8 +19,7 @@ public class MusicianController extends BasicUserController {
 
     public MusicianController(String username, EventController eventController, PlacesController placesController) throws SQLException {
         super(placesController);
-        musicianDAO = new MusicianDAO();
-        this.musician = musicianDAO.getMusician(username);
+        this.musician = MusicianDAO.getMusician(username);
         musicianInterface = new MusicianInterface();
         musicianActions = null;
         this.eventController = eventController;
@@ -111,4 +109,6 @@ public class MusicianController extends BasicUserController {
         input = 0;
         return musicianActions;
     }
+
+    // TODO: subscribeToEvent(Event)
 }

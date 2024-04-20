@@ -14,17 +14,14 @@ import java.util.List;
 * Class that implements all the methods to manage the events.
 * It communicates with the EventDAO and generates/modify public and private events
 */
-public class EventController implements Subject {
+public class EventController {
     PublicEvent publicEvent;
     PrivateEvent privateEvent;
-    //private final EventDAO eventsDAO;
     ArrayList<PublicEvent> publicEvents;
     ArrayList<PrivateEvent> privateEventsList;
     private final BasicUserInterface basicUserInterface;
-    //ArrayList<Observer> observers = new ArrayList<>();
 
     public EventController(PlacesController placesController) {
-        //eventsDAO = new EventDAO();
         basicUserInterface = new BasicUserInterface();
     }
 
@@ -147,10 +144,9 @@ public class EventController implements Subject {
     }
     */
 
-    @Override
     public void notifyEventObservers(Event event) throws SQLException {
         if(event instanceof PublicEvent){
-            // call proper municipality and its update method
+            // call proper municipality and add the event to its list
             // Downcast?
             PublicEvent publicEvent = (PublicEvent) event;
             // Add the event to municipality's array
@@ -161,7 +157,7 @@ public class EventController implements Subject {
             // Show Results
             System.out.println("Municipality notified successfully! ");
         } else if(event instanceof PrivateEvent){
-            // call proper owner and its update method
+            // call proper owner and add the event to its list
             // Downcast?
             PrivateEvent privateEvent = (PrivateEvent) event;
             // Add the event to owner's array
@@ -171,12 +167,6 @@ public class EventController implements Subject {
             // Show Results
             System.out.println("Owner notified successfully! ");
         }
-        //o.update(event);
-    }
-
-    @Override
-    public void notifyPlaceObservers(int placeId) {
-
     }
 
     public PrivateEvent createPrivateEvent(String name, Boolean open, LocalDate date, Owner owner,

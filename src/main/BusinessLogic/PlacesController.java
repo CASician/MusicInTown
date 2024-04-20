@@ -15,21 +15,17 @@ import java.util.List;
 * Class that communicates with the DAO to obtain info about the places
 */
 public class PlacesController {
-    private final PublicPlaceDAO publicPlaceDAO;
-    private final PrivatePlaceDAO privatePlaceDAO;
     public PlacesController() {
         //Call the DAO to generate all the places
-        publicPlaceDAO = new PublicPlaceDAO();
-        privatePlaceDAO = new PrivatePlaceDAO();
     }
 
     public ArrayList<PublicPlace> getPublicPlaces() throws SQLException {
         //return an array with the public place object
-        return publicPlaceDAO.getAll();
+        return PublicPlaceDAO.getAll();
     }
     public ArrayList<PrivatePlace> getPrivatePlaces() throws SQLException {
         //return an array with the private place object
-        return privatePlaceDAO.getAll();
+        return PrivatePlaceDAO.getAll();
     }
 
     public PrivatePlace getPrivatePlace(String name) throws SQLException {
@@ -39,6 +35,6 @@ public class PlacesController {
 
     public PublicPlace getPublicPlace(String name) throws SQLException {
         //Returns a specific public place associated with the id taken as a parameter
-        return publicPlaceDAO.getPublicPlace(name);
+        return PublicPlaceDAO.getPublicPlace(name);
     }
 }
