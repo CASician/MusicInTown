@@ -21,7 +21,7 @@ public class EventController {
         basicUserInterface = new BasicUserInterface();
     }
 
-    public void subscribePublicEvent(Musician musician, Event event) throws SQLException {
+    public void subscribeEvent(Musician musician, Event event) throws SQLException {
         /*
         * Method used from the musician to subscribe itself to a specific public event between musician ID and event ID.
         * It checks if the event exists and if the musician is already subscribed.
@@ -36,45 +36,6 @@ public class EventController {
                 basicUserInterface.alreadySubscribed();
         }
     }
-    public void subscribePrivateEvent(Musician musician, Event event) throws SQLException {
-        /*
-         * Method used from the musician to subscribe itself to a specific private event between musician ID and event ID.
-         * It checks if the event exists and if the musician is already subscribed.
-         */
-        boolean found = false;
-        boolean alreadySubscribed = false;
-        ArrayList<Musician> subscribers;
-        // Look for the event and check if it exists.
-        privateEventsList = PrivateEventDAO.getAll();
-        for (PrivateEvent event_iterator : privateEventsList) {
-            if (event.getId() == event_iterator.getId()) {
-                found = true;
-                // Check if the Musician is not already subscribed
-                subscribers = SubscriptionsDAO.getSubscribers(event_iterator);
-                for(Musician sub : subscribers){
-                    if(sub.getId() == musician.getId()){
-                        alreadySubscribed = true;
-                        break;
-                    }
-                }
-            }
-            break;
-        }
-        if(!found) {
-            basicUserInterface.eventNotFound();
-        }
-        else {
-            if(!alreadySubscribed) {
-                event.addSubscriber(musician);
-                musician.addSubscription(event);
-                SubscriptionsDAO.add(musician, event);
-            }
-            else {
-                basicUserInterface.alreadySubscribed();
-            }
-        }
-    }
-
     public ArrayList<PublicEvent> getPublicEvents() throws SQLException {
         //Returns a list of all the public events
         if(publicEventsList == null) {

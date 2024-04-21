@@ -126,7 +126,7 @@ public class MusicianController extends BasicUserController {
                 if(event_itr.getId() == input){
                     found = true;
                     // Add it to DB and to the respective array in Musician and Event.
-                    eventController.subscribePublicEvent(musician, event_itr);
+                    eventController.subscribeEvent(musician, event_itr);
                     break;
                 }
             }
@@ -136,7 +136,7 @@ public class MusicianController extends BasicUserController {
             for(Event event_itr: privateEvents){
                 if(event_itr.getId() == input){
                     // Add it to DB and to the respective array in Musician and Event.
-                    eventController.subscribePrivateEvent(musician, event_itr);
+                    eventController.subscribeEvent(musician, event_itr);
                     break;
                 }
             }
