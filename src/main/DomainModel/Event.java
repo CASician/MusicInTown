@@ -1,6 +1,7 @@
 package main.DomainModel;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /*
@@ -16,7 +17,7 @@ public abstract class Event {
     protected String type;
     protected String duration;
     protected Boolean accepted;
-    protected HashMap<Integer, String> subscriptions;
+    protected ArrayList<Musician> subscribers;
     public Event(String name, boolean open, LocalDate date, String city, String type, String duration) {
         this.name = name;
         this.open = open;
@@ -24,15 +25,15 @@ public abstract class Event {
         this.city = city;
         this.type = type;
         this.duration = duration;
-        this.accepted = Boolean.FALSE; // Should we leave it like this?
-        subscriptions = new HashMap<>();
+        this.accepted = Boolean.FALSE;
+        subscribers = new ArrayList<>();
     }
-    public void addSubscription(String musicianName, int musicianId) {
-        //Add the musician ID and band name to the list of event subscription
-        subscriptions.put(musicianId, musicianName);
+    public void addSubscriber(Musician musician) {
+        //Add the musician to the list of event subscription
+        subscribers.add(musician);
     }
 
-    public HashMap<Integer, String> getSubscriptions() { return subscriptions; }
+    public ArrayList<Musician> getSubscribers() { return subscribers; }
 
     public String getCity() {
         return city;

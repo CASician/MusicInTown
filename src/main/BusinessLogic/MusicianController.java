@@ -1,11 +1,17 @@
 package main.BusinessLogic;
 
 import main.DAO.MusicianDAO;
+import main.DAO.PrivateEventDAO;
+import main.DAO.PublicEventDAO;
+import main.DomainModel.Event;
 import main.DomainModel.Musician;
+import main.DomainModel.PrivateEvent;
+import main.DomainModel.PublicEvent;
 import main.Interface.MusicianInterface;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Objects;
 
 /*
@@ -71,18 +77,7 @@ public class MusicianController extends BasicUserController {
                     musicianInterface.getSubscriptions(musician.getPublicEvents(), musician.getPrivateEvents());
                     break;
                 case SubscribeEvent:
-                    if(getEventType() == 0) {
-                        musician.addPrivateSubscription(
-                                eventController.subscribePrivateEvent(musician.getName(), musician.getId(), getId()));
-                        musicianInterface.privateSubscriptionDone(
-                                musician.getPrivateEvents().get(musician.getPrivateEvents().size()-1));
-                    }
-                    else {
-                        musician.addPublicSubscription(
-                                eventController.subscribePublicEvent(musician.getName(), musician.getId(), getId()));
-                        musicianInterface.publicSubscriptionDone(
-                                musician.getPublicEvents().get(musician.getPublicEvents().size()-1));
-                    }
+                    subscribeToEvent();
                     break;
                 case FilterEvents:
                     LocalDate date = getDateFilter();
@@ -110,5 +105,41 @@ public class MusicianController extends BasicUserController {
         return musicianActions;
     }
 
-    // TODO: subscribeToEvent(Event)
+    public void subscribeToEvent() throws SQLException {
+        // I already have my musician, I need to get the event
+        // Get the events
+        ArrayList<PublicEvent> publicEvents = PublicEventDAO.getAll();
+        ArrayList<PrivateEvent> privateEvents = PrivateEventDAO.getAll();
+
+        // TODO: print only open events? DAO addition?
+
+        // ask ID of the event
+        System.out.println("---------------");
+        System.out.println("Select the ID of the event you want to Subscribe to: ");
+        input = getInteger();
+
+        // find Event with such ID
+        boolean found = false;
+        // Look in Public Events
+        if(input >= 0){
+            for(Event event_itr: publicEvents){
+                if(event_itr.getId() == input){
+                    found = true;
+                    // Add it to DB and to the respective array in Musician and Event.
+                    eventController.subscribeEvent(musician, event_itr);
+                    break;
+                }
+            }
+        }
+        // Look in Private Events
+        if(!found){
+            for(Event event_itr: privateEvents){
+                if(event_itr.getId() == input){
+                    // Add it to DB and to the respective array in Musician and Event.
+                    eventController.subscribeEvent(musician, event_itr);
+                    break;
+                }
+            }
+        }
+    }
 }

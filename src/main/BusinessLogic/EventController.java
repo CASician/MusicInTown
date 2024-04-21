@@ -4,20 +4,16 @@ import main.DAO.*;
 import main.DomainModel.*;
 import main.Interface.BasicUserInterface;
 
-import java.sql.Array;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
 /*
 * Class that implements all the methods to manage the events.
 * It communicates with the EventDAO and generates/modify public and private events
 */
 public class EventController {
-    PublicEvent publicEvent;
-    PrivateEvent privateEvent;
-    ArrayList<PublicEvent> publicEvents;
+    ArrayList<PublicEvent> publicEventsList;
     ArrayList<PrivateEvent> privateEventsList;
     private final BasicUserInterface basicUserInterface;
 
@@ -25,81 +21,27 @@ public class EventController {
         basicUserInterface = new BasicUserInterface();
     }
 
-    public PublicEvent subscribePublicEvent(String musicianName, int musicianId, int eventId) throws SQLException {
+    public void subscribeEvent(Musician musician, Event event) throws SQLException {
         /*
         * Method used from the musician to subscribe itself to a specific public event between musician ID and event ID.
         * It checks if the event exists and if the musician is already subscribed.
         */
-        boolean found = false;
-        boolean alreadySubscribed = false;
-        publicEvent = null;
-        publicEvents = PublicEventDAO.getAll();
-        for (PublicEvent event : publicEvents) {
-            if (event.getId() == eventId) {
-                found = true;
-                if(!event.getSubscriptions().containsKey(musicianId)) {
-                    publicEvent = event;
-                }
-                else { alreadySubscribed = true; }
-                break;
-            }
-        }
-        if(!found) {
-            basicUserInterface.eventNotFound();
-        }
-        else {
-            if(!alreadySubscribed) {
-                publicEvent.addSubscription(musicianName, musicianId);
-            }
-            else {
+        boolean alreadySubscribed = SubscriptionsDAO.exists(musician, event);
+
+        if(!alreadySubscribed) {
+                event.addSubscriber(musician);
+                musician.addSubscription(event);
+                SubscriptionsDAO.add(musician, event);
+        } else {
                 basicUserInterface.alreadySubscribed();
-            }
         }
-        return publicEvent;
     }
-
-    public PrivateEvent subscribePrivateEvent(String musicianName, int musicianId, int eventId) throws SQLException {
-        /*
-         * Method used from the musician to subscribe itself to a specific private event between musician ID and event ID.
-         * It checks if the event exists and if the musician is already subscribed.
-         */
-        boolean found = false;
-        boolean alreadySubscribed = false;
-        privateEvent = null;
-        privateEventsList = PrivateEventDAO.getAll();
-        // Double for cycle because private Events have two different signatures.
-        for (PrivateEvent event : privateEventsList) {
-            if (event.getId() == eventId) {
-                found = true;
-                if (!event.getSubscriptions().containsKey(musicianId)) {
-                    privateEvent = event;
-                } else {
-                    alreadySubscribed = true;
-                }
-                break;
-            }
-        }
-
-        if(!found) {
-            basicUserInterface.eventNotFound();
-        }
-        else {
-            if(!alreadySubscribed) {
-                privateEvent.addSubscription(musicianName, musicianId);
-            }
-            else {
-                basicUserInterface.alreadySubscribed();
-            }
-        }
-        return privateEvent;
-    }
-
     public ArrayList<PublicEvent> getPublicEvents() throws SQLException {
         //Returns a list of all the public events
-        if(publicEvents == null) {
-            publicEvents = PublicEventDAO.getAll();
+        if(publicEventsList == null) {
+            publicEventsList = PublicEventDAO.getAll();
         }
-        return publicEvents;
+        return publicEventsList;
     }
 
     public ArrayList<PrivateEvent> getPrivateEvents() throws SQLException {
@@ -126,10 +68,10 @@ public class EventController {
     public ArrayList<PublicEvent> getPublicEventsFiltered(LocalDate date) throws SQLException {
         //Returns a list of all the public events filtered until a specific date
         ArrayList<PublicEvent> filteredEvents = new ArrayList<>();
-        if(publicEvents == null) {
-            publicEvents = PublicEventDAO.getAll();
+        if(publicEventsList == null) {
+            publicEventsList = PublicEventDAO.getAll();
         }
-        for (PublicEvent event : publicEvents) {
+        for (PublicEvent event : publicEventsList) {
             if (!date.isBefore(event.getDate())) {
                 filteredEvents.add(event);
             }

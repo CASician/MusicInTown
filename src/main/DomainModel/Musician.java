@@ -1,50 +1,45 @@
 package main.DomainModel;
 
+import main.DAO.SubscriptionsDAO;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 /*
 * Class that represent the concrete object of the Musician User.
 * It keeps all the infos (attributes) and actions (methods) related with the object and modifications that can be made on it.
 */
 public class Musician extends BasicUser {
-    private final ArrayList<PrivateEvent> privateEvents;
-    private final ArrayList<PublicEvent> publicEvents;
+    private ArrayList<PrivateEvent> subscriptions_privateEvents;
+    private ArrayList<PublicEvent> subscriptions_publicEvents;
     private final String name;
     private final String genre;
     private final int componentNumb;
 
     public Musician(String username, String name, String genre, int numb) {
         super(username);
-        publicEvents = new ArrayList<>();
-        privateEvents = new ArrayList<>();
+        subscriptions_publicEvents = new ArrayList<>();
+        subscriptions_privateEvents = new ArrayList<>();
         this.name = name;
         this.genre = genre;
         this.componentNumb = numb;
     }
-    public void addPublicSubscription(PublicEvent event) {
-        publicEvents.add(event);
+    public void addSubscription(Event event){
+        if (event instanceof PublicEvent){
+            // downcast to Public Event
+            subscriptions_publicEvents.add((PublicEvent) event);
+        } else {
+            // downcast to Private Event
+            subscriptions_privateEvents.add((PrivateEvent) event);
+        }
     }
-    public void addPrivateSubscription(PrivateEvent event) {
-        privateEvents.add(event);
-    }
-    public ArrayList<PrivateEvent> getPrivateEvents() {
+    public ArrayList<PrivateEvent> getPrivateEvents() throws SQLException {
         //Returns the list of private events
-        if(privateEvents.isEmpty()) {
-            return new ArrayList<>();
-        }
-        else {
-            return privateEvents;
-        }
+        return subscriptions_privateEvents = SubscriptionsDAO.getAllPrivate_musician(this);
     }
-    public ArrayList<PublicEvent> getPublicEvents() {
+    public ArrayList<PublicEvent> getPublicEvents() throws SQLException {
         //Returns the list of public events
-        if(publicEvents.isEmpty()) {
-            return new ArrayList<>();
-        }
-        else {
-            return publicEvents;
-        }
+        return subscriptions_publicEvents = SubscriptionsDAO.getAllPublic_musician(this);
     }
     public int getComponentNumb() {
         return componentNumb;
