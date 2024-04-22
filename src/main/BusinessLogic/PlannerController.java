@@ -104,6 +104,7 @@ public class PlannerController extends BasicUserController {
         LocalDate date = getDate();
         plannerInterface.getDuration();
         String duration = getInteger() + " giorni";
+        plannerInterface.printPrivatePlaces(placesController.getPrivatePlaces());
         PrivatePlace privatePlace = getPrivatePlace();
         String city = privatePlace.getCity();
         String eventType = getEventInfo();
@@ -125,6 +126,7 @@ public class PlannerController extends BasicUserController {
         LocalDate date = getDate();
         plannerInterface.getDuration();
         String duration = getInteger() + " giorni";
+        plannerInterface.printPublicPlaces(placesController.getPublicPlaces());
         PublicPlace publicPlace = getPublicPlace();
         String eventType = getEventInfo();
         event = eventController.createPublicEvent(eventName, open, date, planner, publicPlace, duration, publicPlace.getCity(), eventType);
@@ -138,7 +140,7 @@ public class PlannerController extends BasicUserController {
         PublicPlace publicPlace = placesController.getPublicPlace(getString());
         if(publicPlace == null) {
             plannerInterface.tryAgain();
-            getPrivatePlace();
+            getPublicPlace();
         }
         return publicPlace;
     }

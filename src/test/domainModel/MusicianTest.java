@@ -11,7 +11,7 @@ public class MusicianTest {
 
     @Test
     public void musician_test() throws Exception {
-        Musician m = new Musician("musician", "user", "pop", 4);
+        Musician m = new Musician("user", "musician", "pop", 4);
         Assertions.assertEquals("musician", m.getName());
         Assertions.assertEquals("user", m.getUsername());
         Assertions.assertEquals(4, m.getComponentNumb());

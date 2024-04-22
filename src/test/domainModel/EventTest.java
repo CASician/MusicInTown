@@ -15,7 +15,7 @@ public class EventTest {
                 10000, false);
         PublicEvent e = new PublicEvent("concert", true, LocalDate.of(2025, 4, 28),
                 p, pp, "3 days", "Firenze", "Festival");
-        Assertions.assertTrue(e.getSubscriptions().isEmpty());
+        Assertions.assertTrue(e.getSubscribers().isEmpty());
         Assertions.assertEquals("planner", e.getPlanner().getName());
         Assertions.assertEquals( "Firenze", e.getCity());
         Assertions.assertEquals( LocalDate.of(2025, 4, 28), e.getDate());
@@ -29,7 +29,7 @@ public class EventTest {
                 10000, true, PlaceType.Cafe, o);
         PrivateEvent e = new PrivateEvent("concert", true, LocalDate.of(2025, 4, 28),
                 o, pp, "3 days", "Firenze", "Festival");
-        Assertions.assertTrue(e.getSubscriptions().isEmpty());
+        Assertions.assertTrue(e.getSubscribers().isEmpty());
         Assertions.assertEquals("owner", e.getOwnerPlanner().getName());
         Assertions.assertEquals( "Firenze", e.getCity());
         Assertions.assertEquals( LocalDate.of(2025, 4, 28), e.getDate());

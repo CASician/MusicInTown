@@ -17,7 +17,7 @@ public class OwnerPlaceTest {
     }
     @Test
     public void ownerPlace_test() throws Exception {
-        Owner o = new Owner("owner", "user");
+        Owner o = new Owner("user", "owner");
         PrivatePlace p = new PrivatePlace("Firenze", "Hard Rock", "Piazza della Repubblica",
                 1000, true, PlaceType.Cafe, o);
         Assertions.assertEquals( "Hard Rock", p.getName());
