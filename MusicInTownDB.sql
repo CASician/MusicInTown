@@ -270,6 +270,8 @@ create view publicevents_esteso_intero as
     INSERT INTO basicusers (id, username) VALUES (31, 'caio');
     INSERT INTO basicusers (id, username) VALUES (32, 'sempronio');
 
+    ALTER SEQUENCE public.basicusers_id_seq RESTART WITH 33;
+
     INSERT INTO public.musicians (id, name, genre, componentnumb) VALUES (1, 'Paolo', 'Classic', 1);
     INSERT INTO public.musicians (id, name, genre, componentnumb) VALUES (2, 'Imagine Dragons', 'pop rock', 4);
     INSERT INTO public.musicians (id, name, genre, componentnumb) VALUES (3, 'Beatles', 'pop rock', 4);
@@ -298,6 +300,7 @@ create view publicevents_esteso_intero as
     INSERT INTO public.places (id, name, city, address, capacity, indoor) VALUES (8, 'Teatro Paradiso', 'Fiesole', 'via delle Cento Stelle', 700, true);
     INSERT INTO public.places (id, name, city, address, capacity, indoor) VALUES (9, 'Bottega di Pasticceria', 'Firenze', 'via Forese Donati', 20, true);
     INSERT INTO public.places (id, name, city, address, capacity, indoor) VALUES (10, 'Eden', 'Firenze', 'Piazzale delle Cascine', 60, true);
+    ALTER SEQUENCE public.places_id_seq RESTART WITH 11;
 
     INSERT INTO public.owners (id, name, place) VALUES (8, 'Dante Alighieri', 'Eden');
     INSERT INTO public.owners (id, name, place) VALUES (9, 'Oderisi da Gubbio', 'Purgatorio');
@@ -339,6 +342,7 @@ create view publicevents_esteso_intero as
     INSERT INTO public.events (id, name, open, date, city, type, duration, accepted) VALUES (20, 'No.', true, '2026-12-31', 'Firenze', 'NO.', '1 giorni', false);
     INSERT INTO public.events (id, name, open, date, city, type, duration, accepted) VALUES (21, 'Vabbe', true, '2025-12-31', 'Firenze', 'ool', '1 giorni', false);
     INSERT INTO public.events (id, name, open, date, city, type, duration, accepted) VALUES (22, 'Uno dei tanti', true, '2029-12-30', 'Firenze', 'Ma', '1 giorni', true);
+    ALTER SEQUENCE public.events_id_seq RESTART WITH 23;
 
     INSERT INTO public.publicevents (id, place, planner) VALUES (1, 'Teatro Fiesole', 'pia');
     INSERT INTO public.publicevents (id, place, planner) VALUES (2, 'Piazzale Michelangiolo', 'cris');
