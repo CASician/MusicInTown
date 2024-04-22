@@ -93,22 +93,32 @@ public class PublicPlaceDAO {
         ResultSet resultSet = getPublicPlace.executeQuery();
 
         // Create the object with the retrieved data
-        resultSet.next();
-        int id = resultSet.getInt("publicplace_id");
-        String city = resultSet.getString("publicplace_city");
-        String address = resultSet.getString("publicplace_address");
-        int capacity = resultSet.getInt("publicplace_capacity");
-        boolean indoor = resultSet.getBoolean("publicplace_indoor");
+        boolean hasRows = resultSet.next();
+        if (hasRows) {
+            int id = resultSet.getInt("publicplace_id");
+            String city = resultSet.getString("publicplace_city");
+            String address = resultSet.getString("publicplace_address");
+            int capacity = resultSet.getInt("publicplace_capacity");
+            boolean indoor = resultSet.getBoolean("publicplace_indoor");
 
-        PublicPlace publicPlace = new PublicPlace(name, city, address, capacity, indoor);
-        publicPlace.setId(id);
+            PublicPlace publicPlace = new PublicPlace(name, city, address, capacity, indoor);
+            publicPlace.setId(id);
 
-        // Close connections
-        resultSet.close();
-        getPublicPlace.close();
-        connection.close();
+            // Close connections
+            resultSet.close();
+            getPublicPlace.close();
+            connection.close();
 
-        // The end
-        return publicPlace;
+            // The end
+            return publicPlace;
+        }
+        else {
+            // Close connections
+            resultSet.close();
+            getPublicPlace.close();
+            connection.close();
+            // No object found
+            return null;
+        }
     }
 }

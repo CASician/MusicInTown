@@ -101,31 +101,42 @@ public class PrivatePlaceDAO {
         ResultSet resultSet = getPrivatePlace.executeQuery();
 
         // Create the object with the retrieved data
-        resultSet.next();
-        int id = resultSet.getInt("privateplace_id");
-        String city = resultSet.getString("privateplace_city");
-        String address = resultSet.getString("privateplace_address");
-        int capacity = resultSet.getInt("privateplace_capacity");
-        boolean indoor = resultSet.getBoolean("privateplace_indoor");
-        String type = resultSet.getString("privateplace_type");
+        boolean hasRows = resultSet.next();
+        if (hasRows) {
+            int id = resultSet.getInt("privateplace_id");
+            String city = resultSet.getString("privateplace_city");
+            String address = resultSet.getString("privateplace_address");
+            int capacity = resultSet.getInt("privateplace_capacity");
+            boolean indoor = resultSet.getBoolean("privateplace_indoor");
+            String type = resultSet.getString("privateplace_type");
 
-        int owner_id = resultSet.getInt("owner_id");
-        String owner_name = resultSet.getString("owner_name");
-        String owner_username = resultSet.getString("owner_username");
-        Owner owner = new Owner(owner_username, owner_name);
-        owner.setId(owner_id);
+            int owner_id = resultSet.getInt("owner_id");
+            String owner_name = resultSet.getString("owner_name");
+            String owner_username = resultSet.getString("owner_username");
+            Owner owner = new Owner(owner_username, owner_name);
+            owner.setId(owner_id);
 
-        PrivatePlace privatePlace = new PrivatePlace(city, name, address, capacity, indoor, PlaceType.valueOf(type), owner);
-        privatePlace.setId(id);
+            PrivatePlace privatePlace = new PrivatePlace(city, name, address, capacity, indoor, PlaceType.valueOf(type), owner);
+            privatePlace.setId(id);
 
-        owner.setPrivatePlace(privatePlace);
+            owner.setPrivatePlace(privatePlace);
 
-        // Close connections
-        resultSet.close();
-        getPrivatePlace.close();
-        connection.close();
+            // Close connections
+            resultSet.close();
+            getPrivatePlace.close();
+            connection.close();
 
-        // The end
-        return privatePlace;
+            // The end
+            return privatePlace;
+        }
+        else {
+            // Close connections
+            resultSet.close();
+            getPrivatePlace.close();
+            connection.close();
+
+            // No object found
+            return null;
+        }
     }
 }

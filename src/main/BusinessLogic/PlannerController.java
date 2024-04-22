@@ -138,7 +138,7 @@ public class PlannerController extends BasicUserController {
         PublicPlace publicPlace = placesController.getPublicPlace(getString());
         if(publicPlace == null) {
             plannerInterface.tryAgain();
-            getPrivatePlace();
+            publicPlace = getPublicPlace();
         }
         return publicPlace;
     }
