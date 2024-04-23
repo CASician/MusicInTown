@@ -120,7 +120,8 @@ public class BasicUserInterface {
         if(!publicPlaces.isEmpty()) {
             for (PublicPlace publicPlace : publicPlaces) {
                 System.out.println("--------------------");
-                System.out.print("CITY: " + publicPlace.getCity());
+                System.out.print("NAME: " + publicPlace.getName());
+                System.out.print(", CITY: " + publicPlace.getCity());
                 System.out.print(", ADDRESS: " + publicPlace.getAddress());
                 System.out.println(", ID: " + publicPlace.getId());
             }
