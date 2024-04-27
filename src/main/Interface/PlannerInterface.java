@@ -24,6 +24,7 @@ public class PlannerInterface extends BasicUserInterface {
         //Prints the basic interface of the events menu and it adds the specific planner events view
         basicEventsInterface();
         System.out.println("3 to create a new event, ");
+        System.out.println("4 to select a musician for an event");
     }
 
     public void createEvent() {
@@ -61,7 +62,28 @@ public class PlannerInterface extends BasicUserInterface {
         }
         else {
             System.out.println("Event was not created");
+            System.out.println("--------------------");
         }
     }
 
+    public void noEventsCreated() {
+        System.out.println("There are no open events created");
+        System.out.println("--------------------");
+    }
+
+    public void chooseMusician(boolean isMusician) {
+        if(isMusician) {
+            System.out.println("Select the ID of the musician you want to pick for the event:");
+            System.out.println("--------------------");
+        }
+        else {
+            System.out.println("There are no musician subscribed to the event");
+            System.out.println("--------------------");
+        }
+    }
+
+    public void successChoose() {
+        System.out.println("Musician selected successfully");
+        System.out.println("--------------------");
+    }
 }

@@ -3,6 +3,7 @@ package main.BusinessLogic;
 import main.DAO.EventsToBeAcceptedDAO;
 import main.DAO.OwnerDAO;
 import main.DomainModel.Event;
+import main.DomainModel.Musician;
 import main.DomainModel.Owner;
 import main.DomainModel.PrivateEvent;
 import main.Interface.OwnerInterface;
@@ -87,8 +88,73 @@ public class OwnerController extends BasicUserController{
                 case AcceptEvents:
                     acceptEvent();
                     break;
+                case SelectMusician:
+                    selectMusicianPr(privateEventsCreated());
+                    break;
             }
         }
+    }
+
+    private void selectMusicianPr(ArrayList<PrivateEvent> privateEvents) {
+        if(privateEvents != null) {
+            ownerInterface.printPrivateEvents(privateEvents);
+            PrivateEvent event = null;
+            boolean found = false;
+            while(!found) {
+                int id = getId();
+                for (PrivateEvent privateEvent : privateEvents) {
+                    if(privateEvent.getId() == id) {
+                        found = true;
+                        event = privateEvent;
+                        break;
+                    }
+                }
+                if(!found) { ownerInterface.tryAgain(); }
+            }
+            boolean isMusician = false;
+            if(!event.getSubscribers().isEmpty()) {
+                isMusician = true;
+                for (Musician musician : event.getSubscribers()) {
+                    ownerInterface.printMusicianInfo(musician);
+                }
+            }
+            ownerInterface.chooseMusician(isMusician);
+            found = false;
+            Musician musician = null;
+            if(!event.getSubscribers().isEmpty()) {
+                while (!found) {
+                    int id = getId();
+                    for (Musician musicianFound: event.getSubscribers()) {
+                        if(musicianFound.getId() == id) {
+                            found = true;
+                            musician = musicianFound;
+                            event.setOpen(false);
+                            ownerInterface.successChoose();
+                            break;
+                        }
+                    }
+                    if(!found) { ownerInterface.tryAgain(); }
+                }
+            }
+        }
+        else {
+            ownerInterface.noEventsCreated();
+        }
+    }
+
+    private ArrayList<PrivateEvent> privateEventsCreated() throws SQLException {
+        ArrayList<PrivateEvent> privateEvents = new ArrayList<>();
+        ArrayList<PrivateEvent> allPrivateEvents = eventController.getPrivateEvents();
+        for (PrivateEvent privateEvent : allPrivateEvents) {
+            if (Objects.equals(privateEvent.getPlanner().getName(), this.owner.getName())
+                    && privateEvent.isOpen()) {
+                privateEvents.add(privateEvent);
+            }
+        }
+        if(privateEvents.isEmpty()) {
+            privateEvents = null;
+        }
+        return privateEvents;
     }
 
     public void createEvent() throws SQLException {

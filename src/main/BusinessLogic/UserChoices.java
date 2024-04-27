@@ -31,6 +31,7 @@ public enum UserChoices {
         FilterEvents,
         SeeAllEvents,
         CreateEvent,
+        SelectMusician,
         AcceptEvents,
     }
 

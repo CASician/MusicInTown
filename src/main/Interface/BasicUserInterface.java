@@ -1,8 +1,5 @@
 package main.Interface;
-import main.DomainModel.PrivateEvent;
-import main.DomainModel.PrivatePlace;
-import main.DomainModel.PublicEvent;
-import main.DomainModel.PublicPlace;
+import main.DomainModel.*;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -113,6 +110,19 @@ public class BasicUserInterface {
                 System.out.println(", OWNER NAME: " + privatePlace.getOwnerName());
             }
         }
+    }
+
+    public void printMusicianInfo(Musician musician) {
+        //Prints the info of the musician user that is taken as a parameter
+        System.out.println("--------------------");
+        System.out.println("User Type: " + UserType.MUSICIAN);
+        System.out.println("Name: " + musician.getName());
+        System.out.println("Username: " + musician.getUsername());
+        System.out.println("Genre: " + musician.getGenre());
+        System.out.println("Component Number: " + musician.getComponentNumb());
+        System.out.println("Username: " + musician.getUsername());
+        System.out.println("--------------------");
+
     }
 
     public void printPublicPlaces(ArrayList<PublicPlace> publicPlaces) {

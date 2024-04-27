@@ -30,7 +30,8 @@ public class OwnerInterface extends BasicUserInterface {
         //Prints the basic interface of the events menu and it adds the specific owner events view
         basicEventsInterface();
         System.out.println("3 to create a new event, ");
-        System.out.println("4 to accept proposed events, ");
+        System.out.println("4 to select a musician for an event");
+        System.out.println("5 to accept proposed events, ");
     }
 
     public void eventCreated(PrivateEvent event) {
@@ -47,5 +48,26 @@ public class OwnerInterface extends BasicUserInterface {
         else {
             System.out.println("Event was not created");
         }
+    }
+
+    public void noEventsCreated() {
+        System.out.println("There are no open events created");
+        System.out.println("--------------------");
+    }
+
+    public void chooseMusician(boolean isMusician) {
+        if(isMusician) {
+            System.out.println("Select the ID of the musician you want to pick for the event:");
+            System.out.println("--------------------");
+        }
+        else {
+            System.out.println("There are no musician subscribed to the event");
+            System.out.println("--------------------");
+        }
+    }
+
+    public void successChoose() {
+        System.out.println("Musician selected successfully");
+        System.out.println("--------------------");
     }
 }

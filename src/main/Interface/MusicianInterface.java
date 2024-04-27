@@ -19,19 +19,6 @@ public class MusicianInterface extends BasicUserInterface {
         System.out.println("4 to do an event subscription. ");
     }
 
-    public void printMusicianInfo(Musician musician) {
-        //Prints the info of the musician user that is taken as a parameter
-        System.out.println("--------------------");
-        System.out.println("User Type: " + UserType.MUSICIAN);
-        System.out.println("Name: " + musician.getName());
-        System.out.println("Username: " + musician.getUsername());
-        System.out.println("Genre: " + musician.getGenre());
-        System.out.println("Component Number: " + musician.getComponentNumb());
-        System.out.println("Username: " + musician.getUsername());
-        System.out.println("--------------------");
-
-    }
-
     public void publicSubscriptionDone(PublicEvent event) {
         //Prints the info of the specific public event that the musician subscribed to
         if(event != null) {

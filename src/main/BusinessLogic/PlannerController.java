@@ -6,6 +6,7 @@ import main.Interface.PlannerInterface;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Objects;
 
 /*
@@ -87,8 +88,140 @@ public class PlannerController extends BasicUserController {
                 case Exit:
                     quitMenu = true;
                     break;
+                case SelectMusician:
+                    if(privatePublicEvent() == 0) {
+                        selectMusicianPr(privateEventsCreated());
+                    }
+                    else {
+                        selectMusicianPu(publicEventsCreated());
+                    }
+                    break;
             }
         }
+    }
+
+    private void selectMusicianPr(ArrayList<PrivateEvent> privateEvents) {
+        if(privateEvents != null) {
+            plannerInterface.printPrivateEvents(privateEvents);
+            PrivateEvent event = null;
+            boolean found = false;
+            while(!found) {
+                int id = getId();
+                for (PrivateEvent privateEvent : privateEvents) {
+                    if(privateEvent.getId() == id) {
+                        found = true;
+                        event = privateEvent;
+                        break;
+                    }
+                }
+                if(!found) { plannerInterface.tryAgain(); }
+            }
+            boolean isMusician = false;
+            if(!event.getSubscribers().isEmpty()) {
+                isMusician = true;
+                for (Musician musician : event.getSubscribers()) {
+                    plannerInterface.printMusicianInfo(musician);
+                }
+            }
+            plannerInterface.chooseMusician(isMusician);
+            found = false;
+            Musician musician = null;
+            if(!event.getSubscribers().isEmpty()) {
+                while (!found) {
+                    int id = getId();
+                    for (Musician musicianFound: event.getSubscribers()) {
+                        if(musicianFound.getId() == id) {
+                            found = true;
+                            musician = musicianFound;
+                            event.setOpen(false);
+                            plannerInterface.successChoose();
+                            break;
+                        }
+                    }
+                    if(!found) { plannerInterface.tryAgain(); }
+                }
+            }
+        }
+        else {
+            plannerInterface.noEventsCreated();
+        }
+    }
+
+    private void selectMusicianPu(ArrayList<PublicEvent> publicEvents) {
+        if(publicEvents != null) {
+            plannerInterface.printPublicEvents(publicEvents);
+            PublicEvent event = null;
+            boolean found = false;
+            while(!found) {
+                int id = getId();
+                for (PublicEvent publicEvent : publicEvents) {
+                    if(publicEvent.getId() == id) {
+                        found = true;
+                        event = publicEvent;
+                        break;
+                    }
+                }
+                if(!found) { plannerInterface.tryAgain(); }
+            }
+            boolean isMusician = false;
+            if(!event.getSubscribers().isEmpty()) {
+                isMusician = true;
+                for (Musician musician : event.getSubscribers()) {
+                    plannerInterface.printMusicianInfo(musician);
+                }
+            }
+            plannerInterface.chooseMusician(isMusician);
+            found = false;
+            Musician musician = null;
+            if(!event.getSubscribers().isEmpty()) {
+                while (!found) {
+                    int id = getId();
+                    for (Musician musicianFound: event.getSubscribers()) {
+                        if(musicianFound.getId() == id) {
+                            found = true;
+                            musician = musicianFound;
+                            event.setOpen(false);
+                            plannerInterface.successChoose();
+                            break;
+                        }
+                    }
+                    if(!found) { plannerInterface.tryAgain(); }
+                }
+            }
+        }
+        else {
+            plannerInterface.noEventsCreated();
+        }
+    }
+
+    private ArrayList<PrivateEvent> privateEventsCreated() throws SQLException {
+        ArrayList<PrivateEvent> privateEvents = new ArrayList<>();
+        ArrayList<PrivateEvent> allPrivateEvents = eventController.getPrivateEvents();
+        for (PrivateEvent privateEvent : allPrivateEvents) {
+            if (Objects.equals(privateEvent.getPlanner().getName(), this.planner.getName())
+            && privateEvent.isOpen()) {
+                privateEvents.add(privateEvent);
+            }
+        }
+        if(privateEvents.isEmpty()) {
+            privateEvents = null;
+        }
+        return privateEvents;
+    }
+
+    private ArrayList<PublicEvent> publicEventsCreated() throws SQLException {
+        ArrayList<PublicEvent> publicEvents = new ArrayList<>();
+        ArrayList<PublicEvent> allPublicEvents = eventController.getPublicEvents();
+        for (PublicEvent publicEvent : allPublicEvents) {
+            if (Objects.equals(publicEvent.getPlanner().getName(), this.planner.getName())
+            && publicEvent.isOpen()) {
+                publicEvents.add(publicEvent);
+            }
+        }
+        if(publicEvents.isEmpty()) {
+            publicEvents = null;
+        }
+        return publicEvents;
     }
 
     public void createPrivateEvent() throws SQLException {

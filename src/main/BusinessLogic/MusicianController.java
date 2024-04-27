@@ -110,8 +110,10 @@ public class MusicianController extends BasicUserController {
         // Get the events
         ArrayList<PublicEvent> publicEvents = PublicEventDAO.getAll();
         ArrayList<PrivateEvent> privateEvents = PrivateEventDAO.getAll();
+        
+        publicEvents = openPublicEvents(publicEvents);
+        privateEvents = openPrivateEvents(privateEvents);
 
-        // TODO: print only open events? DAO addition?
 
         // ask ID of the event
         System.out.println("---------------");
@@ -141,5 +143,11 @@ public class MusicianController extends BasicUserController {
                 }
             }
         }
+    }
+
+    private ArrayList<PrivateEvent> openPrivateEvents(ArrayList<PrivateEvent> privateEvents) {
+    }
+
+    private ArrayList<PublicEvent> openPublicEvents(ArrayList<PublicEvent> publicEvents) {
     }
 }

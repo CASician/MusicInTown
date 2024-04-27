@@ -57,6 +57,7 @@ public abstract class Event {
         this.id = lastId;
     }
     public boolean isOpen() { return open; }
+    public void setOpen(boolean op) { open = op; }
     public void setAccepted(boolean bool){
         this.accepted = bool;
     }
