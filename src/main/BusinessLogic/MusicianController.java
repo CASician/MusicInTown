@@ -146,8 +146,24 @@ public class MusicianController extends BasicUserController {
     }
 
     private ArrayList<PrivateEvent> openPrivateEvents(ArrayList<PrivateEvent> privateEvents) {
+        ArrayList<PrivateEvent> openPrivateEvents = new ArrayList<>();
+        for(PrivateEvent privateEvent: privateEvents) {
+            if(privateEvent.isOpen()) {
+                openPrivateEvents.add(privateEvent);
+            }
+        }
+        if(openPrivateEvents.isEmpty()) { openPrivateEvents = null; }
+        return openPrivateEvents;
     }
 
     private ArrayList<PublicEvent> openPublicEvents(ArrayList<PublicEvent> publicEvents) {
+        ArrayList<PublicEvent> openPublicEvents = new ArrayList<>();
+        for(PublicEvent publicEvent: publicEvents) {
+            if(publicEvent.isOpen()) {
+                openPublicEvents.add(publicEvent);
+            }
+        }
+        if(openPublicEvents.isEmpty()) { openPublicEvents = null; }
+        return openPublicEvents;
     }
 }
