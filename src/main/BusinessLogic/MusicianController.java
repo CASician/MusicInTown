@@ -133,6 +133,7 @@ public class MusicianController extends BasicUserController {
                 }
             }
         }
+
         // Look in Private Events
         if(!found){
             for(Event event_itr: privateEvents){
