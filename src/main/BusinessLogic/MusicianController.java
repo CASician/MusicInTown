@@ -114,10 +114,11 @@ public class MusicianController extends BasicUserController {
         publicEvents = openPublicEvents(publicEvents);
         privateEvents = openPrivateEvents(privateEvents);
 
+        musicianInterface.printPublicEvents(publicEvents);
+        musicianInterface.printPrivateEvents(privateEvents);
 
         // ask ID of the event
-        System.out.println("---------------");
-        System.out.println("Select the ID of the event you want to Subscribe to: ");
+        musicianInterface.eventId();
         input = getInteger();
 
         // find Event with such ID
@@ -139,10 +140,15 @@ public class MusicianController extends BasicUserController {
             for(Event event_itr: privateEvents){
                 if(event_itr.getId() == input){
                     // Add it to DB and to the respective array in Musician and Event.
+                    found = true;
                     eventController.subscribeEvent(musician, event_itr);
                     break;
                 }
             }
+        }
+
+        if(!found) {
+            musicianInterface.eventNotFound();
         }
     }
 
