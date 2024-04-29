@@ -1,5 +1,8 @@
 package main.DomainModel;
 
+import main.DAO.SubscriptionsDAO;
+
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,12 +31,15 @@ public abstract class Event {
         this.accepted = Boolean.FALSE;
         subscribers = new ArrayList<>();
     }
-    public void addSubscriber(Musician musician) {
+    public void addSubscriber(Musician musician) throws SQLException {
         //Add the musician to the list of event subscription
         subscribers.add(musician);
+        SubscriptionsDAO.add(musician, this);
     }
 
-    public ArrayList<Musician> getSubscribers() { return subscribers; }
+    public ArrayList<Musician> getSubscribers() throws SQLException {
+        return SubscriptionsDAO.getSubscribers(this);
+    }
 
     public String getCity() {
         return city;
