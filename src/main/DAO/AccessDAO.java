@@ -11,7 +11,6 @@ public class AccessDAO {
         UserType userType = null;
 
         //Database request (email, password)
-        // TODO: use a proper access to database and check if the user is there
         if(Objects.equals(input.get("username"), "paba") && Objects.equals(input.get("password"), "123")) {
             userType = UserType.MUSICIAN; //Return the userType of the profile
         }

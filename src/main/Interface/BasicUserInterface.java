@@ -121,6 +121,7 @@ public class BasicUserInterface {
         System.out.println("Genre: " + musician.getGenre());
         System.out.println("Component Number: " + musician.getComponentNumb());
         System.out.println("Username: " + musician.getUsername());
+        System.out.println("ID: " + musician.getId());
         System.out.println("--------------------");
 
     }

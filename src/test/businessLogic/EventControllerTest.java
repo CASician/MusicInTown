@@ -3,6 +3,7 @@ package test.businessLogic;
 import main.BusinessLogic.EventController;
 import main.BusinessLogic.MusicianController;
 import main.BusinessLogic.PlacesController;
+import main.DAO.MusicianDAO;
 import main.DomainModel.Musician;
 import main.DomainModel.Planner;
 import main.DomainModel.PublicEvent;
@@ -43,19 +44,17 @@ public class EventControllerTest {
 
     @Test
     public void subscriptionTest() throws Exception {
-        Musician m = new Musician("username", "musician", "pop", 4);
-        m.setId(0);
+        Musician m = new Musician("paba", "paolo", "classic", 1);
         PlacesController pc = new PlacesController();
         EventController ec = new EventController(pc);
-        MusicianController mc = new MusicianController("musician", ec, pc);
         Planner p = new Planner("planner", "user");
         PublicPlace pp = new PublicPlace("Santa Croce", "Firenze", "Santa Croce",
                 10000, false);
-        PublicEvent e = new PublicEvent("concert", true, LocalDate.of(2025, 4, 28),
+        PublicEvent e = new PublicEvent("concerto", true, LocalDate.of(2025, 4, 28),
                 p, pp, "3 days", "Firenze", "Festival");
-        e.setId(0);
+        e.setId(1);
         ec.subscribeEvent(m, e);
-        Assertions.assertEquals(m.getName(), e.getSubscribers().get(0).getName());
+        Assertions.assertEquals(m.getName(), e.getSubscribers().get(1).getName());
         Assertions.assertTrue(ec.getPrivateEvents().isEmpty());
     }
 
