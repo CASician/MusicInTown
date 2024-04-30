@@ -100,7 +100,7 @@ public class SubscriptionsDAO {
         // Add the data in the array
         while (resultSet.next()){
             // retrieve data
-            int id = resultSet.getInt("id_musician");
+            int id = resultSet.getInt("id_subscriber");
 
             // compare to getAll
             for (Musician musician: allMusicians){

@@ -95,7 +95,7 @@ public class OwnerController extends BasicUserController{
         }
     }
 
-    private void selectMusicianPr(ArrayList<PrivateEvent> privateEvents) {
+    private void selectMusicianPr(ArrayList<PrivateEvent> privateEvents) throws SQLException {
         if(privateEvents != null) {
             ownerInterface.printPrivateEvents(privateEvents);
             PrivateEvent event = null;

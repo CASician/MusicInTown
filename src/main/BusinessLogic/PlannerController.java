@@ -100,7 +100,7 @@ public class PlannerController extends BasicUserController {
         }
     }
 
-    private void selectMusicianPr(ArrayList<PrivateEvent> privateEvents) {
+    private void selectMusicianPr(ArrayList<PrivateEvent> privateEvents) throws SQLException{
         if(privateEvents != null) {
             plannerInterface.printPrivateEvents(privateEvents);
             PrivateEvent event = null;
@@ -147,7 +147,7 @@ public class PlannerController extends BasicUserController {
         }
     }
 
-    private void selectMusicianPu(ArrayList<PublicEvent> publicEvents) {
+    private void selectMusicianPu(ArrayList<PublicEvent> publicEvents) throws SQLException{
         if(publicEvents != null) {
             plannerInterface.printPublicEvents(publicEvents);
             PublicEvent event = null;
