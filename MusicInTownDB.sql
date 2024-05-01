@@ -102,7 +102,7 @@
         capacity    INT,
         indoor      BOOLEAN
     );
-    ALTER TABLE Owners ADD CONSTRAINT place_fk
+    ALTER TABLE Owners ADD CONSTRAINT owned_place_fk
         FOREIGN KEY(place) REFERENCES Places(name) ON UPDATE CASCADE ON DELETE CASCADE;
     ALTER TABLE PrivateEvents ADD CONSTRAINT place_fk
         FOREIGN KEY(place) REFERENCES Places(name) ON UPDATE CASCADE ON DELETE CASCADE;
