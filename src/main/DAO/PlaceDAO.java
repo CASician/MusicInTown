@@ -23,13 +23,13 @@ public class PlaceDAO {
         insertPlace.executeUpdate();
 
         // Find ID and assign it to the real instance
-        PreparedStatement findId = conn.prepareStatement("SELECT id FROM Events WHERE name = ?");
+        PreparedStatement findId = conn.prepareStatement("SELECT id FROM places WHERE name = ?");
         findId.setString(1, place.getName());
 
         // Use the result to assign the ID to Place
-        ResultSet resultSet = findId.executeQuery();
-        resultSet.next();                           // Idk what it does, but it's needed.
-        place.setId(resultSet.getInt("id"));
+            ResultSet resultSet = findId.executeQuery();
+            resultSet.next();                           // Idk what it does, but it's needed.
+            place.setId(resultSet.getInt("id"));
 
         // Close connections
         findId.close();

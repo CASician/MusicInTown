@@ -21,7 +21,12 @@ public class OwnerDAO {
         // Add the real values instead of "?"
         insertOwner.setInt(1, owner.getId());
         insertOwner.setString(2, owner.getName());
-        insertOwner.setString(3, owner.getPlace().getName());
+
+        if (owner.getPlace() != null) {
+            insertOwner.setString(3, owner.getPlace().getName());
+        } else {
+            insertOwner.setString(3, null);
+        }
         insertOwner.executeUpdate();
 
         // Close connection
