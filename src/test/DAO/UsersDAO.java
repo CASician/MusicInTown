@@ -11,7 +11,6 @@ import static main.DomainModel.PlaceType.Pub;
 
 public class UsersDAO {
     // test getUser
-    // test delete
     // test getAll
     static Connection conn;
 
@@ -23,8 +22,9 @@ public class UsersDAO {
         }
     }
 
+    // ADD and DELETE USERS
     @Test
-    public void addBasicUser() throws Exception {
+    public void addDeleteBasicUser() throws Exception {
         try (Statement st = conn.createStatement()) {
             // Use DAO
             BasicUserDAO.add(new User("gianni", "gianni_username"));
@@ -41,7 +41,7 @@ public class UsersDAO {
     }
 
     @Test
-    public void addMunicipality() throws Exception{
+    public void addDeleteMunicipality() throws Exception{
         try (Statement st = conn.createStatement()) {
             // Use DAO
             Municipality gen = new Municipality("genoa", "Genova");
@@ -62,7 +62,7 @@ public class UsersDAO {
         }
     }
     @Test
-    public void addMusician() throws Exception{
+    public void addDeleteMusician() throws Exception{
         try (Statement st = conn.createStatement()) {
             // Use DAO
             Musician mao = new Musician("maoo", "Mao", "rock", 4);
@@ -86,7 +86,7 @@ public class UsersDAO {
     }
 
     @Test
-    public void addOwner() throws Exception{
+    public void addDeleteOwner() throws Exception{
         try (Statement st = conn.createStatement()) {
             // Use DAO
             Owner ciccio = new Owner("ciccio", "Giovannissimo");
@@ -108,7 +108,7 @@ public class UsersDAO {
     }
 
     @Test
-    public void addPlanner() throws Exception{
+    public void addDeletePlanner() throws Exception{
         try (Statement st = conn.createStatement()) {
             // Use DAO
             Planner molletta = new Planner("molletta", "Malviana");
@@ -128,6 +128,8 @@ public class UsersDAO {
             PlannerDAO.delete(molletta);
         }
     }
+
+    //
 
     @AfterAll
     public static void tearDown() throws Exception {
