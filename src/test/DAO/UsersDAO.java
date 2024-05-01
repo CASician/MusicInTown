@@ -137,7 +137,7 @@ public class UsersDAO {
     @Test
     public void getMunicipality() throws Exception{
         try (Statement st = conn.createStatement()) {
-            // Use DAO
+            // Use DAO to add it to DB
             Municipality gen = new Municipality("genoa", "Genova");
             MunicipalityDAO.add(gen);
 
