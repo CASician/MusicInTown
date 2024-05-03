@@ -22,12 +22,27 @@ public class UsersDAO {
         }
     }
 
-    // ---------------------------- ADD and DELETE USERS ----------------------------
+    User gianni = new User("gianni", "gianni_username");
+    Municipality gen = new Municipality("genoa", "Genova");
+    Musician mao = new Musician("maoo", "Mao", "rock", 4);
+    Owner ciccio = new Owner("ciccio", "Giovannissimo");
+    Planner molletta = new Planner("molletta", "Malviana");
+
+    public UsersDAO() throws SQLException {
+    }
+
+    @BeforeAll
+    public static void setUpDB() throws Exception{
+
+    }
+
+
+
+    // ---------------------------- ADD USERS ----------------------------
     @Test
-    public void addDeleteBasicUser() throws Exception {
+    public void addBasicUser() throws Exception {
         try (Statement st = conn.createStatement()) {
             // Use DAO
-            User gianni = new User("gianni", "gianni_username");
             BasicUserDAO.add(gianni);
 
             // Use a query to check the data inside the DB
@@ -38,17 +53,12 @@ public class UsersDAO {
 
             // Verify that the data corresponds.
             Assertions.assertEquals("gianni_username", rs.getString("username"));
-
-            // Delete from DB
-            BasicUserDAO.delete(gianni);
         }
     }
-
     @Test
-    public void addDeleteMunicipality() throws Exception{
+    public void addMunicipality() throws Exception{
         try (Statement st = conn.createStatement()) {
             // Use DAO
-            Municipality gen = new Municipality("genoa", "Genova");
             MunicipalityDAO.add(gen);
 
             // Use a query to check the data inside the DB
@@ -60,16 +70,13 @@ public class UsersDAO {
             // Verify that the data corresponds.
             Assertions.assertEquals("genoa", rs.getString("municipality_username"));
             Assertions.assertEquals("Genova", rs.getString("municipality_city") );
-
-            // Delete it
-            MunicipalityDAO.delete(gen);
         }
     }
+
     @Test
-    public void addDeleteMusician() throws Exception{
+    public void addMusician() throws Exception{
         try (Statement st = conn.createStatement()) {
             // Use DAO
-            Musician mao = new Musician("maoo", "Mao", "rock", 4);
             MusicianDAO.add(mao);
 
             // Use a query to check the data inside the DB
@@ -83,17 +90,13 @@ public class UsersDAO {
             Assertions.assertEquals("Mao", rs.getString("name"));
             Assertions.assertEquals("rock", rs.getString("genre"));
             Assertions.assertEquals(4, rs.getInt("componentnumb"));
-
-            // Delete it
-            MusicianDAO.delete(mao);
         }
     }
 
     @Test
-    public void addDeleteOwner() throws Exception{
+    public void addOwner() throws Exception{
         try (Statement st = conn.createStatement()) {
             // Use DAO
-            Owner ciccio = new Owner("ciccio", "Giovannissimo");
             OwnerDAO.add(ciccio);
 
             // Use a query to check the data inside the DB
@@ -105,17 +108,13 @@ public class UsersDAO {
             // Verify that the data corresponds.
             Assertions.assertEquals("ciccio", rs.getString("username"));
             Assertions.assertEquals("Giovannissimo", rs.getString("name"));
-
-            // Delete it
-            OwnerDAO.delete(ciccio);
         }
     }
 
     @Test
-    public void addDeletePlanner() throws Exception{
+    public void addPlanner() throws Exception{
         try (Statement st = conn.createStatement()) {
             // Use DAO
-            Planner molletta = new Planner("molletta", "Malviana");
             PlannerDAO.add(molletta);
 
             // Use a query to check the data inside the DB
@@ -127,103 +126,85 @@ public class UsersDAO {
             // Verify that the data corresponds.
             Assertions.assertEquals("Malviana", rs.getString("username"));
             Assertions.assertEquals("molletta", rs.getString("name"));
-
-            // Delete it
-            PlannerDAO.delete(molletta);
         }
     }
-
+    // ---------------------------- DELETE ----------------------------
+    @Test
+    public void deleteBasicUser() throws Exception{
+        // Delete from DB
+        Assertions.assertDoesNotThrow(() -> BasicUserDAO.delete(gianni));
+    }
+    @Test
+    public void deleteMunicipality() throws Exception{
+        Assertions.assertDoesNotThrow(() -> MunicipalityDAO.delete(gen));
+    }
+    @Test
+    public void deleteMusician() throws Exception{
+        Assertions.assertDoesNotThrow(() -> MusicianDAO.delete(mao));
+    }
+    @Test
+    public void deleteOwner() throws Exception{
+        Assertions.assertDoesNotThrow(() -> OwnerDAO.delete(ciccio));
+    }
+    @Test
+    public void deletePlanner() throws Exception{
+        Assertions.assertDoesNotThrow(() -> PlannerDAO.delete(molletta));
+    }
     // ---------------------------- GETTERS ----------------------------
     @Test
     public void getMunicipality() throws Exception{
         try (Statement st = conn.createStatement()) {
-            // Use DAO to add it to DB
-            Municipality gen = new Municipality("genoa", "Genova");
-            MunicipalityDAO.add(gen);
-
             // Use DAO to create a new test Object
-            Municipality testObject = MunicipalityDAO.getMunicipality("genoa");
+            Municipality testObject = MunicipalityDAO.getMunicipality("florence");
 
             // Verify that the data corresponds.
-            Assertions.assertEquals("genoa", testObject.getUsername());
-            Assertions.assertEquals("Genova", testObject.getCity());
-
-            // Delete it
-            MunicipalityDAO.delete(gen);
+            Assertions.assertEquals("florence", testObject.getUsername());
+            Assertions.assertEquals("Firenze", testObject.getCity());
         }
     }
     @Test
     public void getMusician() throws Exception{
         try (Statement st = conn.createStatement()) {
-            // Use DAO
-            Musician mao = new Musician("maoo", "Mao", "rock", 4);
-            MusicianDAO.add(mao);
-
             // Use DAO to create a Test Object
-            Musician testObject = MusicianDAO.getMusician("maoo");
+            Musician testObject = MusicianDAO.getMusician("paba");
 
             // Verify that the data corresponds.
-            Assertions.assertEquals("maoo", testObject.getUsername());
-            Assertions.assertEquals("Mao", testObject.getName());
-            Assertions.assertEquals("rock", testObject.getGenre());
-            Assertions.assertEquals(4, testObject.getComponentNumb());
-
-            // Delete it
-            MusicianDAO.delete(mao);
+            Assertions.assertEquals("paba", testObject.getUsername());
+            Assertions.assertEquals("Paolo", testObject.getName());
+            Assertions.assertEquals("Classic", testObject.getGenre());
+            Assertions.assertEquals(1, testObject.getComponentNumb());
         }
     }
     @Test
     public void getOwner() throws Exception{
         try (Statement st = conn.createStatement()) {
-            // Use DAO
-            Owner ciccio = new Owner("ciccio", "Giovannissimo");
-            OwnerDAO.add(ciccio);
-
             // Use DAO to create a new Test Object
-            Owner testOwner = OwnerDAO.getOwner("ciccio");
+            Owner testOwner = OwnerDAO.getOwner("dante");
 
             // Verify that the data corresponds.
-            Assertions.assertEquals("ciccio", testOwner.getUsername());
-            Assertions.assertEquals("Giovannissimo", testOwner.getName());
-
-            // Delete it
-            OwnerDAO.delete(ciccio);
+            Assertions.assertEquals("dante", testOwner.getUsername());
+            Assertions.assertEquals("Dante Alighieri", testOwner.getName());
         }
     }
     @Test
     public void getPlanner() throws Exception{
         try (Statement st = conn.createStatement()) {
-            // Use DAO
-            Planner molletta = new Planner("molletta", "Malviana");
-            PlannerDAO.add(molletta);
-
             // Use DAO to create a new Test Object
-            Planner testPlanner = PlannerDAO.getPlanner("Malviana");
+            Planner testPlanner = PlannerDAO.getPlanner("cris");
 
             // Verify that the data corresponds.
-            Assertions.assertEquals("Malviana", testPlanner.getUsername());
-            Assertions.assertEquals("molletta", testPlanner.getName());
-
-            // Delete it
-            PlannerDAO.delete(molletta);
+            Assertions.assertEquals("cris", testPlanner.getUsername());
+            Assertions.assertEquals("Cristian", testPlanner.getName());
         }
     }
     @Test
     public void getUser() throws Exception{
         try (Statement st = conn.createStatement()) {
-            // Use DAO
-            User gianni = new User("gianni", "gianni_username");
-            UserDAO.add(gianni);
-
             // Use DAO to create a new Test Object
-            User testUser = UserDAO.getUser("gianni_username");
+            User testUser = UserDAO.getUser("tizio");
 
             // Verify that the data corresponds.
-            Assertions.assertEquals("gianni_username", testUser.getUsername());
-
-            // Delete data from DB
-            UserDAO.delete(gianni);
+            Assertions.assertEquals("tizio", testUser.getUsername());
         }
     }
-
 }

@@ -16,17 +16,26 @@ import static java.sql.DriverManager.getConnection;
 public class EventsDAO {
     static Connection conn;
 
-    Planner planner = new Planner("lollo", "brigidda");
-    Owner owner = new Owner("senza", "complimenti");
-    PrivatePlace pvtpl = new PrivatePlace("firenze", "posto bello", "via esta", 20, true, PlaceType.Cafe, owner);
+    static Planner planner = new Planner("lollo", "brigidda");
+    static Owner owner;
 
-    PrivateEvent pvtev_owner = new PrivateEvent("privatissimo", false, LocalDate.of(2023, 12,12), planner, pvtpl, "2", "firenze", "bellissimo");
-    PrivateEvent pvtev_planner = new PrivateEvent("privatissimo_due", false, LocalDate.of(2022, 11,11), owner, pvtpl, "3", "pisa", "incredibile");
+    static {
+        try {
+            owner = new Owner("senza", "complimenti");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    static PrivatePlace pvtpl = new PrivatePlace("firenze", "posto bello", "via esta", 20, true, PlaceType.Cafe, owner);
+
+    static PrivateEvent pvtev_owner = new PrivateEvent("privatissimo", false, LocalDate.of(2023, 12,12), planner, pvtpl, "2", "firenze", "bellissimo");
+    static PrivateEvent pvtev_planner = new PrivateEvent("privatissimo_due", false, LocalDate.of(2022, 11,11), owner, pvtpl, "3", "pisa", "incredibile");
 
 
-    Planner planner2 = new Planner("ecce", "homo");
-    PublicPlace publicPlace = new PublicPlace("aerosol", "firenze", "piazza pubblica", 200, false);
-    PublicEvent publicEvent = new PublicEvent("fantasia", true, LocalDate.of(2022, 2,2), planner2, publicPlace, "1", "firenze", "comico" );
+    static Planner planner2 = new Planner("ecce", "homo");
+    static PublicPlace publicPlace = new PublicPlace("aerosol", "firenze", "piazza pubblica", 200, false);
+    static PublicEvent publicEvent = new PublicEvent("fantasia", true, LocalDate.of(2022, 2,2), planner2, publicPlace, "1", "firenze", "comico" );
 
     static {
         try {
@@ -38,8 +47,9 @@ public class EventsDAO {
 
     public EventsDAO() throws SQLException {
     }
-    @BeforeEach
-    public void setUpDB() throws Exception{
+
+    @BeforeAll
+    public static void setUpDB() throws Exception{
         OwnerDAO.add(owner);
         PrivatePlaceDAO.add(pvtpl);
         PlannerDAO.add(planner);
@@ -116,14 +126,14 @@ public class EventsDAO {
     }
 
     @Test
-    public void deletePublicEventTest() throws Exception{
+    public void deletePublicEventTest() throws Exception {
         int num = PublicEventDAO.getAll().size();
         PublicEventDAO.delete(publicEvent);
         Assertions.assertEquals(num-1, PublicEventDAO.getAll().size());
     }
 
-    @AfterEach
-    public void clearDB() throws Exception {
+    @AfterAll
+    public static void clearDB() throws Exception {
         // Delete from DB
         PrivatePlaceDAO.delete(pvtpl);
         OwnerDAO.delete(owner);
