@@ -50,7 +50,7 @@ public class PlannerDAO {
         // The result is logged in the BasicUserDAO.delete
     }
 
-    public ArrayList<Planner> getAll() throws SQLException {
+    public static ArrayList<Planner> getAll() throws SQLException {
         // Create the array you return
         ArrayList<Planner> users = new ArrayList<>();
 

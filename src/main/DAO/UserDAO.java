@@ -50,7 +50,7 @@ public class UserDAO {
         // The result is logged in the BasicUserDAO.delete
     }
 
-    public ArrayList<User> getAll () throws SQLException {
+    public static ArrayList<User> getAll () throws SQLException {
         // Create the array you return
         ArrayList<User> users = new ArrayList<>();
 
