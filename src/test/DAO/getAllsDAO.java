@@ -18,7 +18,7 @@ public class getAllsDAO {
     }
     @Test
     public void getAllMusiciansTest() throws Exception{
-        Assertions.assertEquals(5, MusicianDAO.getAll().size());
+        Assertions.assertEquals(6, MusicianDAO.getAll().size());
     }
     @Test
     public void getAllOwnersTest() throws Exception{
@@ -26,7 +26,7 @@ public class getAllsDAO {
     }
     @Test
     public void getAllPlannersTest() throws Exception{
-        Assertions.assertEquals(5, PlannerDAO.getAll().size());
+        Assertions.assertEquals(6, PlannerDAO.getAll().size());
     }
 
     // ---------------------------- GET ALL PLACES ----------------------------
