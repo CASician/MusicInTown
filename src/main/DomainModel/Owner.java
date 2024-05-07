@@ -16,13 +16,13 @@ public class Owner extends BasicUser {
 
     ArrayList<PrivateEvent> eventsToBeAccepted = new ArrayList<>();
 
-    public Owner(String username, String name, PrivatePlace privatePlace) throws SQLException {
+    public Owner(String username, String name, PrivatePlace privatePlace){
         super(username);
         this.privatePlace = privatePlace;
         this.name = name;
     }
 
-    public Owner(String username, String name) throws SQLException {
+    public Owner(String username, String name) {
         super(username);
         this.name = name;
     }

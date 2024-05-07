@@ -41,6 +41,15 @@ public class Musician extends BasicUser {
         //Returns the list of public events
         return subscriptions_publicEvents = SubscriptionsDAO.getAllPublic_musician(this);
     }
+
+    public ArrayList<PublicEvent> test_getSubscriptions_publicEvents() {
+        return subscriptions_publicEvents;
+    }
+
+    public ArrayList<PrivateEvent> test_getSubscriptions_privateEvents() {
+        return subscriptions_privateEvents;
+    }
+
     public int getComponentNumb() {
         return componentNumb;
     }
