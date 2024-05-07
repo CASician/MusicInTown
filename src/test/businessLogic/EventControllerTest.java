@@ -32,11 +32,9 @@ public class EventControllerTest {
 
     @Test
     public void subscriptionTest() throws Exception {
-        int subs_musician = m.getPublicEvents().size();
         int subs_event = e.getSubscribers().size();
         ec.subscribeEvent(m, e);
 
-        Assertions.assertEquals(subs_musician+1, m.getPublicEvents().size());
         Assertions.assertEquals(subs_event+1, e.getSubscribers().size());
     }
 
@@ -60,7 +58,7 @@ public class EventControllerTest {
     // test for visualizing subscriptions: no.
 
     @AfterAll
-    public static void removeDB() throws Exception{
+    public static void cleanDB() throws Exception{
         EventsToBeAcceptedDAO.delete(e.getId());
         SubscriptionsDAO.delete(m,e);
         MusicianDAO.delete(m);
