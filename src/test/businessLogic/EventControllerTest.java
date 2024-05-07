@@ -3,15 +3,9 @@ package test.businessLogic;
 import main.BusinessLogic.EventController;
 import main.BusinessLogic.MusicianController;
 import main.BusinessLogic.PlacesController;
-import main.DAO.MusicianDAO;
-import main.DomainModel.Musician;
-import main.DomainModel.Planner;
-import main.DomainModel.PublicEvent;
-import main.DomainModel.PublicPlace;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import main.DAO.*;
+import main.DomainModel.*;
+import org.junit.jupiter.api.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -19,43 +13,59 @@ import java.time.LocalDate;
 
 public class EventControllerTest {
 
+    static Musician m = new Musician("signor", "test", "classic", 1);
+    static Planner p = new Planner("planner", "user");
+    static PublicPlace pp = new PublicPlace("Santo Spirito", "Firenze", "Santo Spirito",
+            1000, false);
+    static PublicEvent e = new PublicEvent("concerto", true, LocalDate.of(2025, 4, 28),
+            p, pp, "3 days", "Firenze", "Festival");
+    PlacesController pc = new PlacesController();
+    EventController ec = new EventController(pc);
+
     @BeforeAll
-    static void setUpDb() throws SQLException, IOException {
-        //Set up all the database
-    }
-
-    @BeforeEach
-    public void initDb() throws SQLException {
-        //Initialize the database
-    }
-
-    @Test
-    public void eventCreationTest() throws Exception {
-        PlacesController pc = new PlacesController();
-        EventController ec = new EventController(pc);
-        Planner p = new Planner("planner", "user");
-        PublicPlace pp = new PublicPlace("Santa Croce", "Firenze", "Santa Croce",
-                10000, false);
-        PublicEvent e = new PublicEvent("concerto", true, LocalDate.of(2025, 4, 28),
-                p, pp, "3 days", "Firenze", "Festival");
-        Assertions.assertEquals( e.getName(), ec.getPublicEvents().get(e.getId()).getName());
-        //Assertions.assertEquals( e, ec.getPublicEventsFiltered(LocalDate.now()).get(0));
+    public static void addDB() throws Exception{
+        MusicianDAO.add(m);
+        PlannerDAO.add(p);
+        PublicPlaceDAO.add(pp);
+        PublicEventDAO.add(e);
     }
 
     @Test
     public void subscriptionTest() throws Exception {
-        Musician m = new Musician("paba", "paolo", "classic", 1);
-        PlacesController pc = new PlacesController();
-        EventController ec = new EventController(pc);
-        Planner p = new Planner("planner", "user");
-        PublicPlace pp = new PublicPlace("Santa Croce", "Firenze", "Santa Croce",
-                10000, false);
-        PublicEvent e = new PublicEvent("concerto", true, LocalDate.of(2025, 4, 28),
-                p, pp, "3 days", "Firenze", "Festival");
-        e.setId(1);
+        int subs_musician = m.getPublicEvents().size();
+        int subs_event = e.getSubscribers().size();
         ec.subscribeEvent(m, e);
-        Assertions.assertEquals(m.getName(), e.getSubscribers().get(1).getName());
-        Assertions.assertTrue(ec.getPrivateEvents().isEmpty());
+
+        Assertions.assertEquals(subs_musician+1, m.getPublicEvents().size());
+        Assertions.assertEquals(subs_event+1, e.getSubscribers().size());
     }
 
+    @Test
+    public void testNotifyEventObserver() throws Exception{
+        Municipality m = MunicipalityDAO.getMunicipality("florence");
+        int nr_eventsTBA = m.getEventsToBeAccepted().size();
+        ec.notifyEventObservers(e);
+        // This is not DRY, but it is needed because my m's array does not get updated, it only happens in the DB.
+        // It is optimized for our use case, not for testing though.
+        // In other words, this m, is completely different by the one that 'notifyEventObserver' updates. Therefore I need to call again
+        // the DAO to "update" it.
+        m = MunicipalityDAO.getMunicipality("florence");
+
+        Assertions.assertEquals(nr_eventsTBA+1, m.getEventsToBeAccepted().size());
+    }
+
+    // test for visualizing events: no.
+    // test for visualizing filtered events: no
+    // test for visualizing places: no
+    // test for visualizing subscriptions: no.
+
+    @AfterAll
+    public static void removeDB() throws Exception{
+        EventsToBeAcceptedDAO.delete(e.getId());
+        SubscriptionsDAO.delete(m,e);
+        MusicianDAO.delete(m);
+        PlannerDAO.delete(p);
+        PublicEventDAO.delete(e);
+        PublicPlaceDAO.delete(pp);
+    }
 }
