@@ -34,7 +34,6 @@ public abstract class Event {
     public void addSubscriber(Musician musician) throws SQLException {
         //Add the musician to the list of event subscription
         subscribers.add(musician);
-        SubscriptionsDAO.add(musician, this);
     }
 
     public ArrayList<Musician> getSubscribers() throws SQLException {
