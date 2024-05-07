@@ -26,15 +26,8 @@ public class PlacesDAO {
             throw new RuntimeException(e);
         }
     }
-    static Owner ciccio;
+    static Owner ciccio = new Owner("ciccio", "Giovannissimo");
 
-    static {
-        try {
-            ciccio = new Owner("ciccio", "Giovannissimo");
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
     PrivatePlace pvtpl = new PrivatePlace("firenze", "posto bello", "via esta", 20, true, PlaceType.Cafe, ciccio);
     PublicPlace pblpl = new PublicPlace("bellou", "firenze", "via torta", 10, false);
 

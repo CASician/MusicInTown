@@ -17,15 +17,7 @@ public class EventsDAO {
     static Connection conn;
 
     static Planner planner = new Planner("lollo", "brigidda");
-    static Owner owner;
-
-    static {
-        try {
-            owner = new Owner("senza", "complimenti");
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
+    static Owner owner = new Owner("senza", "complimenti");
 
     static PrivatePlace pvtpl = new PrivatePlace("firenze", "posto bello", "via esta", 20, true, PlaceType.Cafe, owner);
 
