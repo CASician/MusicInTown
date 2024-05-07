@@ -9,18 +9,14 @@ import java.sql.SQLException;
 
 public class PlannerControllerTest {
 
+    // test for choosing a band
     @Test
-    public void subscriptionTest() throws Exception {
-
+    public void selectMusicianPublicEventTest() throws Exception {
+        // Done with user input.
     }
 
-    @BeforeAll
-    static void setUpDb() throws SQLException, IOException {
-        //Set up all the database
-    }
-
-    @BeforeEach
-    public void initDb() throws SQLException {
-        //Initialize the database
+    @Test
+    public void selectMusicianPrivateEventTest() throws Exception{
+        // Done with user input.
     }
 }
