@@ -4,7 +4,6 @@ import main.DAO.*;
 import main.DomainModel.*;
 import org.junit.jupiter.api.*;
 
-import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +12,7 @@ import java.time.LocalDate;
 
 import static java.sql.DriverManager.getConnection;
 
-public class EventsDAO {
+public class EventsDAOTest {
     static Connection conn;
 
     static Planner planner = new Planner("lollo", "brigidda");
@@ -37,7 +36,7 @@ public class EventsDAO {
         }
     }
 
-    public EventsDAO() throws SQLException {
+    public EventsDAOTest() throws SQLException {
     }
 
     @BeforeAll

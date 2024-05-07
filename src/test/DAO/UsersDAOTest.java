@@ -1,6 +1,4 @@
 package test.DAO;
-import main.BusinessLogic.BasicUserController;
-import main.BusinessLogic.UserChoices;
 import main.DAO.*;
 import main.DomainModel.*;
 import org.junit.jupiter.api.*;
@@ -8,9 +6,8 @@ import org.junit.jupiter.api.*;
 import java.sql.*;
 
 import static java.sql.DriverManager.getConnection;
-import static main.DomainModel.PlaceType.Pub;
 
-public class UsersDAO {
+public class UsersDAOTest {
     // test getAll
     static Connection conn;
 
@@ -28,7 +25,7 @@ public class UsersDAO {
     Owner ciccio = new Owner("ciccio", "Giovannissimo");
     Planner molletta = new Planner("molletta", "Malviana");
 
-    public UsersDAO() throws SQLException {
+    public UsersDAOTest() throws SQLException {
     }
 
     @BeforeAll

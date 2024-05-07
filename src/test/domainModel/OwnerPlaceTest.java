@@ -17,13 +17,13 @@ public class OwnerPlaceTest {
     static PrivateEvent pvtev_planner = new PrivateEvent("privatissimo_due", false, LocalDate.of(2022, 11,11), owner, pvtpl, "3", "pisa", "incredibile");
 
     @Test
-    public void owner_test() throws Exception {
+    public void owner_test() {
         Owner o = new Owner("user", "owner");
         Assertions.assertEquals("owner", o.getName());
         Assertions.assertEquals("user", o.getUsername());
     }
     @Test
-    public void ownerPlace_test() throws Exception {
+    public void ownerPlace_test() {
         Owner o = new Owner("user", "owner");
         PrivatePlace p = new PrivatePlace("Firenze", "Hard Rock", "Piazza della Repubblica",
                 1000, true, PlaceType.Cafe, o);
@@ -35,7 +35,7 @@ public class OwnerPlaceTest {
     }
 
     @Test
-    public void publicPlace_test() throws  Exception {
+    public void publicPlace_test() {
         PublicPlace pp = new PublicPlace("Santa Croce", "Firenze", "Santa Croce",
                 10000, false);
         Assertions.assertEquals( "Santa Croce", pp.getName());

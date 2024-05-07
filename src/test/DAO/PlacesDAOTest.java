@@ -5,7 +5,6 @@ import main.DAO.OwnerDAO;
 import main.DAO.PrivatePlaceDAO;
 import main.DAO.PublicPlaceDAO;
 import main.DomainModel.*;
-import org.h2.command.Prepared;
 import org.junit.jupiter.api.*;
 
 import java.sql.Connection;
@@ -16,7 +15,7 @@ import java.time.LocalDate;
 
 import static java.sql.DriverManager.getConnection;
 
-public class PlacesDAO {
+public class PlacesDAOTest {
     static Connection conn;
 
     static {
@@ -31,7 +30,7 @@ public class PlacesDAO {
     PrivatePlace pvtpl = new PrivatePlace("firenze", "posto bello", "via esta", 20, true, PlaceType.Cafe, ciccio);
     PublicPlace pblpl = new PublicPlace("bellou", "firenze", "via torta", 10, false);
 
-    public PlacesDAO() throws SQLException {
+    public PlacesDAOTest() throws SQLException {
     }
 
     @BeforeAll

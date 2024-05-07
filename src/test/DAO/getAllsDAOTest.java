@@ -2,10 +2,9 @@ package test.DAO;
 
 import main.DAO.*;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
-public class getAllsDAO {
+public class getAllsDAOTest {
     // ---------------------------- GET ALL USERS ----------------------------
 
     @Test
